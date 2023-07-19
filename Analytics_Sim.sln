@@ -7,7 +7,7 @@ Project("{B1E792BE-AA5F-4E3C-8C82-674BF9C0715B}") = "Analytics_Sim", "Analytics_
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4BEB1511-4D24-4405-9D48-B925443C4A67}"
 	ProjectSection(SolutionItems) = preProject
-		TwinCAT3.gitignore = TwinCAT3.gitignore
+		.gitignore = .gitignore
 	EndProjectSection
 EndProject
 Global
