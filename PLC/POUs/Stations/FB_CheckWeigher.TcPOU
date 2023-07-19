@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_CheckWeigher" Id="{6e33866b-3474-4e96-8cf0-c26d69bfb058}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_CheckWeigher IMPLEMENTS IStation
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Property Name="Busy" Id="{8e34b1a1-b6ef-4d23-8ae6-6bb1082f80fc}">
+      <Declaration><![CDATA[{warning 'add property implementation'}
+PROPERTY Busy : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{75cea41c-473b-4e66-9397-91a03df37dc9}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="Execute" Id="{3b466d42-ccd3-4ed1-ba02-f80ecd42d30d}">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD Execute : PVOID
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Faulted" Id="{5850d7ea-fdff-4205-a5dd-e578a40bc9ef}">
+      <Declaration><![CDATA[{warning 'add property implementation'}
+PROPERTY Faulted : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{8596e7a8-f7a3-4e61-856c-27e20d09b29f}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="Ready" Id="{da4e9d1f-c459-4fd9-b934-d0c9eb902a2d}">
+      <Declaration><![CDATA[{warning 'add property implementation'}
+PROPERTY Ready : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{8e1fab2c-c7e8-4ab3-a554-69947d407fee}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <LineIds Name="FB_CheckWeigher">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_CheckWeigher.Busy.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_CheckWeigher.Execute">
+      <LineId Id="4" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_CheckWeigher.Faulted.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_CheckWeigher.Ready.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

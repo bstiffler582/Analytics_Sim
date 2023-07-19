@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_Capper" Id="{84003403-a58a-475b-b316-c108bd8518cd}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_Capper IMPLEMENTS IStation
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Property Name="Busy" Id="{e513cc39-182d-4db1-aa76-2ddf2d67e05f}">
+      <Declaration><![CDATA[{warning 'add property implementation'}
+PROPERTY Busy : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{4c2e7329-e08b-4eb8-bc0e-a9aad6da5bd5}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="Execute" Id="{3ce6c1cf-617e-4551-9791-e05b0a04d467}">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD Execute : PVOID
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Faulted" Id="{27dfba32-5ca0-4c44-bcde-c717b6dba21e}">
+      <Declaration><![CDATA[{warning 'add property implementation'}
+PROPERTY Faulted : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{1653a5f4-852b-43fd-8e37-69fbf6c0d8f8}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="Ready" Id="{75401c11-93e4-45f6-b582-100bb15a9dd0}">
+      <Declaration><![CDATA[{warning 'add property implementation'}
+PROPERTY Ready : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{30cab7ee-58fe-4f86-a492-5d86b605ca03}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <LineIds Name="FB_Capper">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Capper.Busy.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Capper.Execute">
+      <LineId Id="4" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Capper.Faulted.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Capper.Ready.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

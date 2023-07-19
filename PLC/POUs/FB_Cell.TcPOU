@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_Cell" Id="{94f7f691-4eab-4c8c-b55b-20327a9666cd}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_Cell
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	eAutoMan					: E_AutoMan := E_AutoMan.MANUAL;
+	State						: E_CellState;
+	
+	Stations					: ARRAY[0..9] OF IStation;
+	i							: DINT;
+	
+	bAllStationsReady			: BOOL;
+	bFaulted					: BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[FOR i := 0 TO 9	DO
+	IF (Stations[i] <> 0) THEN
+		
+		bAllStationsReady := TRUE;
+		IF (NOT Stations[i].Ready OR Stations[i].Busy) THEN
+			bAllStationsReady := FALSE;
+		END_IF
+		
+		bFaulted := FALSE;
+		IF (Stations[i].Faulted) THEN
+			bFaulted := TRUE;
+		END_IF
+		
+	END_IF
+END_FOR
+
+CASE State OF
+	E_CellState.IDLE:
+		;
+	E_CellState.INDEXING:
+		;
+	E_CellState.WAIT_STATION:
+		;
+END_CASE]]></ST>
+    </Implementation>
+    <Method Name="AddStation" Id="{a5be06ec-f18d-45a8-95a9-f1b60f461c63}">
+      <Declaration><![CDATA[METHOD PUBLIC AddStation : PVOID
+VAR_INPUT
+	Station		: IStation;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Execute" Id="{d7efdd70-bdc8-43b5-82c2-5ff6cb9ffaaa}">
+      <Declaration><![CDATA[METHOD PUBLIC Execute : PVOID
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_Cell">
+      <LineId Id="9" Count="0" />
+      <LineId Id="42" Count="0" />
+      <LineId Id="59" Count="0" />
+      <LineId Id="55" Count="3" />
+      <LineId Id="49" Count="0" />
+      <LineId Id="60" Count="0" />
+      <LineId Id="50" Count="2" />
+      <LineId Id="54" Count="0" />
+      <LineId Id="45" Count="0" />
+      <LineId Id="43" Count="0" />
+      <LineId Id="64" Count="0" />
+      <LineId Id="63" Count="0" />
+      <LineId Id="66" Count="0" />
+      <LineId Id="72" Count="0" />
+      <LineId Id="68" Count="0" />
+      <LineId Id="71" Count="0" />
+      <LineId Id="69" Count="1" />
+      <LineId Id="67" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Cell.AddStation">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Cell.Execute">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
