@@ -5,9 +5,12 @@
 {attribute 'strict'}
 TYPE E_CellState :
 (
-	IDLE := 0,
-	WAIT_STATION := 1,
-	INDEXING := 2
+	STOPPED := 0,
+	IDLE := 1,
+	FEED := 2,
+	WAIT_STATION := 3,
+	INDEXING := 4,
+	SEQ_DONE := 5
 );
 END_TYPE
 ]]></Declaration>

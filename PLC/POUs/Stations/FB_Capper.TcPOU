@@ -46,6 +46,19 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
+    <Property Name="PartPresent" Id="{3b08c721-5633-4b2e-87d7-f8b9fb79ef43}">
+      <Declaration><![CDATA[{warning 'add property implementation'}
+PROPERTY PartPresent : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{b99ad185-1488-4f86-a256-c651130b02b4}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Property Name="Ready" Id="{75401c11-93e4-45f6-b582-100bb15a9dd0}">
       <Declaration><![CDATA[{warning 'add property implementation'}
 PROPERTY Ready : BOOL
@@ -69,6 +82,9 @@ END_VAR
       <LineId Id="4" Count="0" />
     </LineIds>
     <LineIds Name="FB_Capper.Faulted.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Capper.PartPresent.Get">
       <LineId Id="2" Count="0" />
     </LineIds>
     <LineIds Name="FB_Capper.Ready.Get">

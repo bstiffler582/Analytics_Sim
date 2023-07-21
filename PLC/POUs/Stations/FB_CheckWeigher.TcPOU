@@ -46,6 +46,19 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
+    <Property Name="PartPresent" Id="{30e3111f-0761-4450-8c70-e0cb8166b870}">
+      <Declaration><![CDATA[{warning 'add property implementation'}
+PROPERTY PartPresent : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{2f24073b-e8fb-468e-94ab-17951c50e70f}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Property Name="Ready" Id="{da4e9d1f-c459-4fd9-b934-d0c9eb902a2d}">
       <Declaration><![CDATA[{warning 'add property implementation'}
 PROPERTY Ready : BOOL
@@ -69,6 +82,9 @@ END_VAR
       <LineId Id="4" Count="0" />
     </LineIds>
     <LineIds Name="FB_CheckWeigher.Faulted.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_CheckWeigher.PartPresent.Get">
       <LineId Id="2" Count="0" />
     </LineIds>
     <LineIds Name="FB_CheckWeigher.Ready.Get">

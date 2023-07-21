@@ -46,6 +46,19 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
+    <Property Name="PartPresent" Id="{95bfdd99-c2ff-4ea8-a069-a6af56c1f591}">
+      <Declaration><![CDATA[{warning 'add property implementation'}
+PROPERTY PartPresent : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{c1570d8d-2d16-4701-b97f-5e49092a4e7e}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Property Name="Ready" Id="{0c567ab7-f2cc-4ae2-bbee-7022ed467954}">
       <Declaration><![CDATA[{warning 'add property implementation'}
 PROPERTY Ready : BOOL
@@ -69,6 +82,9 @@ END_VAR
       <LineId Id="4" Count="0" />
     </LineIds>
     <LineIds Name="FB_Filler.Faulted.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Filler.PartPresent.Get">
       <LineId Id="2" Count="0" />
     </LineIds>
     <LineIds Name="FB_Filler.Ready.Get">

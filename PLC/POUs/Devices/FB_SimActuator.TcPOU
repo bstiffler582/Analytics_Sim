@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_SimActuator" Id="{b60feaab-d854-40dc-b58d-c92ca4bd5a91}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_SimActuator IMPLEMENTS IActuator
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	tmrExtend		: TON;
+	tmrRetract		: TON;
+	tmrCycle		: TON;
+	iExtendDur		: DINT;
+	iRetractDur		: DINT;
+	
+	rand			: DRAND;
+	
+	bExtended		: BOOL;
+	bRetracted		: BOOL;
+	
+	iCycleState		: DINT;
+	STROKE_DUR_MS	: DINT := 2000;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[rand(Seed:=TO_INT(iExtendDur + iRetractDur));
+]]></ST>
+    </Implementation>
+    <Method Name="Cycle" Id="{37965100-d96c-4645-8c71-ca1df0408b13}">
+      <Declaration><![CDATA[METHOD Cycle : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[CASE iCycleState OF
+	0:
+		IF THIS^.Extend() THEN
+			iCycleState := 1;
+		END_IF
+	1:
+		tmrCycle(IN:=TRUE, PT:=T#500MS);
+		IF tmrCycle.Q THEN
+			tmrCycle(IN:=FALSE);
+			iCycleState := 2;
+		END_IF
+		
+	2:
+		IF THIS^.Retract() THEN
+			iCycleState := 3;
+		END_IF
+		
+	3:
+		iCycleState := 0;
+		Cycle := TRUE;
+END_CASE]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Extend" Id="{40a95e29-a632-41af-a987-4c935a3fa911}">
+      <Declaration><![CDATA[METHOD Extend : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF NOT tmrExtend.IN THEN
+	bRetracted := FALSE;
+	iExtendDur := TO_DINT(rand.Num * 1000) + STROKE_DUR_MS;
+	tmrExtend(PT:=DINT_TO_TIME(iExtendDur)); 	
+END_IF
+
+IF tmrExtend.Q THEN
+	tmrExtend(IN:=FALSE);
+	bExtended := TRUE;
+	Extend := TRUE;
+ELSE
+	tmrExtend(IN:=TRUE);
+	Extend := FALSE;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Extended" Id="{b8ac5087-3ff2-43a7-b584-1f32518f4381}">
+      <Declaration><![CDATA[PROPERTY Extended : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{adb61051-46e0-4181-8afd-273eaf7161cb}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Extended := bExtended;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="Retract" Id="{55bc305c-9eba-4946-bab0-3b5fb897cca8}">
+      <Declaration><![CDATA[METHOD Retract : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF NOT tmrRetract.IN THEN
+	bExtended := FALSE;
+	iRetractDur := TO_DINT(rand.Num * 1000) + STROKE_DUR_MS;
+	tmrRetract(PT:=DINT_TO_TIME(iRetractDur)); 	
+END_IF
+
+IF tmrRetract.Q THEN
+	bRetracted := TRUE;
+	tmrRetract(IN:=FALSE);
+	Retract := TRUE;
+ELSE
+	tmrRetract(IN:=TRUE);
+	Retract := FALSE;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Retracted" Id="{9945b710-2862-4e2a-92dd-863f037f83ee}">
+      <Declaration><![CDATA[PROPERTY Retracted : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{52d1f740-9588-4293-91ea-6e94a1c38ca8}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Retracted := bRetracted;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <LineIds Name="FB_SimActuator">
+      <LineId Id="9" Count="0" />
+      <LineId Id="15" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_SimActuator.Cycle">
+      <LineId Id="4" Count="0" />
+      <LineId Id="6" Count="0" />
+      <LineId Id="8" Count="3" />
+      <LineId Id="19" Count="2" />
+      <LineId Id="23" Count="0" />
+      <LineId Id="22" Count="0" />
+      <LineId Id="24" Count="1" />
+      <LineId Id="12" Count="2" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="16" Count="2" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_SimActuator.Extend">
+      <LineId Id="6" Count="0" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="7" Count="5" />
+      <LineId Id="17" Count="0" />
+      <LineId Id="13" Count="3" />
+      <LineId Id="4" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_SimActuator.Extended.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_SimActuator.Retract">
+      <LineId Id="12" Count="0" />
+      <LineId Id="25" Count="0" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="24" Count="0" />
+      <LineId Id="19" Count="0" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="21" Count="2" />
+      <LineId Id="11" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_SimActuator.Retracted.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

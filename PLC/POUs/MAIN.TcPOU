@@ -5,15 +5,18 @@
 VAR
 	bInit				: BOOL := TRUE;
 	
+	fbCell 				: FB_Cell;
+	
 	fbFiller			: FB_Filler;
 	fbCapper			: FB_Capper;
 	fbCheckWeigher		: FB_CheckWeigher;
 	
-	fbCell 				: FB_Cell;
+	bTest: BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[IF bInit THEN
+      <ST><![CDATA[// Initialize cell
+IF bInit THEN
 	fbCell.AddStation(fbFiller);
 	fbCell.AddStation(fbCapper);
 	fbCell.AddStation(fbCheckWeigher);
@@ -23,6 +26,7 @@ END_IF
 fbCell.Execute();]]></ST>
     </Implementation>
     <LineIds Name="MAIN">
+      <LineId Id="29" Count="0" />
       <LineId Id="16" Count="0" />
       <LineId Id="20" Count="0" />
       <LineId Id="26" Count="1" />

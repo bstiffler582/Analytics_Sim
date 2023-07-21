@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <GVL Name="Devices" Id="{af15c3e2-0f56-4065-acb3-6929dda5bbfa}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	
+	fbInfeedActuator		: FB_SimActuator();
+	fbRejectActuator		: FB_SimActuator();
+	
+	fbInfeedConveyor		: FB_SimAxis;
+	fbIndexConveyor			: FB_SimAxis;
+	
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>
