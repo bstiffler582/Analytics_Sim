@@ -11,7 +11,10 @@ VAR
 	fbCapper			: FB_Capper;
 	fbCheckWeigher		: FB_CheckWeigher;
 	
-	bTest: BOOL;
+	bTest				: ARRAY[0..9] OF BOOL;
+	fbSimAxis			: FB_SimAxis;
+	fSimTarget			: LREAL := 500;
+	fSimVelocity		: LREAL := 100;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -23,7 +26,13 @@ IF bInit THEN
 	bInit := FALSE;
 END_IF
 
-fbCell.Execute();]]></ST>
+fbCell.Execute();
+
+IF bTest[0] THEN
+	IF fbSimAxis.MoveAbsolute(fSimtarget, fSimVelocity) THEN
+		bTest[0] := FALSE;
+	END_IF
+END_IF]]></ST>
     </Implementation>
     <LineIds Name="MAIN">
       <LineId Id="29" Count="0" />
@@ -33,6 +42,11 @@ fbCell.Execute();]]></ST>
       <LineId Id="18" Count="1" />
       <LineId Id="17" Count="0" />
       <LineId Id="2" Count="0" />
+      <LineId Id="52" Count="0" />
+      <LineId Id="51" Count="0" />
+      <LineId Id="53" Count="0" />
+      <LineId Id="57" Count="1" />
+      <LineId Id="54" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

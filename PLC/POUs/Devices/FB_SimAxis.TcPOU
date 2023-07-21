@@ -54,8 +54,7 @@ END_VAR
       </Get>
     </Property>
     <Method Name="Enable" Id="{bdc8b238-74ca-4278-ad3a-2a0c80f9cbb6}">
-      <Declaration><![CDATA[{warning 'add method implementation '}
-METHOD Enable : BOOL
+      <Declaration><![CDATA[METHOD Enable : BOOL
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[]]></ST>
@@ -102,7 +101,7 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[fActVelocity := Velocity;
-fActPosition := fActPosition + (Velocity / 1000);]]></ST>
+fActPosition := fActPosition + (Velocity / 101.9);]]></ST>
       </Implementation>
     </Method>
     <Method Name="JogRev" Id="{dc851cbc-856a-42a3-981c-b3912436c305}">
@@ -113,7 +112,7 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[fActVelocity := -(Velocity);
-fActPosition := fActPosition + (Velocity / 1000);]]></ST>
+fActPosition := fActPosition - (Velocity / 101.9);]]></ST>
       </Implementation>
     </Method>
     <Property Name="MaxTorque" Id="{28351169-0fb5-4ee9-b297-7ac321290eb4}">
@@ -146,10 +145,10 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF fActPosition < (Target + 1.0) THEN
+        <ST><![CDATA[IF fActPosition < (Target - 1.5) THEN
 	THIS^.JogFwd(Velocity);
 	MoveAbsolute := FALSE;
-ELSIF fActPosition > (Target - 1.0) THEN
+ELSIF fActPosition > (Target + 1.5) THEN
 	THIS^.JogRev(Velocity);
 	MoveAbsolute := FALSE;
 ELSE
