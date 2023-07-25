@@ -7,14 +7,22 @@ END_VAR
 VAR_OUTPUT
 END_VAR
 VAR
+	bPartPresent				: BOOL;
+	bReady						: BOOL;
+	bBusy						: BOOL;
+	
+	StationState				: E_StationState;
+	pPartStatus					: POINTER TO ST_PartStatus;
+	
+	tmrWork						: TON;
+	tmrDelay					: TON;
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[]]></ST>
     </Implementation>
     <Property Name="Busy" Id="{7b22d881-ebdb-4f3f-befe-dc51dc54aaa2}">
-      <Declaration><![CDATA[{warning 'add property implementation'}
-PROPERTY Busy : BOOL
+      <Declaration><![CDATA[PROPERTY Busy : BOOL
 ]]></Declaration>
       <Get Name="Get" Id="{ca417ef2-f1af-4039-b554-114d2928bdf1}">
         <Declaration><![CDATA[VAR
@@ -26,16 +34,53 @@ END_VAR
       </Get>
     </Property>
     <Method Name="Execute" Id="{ff5674ff-bdfb-419d-a54e-f90304492f60}">
-      <Declaration><![CDATA[{warning 'add method implementation '}
-METHOD Execute : PVOID
-]]></Declaration>
+      <Declaration><![CDATA[METHOD Execute : PVOID
+VAR
+	
+END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[]]></ST>
+        <ST><![CDATA[CASE StationState OF
+	
+	E_StationState.IDLE:
+		
+		IF bPartPresent THEN
+			tmrDelay(IN:=TRUE, PT:=T#500MS);
+			IF tmrDelay.Q THEN
+				StationState := E_StationState.WORKING;
+			END_IF
+		ELSE
+			bReady := TRUE;
+			bBusy := FALSE;
+		END_IF
+		
+	E_StationState.WORKING:
+		
+		bReady := FALSE;
+		bBusy := TRUE;
+		
+		tmrWork(IN:= TRUE, PT:=T#1.5S);
+		IF tmrWork.Q THEN
+			StationState := E_StationState.DONE;
+			tmrWork(IN:=FALSE);
+		END_IF
+	
+	E_StationState.DONE:
+	
+		bReady := TRUE;
+		bBusy := FALSE;
+		
+		IF NOT bPartPresent THEN
+			IF PartStatus <> 0 THEN
+				PartStatus^.bFillerStatus := TRUE;
+			END_IF
+			StationState := E_StationState.IDLE;
+		END_IF
+		
+END_CASE]]></ST>
       </Implementation>
     </Method>
     <Property Name="Faulted" Id="{2979689c-56ae-45ad-889c-8947b962ccd6}">
-      <Declaration><![CDATA[{warning 'add property implementation'}
-PROPERTY Faulted : BOOL
+      <Declaration><![CDATA[PROPERTY Faulted : BOOL
 ]]></Declaration>
       <Get Name="Get" Id="{ac2e006c-b510-42e2-8be1-91884283522f}">
         <Declaration><![CDATA[VAR
@@ -47,10 +92,21 @@ END_VAR
       </Get>
     </Property>
     <Property Name="PartPresent" Id="{95bfdd99-c2ff-4ea8-a069-a6af56c1f591}">
-      <Declaration><![CDATA[{warning 'add property implementation'}
-PROPERTY PartPresent : BOOL
+      <Declaration><![CDATA[PROPERTY PartPresent : BOOL
 ]]></Declaration>
       <Get Name="Get" Id="{c1570d8d-2d16-4701-b97f-5e49092a4e7e}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[PartPresent := bPartPresent;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="PartStatus" Id="{cfb0896c-0015-4e79-83bb-e427abd35db0}">
+      <Declaration><![CDATA[PROPERTY PartStatus : POINTER TO ST_PartStatus
+]]></Declaration>
+      <Get Name="Get" Id="{4dd7c970-06df-4ded-8394-62151b37c1ec}">
         <Declaration><![CDATA[VAR
 END_VAR
 ]]></Declaration>
@@ -58,17 +114,24 @@ END_VAR
           <ST><![CDATA[]]></ST>
         </Implementation>
       </Get>
+      <Set Name="Set" Id="{caafe008-208b-409e-8c59-94a3eb8658cc}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Set>
     </Property>
     <Property Name="Ready" Id="{0c567ab7-f2cc-4ae2-bbee-7022ed467954}">
-      <Declaration><![CDATA[{warning 'add property implementation'}
-PROPERTY Ready : BOOL
+      <Declaration><![CDATA[PROPERTY Ready : BOOL
 ]]></Declaration>
       <Get Name="Get" Id="{c6abe93d-9dd7-495c-9228-987f2d612abd}">
         <Declaration><![CDATA[VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[]]></ST>
+          <ST><![CDATA[Ready := bReady;]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -79,12 +142,24 @@ END_VAR
       <LineId Id="2" Count="0" />
     </LineIds>
     <LineIds Name="FB_Filler.Execute">
+      <LineId Id="7" Count="2" />
+      <LineId Id="13" Count="5" />
+      <LineId Id="43" Count="2" />
+      <LineId Id="19" Count="14" />
+      <LineId Id="46" Count="2" />
+      <LineId Id="34" Count="6" />
       <LineId Id="4" Count="0" />
     </LineIds>
     <LineIds Name="FB_Filler.Faulted.Get">
       <LineId Id="2" Count="0" />
     </LineIds>
     <LineIds Name="FB_Filler.PartPresent.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Filler.PartStatus.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Filler.PartStatus.Set">
       <LineId Id="2" Count="0" />
     </LineIds>
     <LineIds Name="FB_Filler.Ready.Get">

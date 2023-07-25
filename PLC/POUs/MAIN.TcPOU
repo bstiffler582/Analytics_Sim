@@ -7,6 +7,7 @@ VAR
 	
 	fbCell 				: FB_Cell;
 	
+	fbBarcoder			: FB_Barcoder;
 	fbFiller			: FB_Filler;
 	fbCapper			: FB_Capper;
 	fbCheckWeigher		: FB_CheckWeigher;
@@ -20,6 +21,7 @@ END_VAR
     <Implementation>
       <ST><![CDATA[// Initialize cell
 IF bInit THEN
+	fbCell.AddStation(fbBarcoder);
 	fbCell.AddStation(fbFiller);
 	fbCell.AddStation(fbCapper);
 	fbCell.AddStation(fbCheckWeigher);
@@ -37,6 +39,7 @@ END_IF]]></ST>
     <LineIds Name="MAIN">
       <LineId Id="29" Count="0" />
       <LineId Id="16" Count="0" />
+      <LineId Id="61" Count="0" />
       <LineId Id="20" Count="0" />
       <LineId Id="26" Count="1" />
       <LineId Id="18" Count="1" />

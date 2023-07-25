@@ -27,6 +27,15 @@ END_VAR
         <Declaration><![CDATA[]]></Declaration>
       </Get>
     </Property>
+    <Property Name="PartStatus" Id="{c1e008da-d7c2-49dc-880f-9943d5db0eaa}">
+      <Declaration><![CDATA[PROPERTY PartStatus : POINTER TO ST_PartStatus]]></Declaration>
+      <Get Name="Get" Id="{b0d278b5-84eb-4f44-b206-7d95112d91f7}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+      <Set Name="Set" Id="{7ca3bc6f-e02b-46e3-bc11-2373d67ba0f2}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Set>
+    </Property>
     <Property Name="Ready" Id="{333f4836-c265-40d2-9ceb-b26b41d02803}">
       <Declaration><![CDATA[PROPERTY Ready : BOOL]]></Declaration>
       <Get Name="Get" Id="{bb6439fd-c1c5-4364-83ad-da8044e7442a}">

@@ -9,7 +9,6 @@ VAR_GLOBAL
 	
 	fbInfeedConveyor		: FB_SimAxis;
 	fbIndexConveyor			: FB_SimAxis;
-	
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

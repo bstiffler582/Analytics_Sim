@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_Barcoder" Id="{aaabbb18-d528-4ab4-a05e-daf444c77711}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_Barcoder IMPLEMENTS IStation
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	bPartPresent				: BOOL;
+	bReady						: BOOL;
+	bBusy						: BOOL;
+	
+	StationState				: E_StationState;
+	pPartStatus					: POINTER TO ST_PartStatus;
+	
+	rand						: DRAND;
+	tmrWork						: TON;
+	tmrDelay					: TON;
+	sBarcode					: STRING(255);
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Property Name="Busy" Id="{c31e5f2e-ba36-4587-a1b2-6f357ddc97a5}">
+      <Declaration><![CDATA[PROPERTY Busy : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{4f31b199-67c9-4d06-ab37-6e4354bde33d}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="Execute" Id="{1c1ca266-edb7-42e5-8d83-08cba2d9458b}">
+      <Declaration><![CDATA[METHOD Execute : PVOID
+VAR
+	
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[rand(Seed:=777);
+CASE StationState OF
+	
+	E_StationState.IDLE:
+		
+		IF bPartPresent THEN
+			tmrDelay(IN:=TRUE, PT:=T#250MS);
+			IF tmrDelay.Q THEN
+				tmrDelay(IN:=FALSE);
+				StationState := E_StationState.WORKING;
+			END_IF
+		ELSE
+			bReady := TRUE;
+			bBusy := FALSE;
+		END_IF
+		
+	E_StationState.WORKING:
+		
+		bReady := FALSE;
+		bBusy := TRUE;
+		
+		tmrWork(IN:= TRUE, PT:=T#1.5S);
+		IF tmrWork.Q THEN
+			sBarcode := CONCAT('BRCD', TO_STRING(TO_DINT(rand.Num * 10000)));
+			StationState := E_StationState.DONE;
+			tmrWork(IN:=FALSE);
+		END_IF
+	
+	E_StationState.DONE:
+	
+		bReady := TRUE;
+		bBusy := FALSE;
+		
+		IF NOT bPartPresent THEN
+			IF PartStatus <> 0 THEN
+				PartStatus^.bBarcodeStatus := TRUE;
+				PartStatus^.sBarcode := sBarcode;
+			END_IF
+			StationState := E_StationState.IDLE;
+		END_IF
+		
+END_CASE]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Faulted" Id="{0d0870f5-0a00-4a4a-887e-d2bbd0588e88}">
+      <Declaration><![CDATA[PROPERTY Faulted : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{f612afdd-4ee9-49e1-a559-f9a6e67154cf}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="PartPresent" Id="{7c81c14d-ea9c-4707-a919-45c8f2a74ef5}">
+      <Declaration><![CDATA[PROPERTY PartPresent : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{565257fb-af3d-4b8d-8e1b-81227c863d57}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[PartPresent := bPartPresent;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="PartStatus" Id="{d5b9566c-6b2c-4813-942e-3e13bde1d3ee}">
+      <Declaration><![CDATA[PROPERTY PartStatus : POINTER TO ST_PartStatus
+]]></Declaration>
+      <Get Name="Get" Id="{21baa63f-f129-437f-90f0-68fcfeb4b493}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[PartStatus := pPartStatus;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{792e6a08-6ed8-4f6a-b09a-8010f73f2885}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[pPartStatus := PartStatus;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Property Name="Ready" Id="{024b54fb-0bcf-45f5-ac7f-6c8ba0ffd001}">
+      <Declaration><![CDATA[PROPERTY Ready : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{41c37775-2a9d-4440-871a-cb9cfb48740d}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Ready := bReady;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <LineIds Name="FB_Barcoder">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Barcoder.Busy.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Barcoder.Execute">
+      <LineId Id="12" Count="0" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="41" Count="0" />
+      <LineId Id="17" Count="0" />
+      <LineId Id="55" Count="0" />
+      <LineId Id="24" Count="1" />
+      <LineId Id="29" Count="0" />
+      <LineId Id="61" Count="0" />
+      <LineId Id="30" Count="1" />
+      <LineId Id="65" Count="2" />
+      <LineId Id="26" Count="1" />
+      <LineId Id="20" Count="1" />
+      <LineId Id="34" Count="0" />
+      <LineId Id="37" Count="3" />
+      <LineId Id="50" Count="0" />
+      <LineId Id="44" Count="0" />
+      <LineId Id="42" Count="1" />
+      <LineId Id="33" Count="0" />
+      <LineId Id="22" Count="0" />
+      <LineId Id="45" Count="0" />
+      <LineId Id="62" Count="2" />
+      <LineId Id="46" Count="0" />
+      <LineId Id="57" Count="1" />
+      <LineId Id="60" Count="0" />
+      <LineId Id="59" Count="0" />
+      <LineId Id="47" Count="2" />
+      <LineId Id="18" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Barcoder.Faulted.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Barcoder.PartPresent.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Barcoder.PartStatus.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Barcoder.PartStatus.Set">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Barcoder.Ready.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

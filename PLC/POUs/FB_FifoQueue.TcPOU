@@ -1,0 +1,266 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_FifoQueue" Id="{2f6f0535-fa4a-4cdc-ae06-acdbbea1d87d}" SpecialFunc="None">
+    <Declaration><![CDATA[// Treats supplied array (of any type) as First-in First-out queue.
+// Usage: fbFifoQueue(ptrArrData:=ADR(queue_array), Length:=[array length], Ring:=[true/false]);
+FUNCTION_BLOCK FB_FifoQueue
+VAR_INPUT
+	ptrArrData 	: POINTER TO DWORD; // Queue Data Array
+	Length 		: UDINT;				// Length of Queue
+	Ring		: BOOL;				// Queue acts as a Ring Buffer (oldest data is overwritten when queue is full)
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	// pointer to enqueue (head) element
+	_ptrEnqueue 	: POINTER TO DWORD;
+	// pointer to dequeue (tail) element
+	_ptrDequeue	: POINTER TO DWORD;
+	
+	// queue/dequeue indices
+	_idxEnqueue	: UDINT;
+	_idxDequeue	: UDINT;
+	
+	// element count
+	_count 		: UDINT;
+	// buffer full
+	_full 		: BOOL := FALSE;
+	// buffer empty
+	_empty 		: BOOL := TRUE;
+	// element size
+	_sizeof : UDINT;
+	// init flag
+	_init : BOOL := FALSE;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF NOT _init THEN
+	_init := TRUE;
+END_IF]]></ST>
+    </Implementation>
+    <Method Name="Clear" Id="{9d558a6c-48bc-4387-a904-2aae02ba153d}">
+      <Declaration><![CDATA[// Clears buffer data and resets head/tail pointers. Warning: all data in data array will be reset to 0.
+// Usage: fbInstance.Clear();
+METHOD Clear
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[MEMSET(ptrArrData, 0, _sizeof * Length);
+_count := 0;
+_empty := TRUE;
+_full := FALSE;
+_ptrEnqueue := 0;
+_ptrDequeue := 0;
+]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Count" Id="{5e5253ac-9373-4d5d-9274-33157f760d6c}">
+      <Declaration><![CDATA[PROPERTY Count : UDINT]]></Declaration>
+      <Get Name="Get" Id="{d9435222-c6d0-4450-af5f-8857606767f8}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Count := _count;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="Dequeue" Id="{340abd24-2a18-45e0-941a-f5954dd09fce}">
+      <Declaration><![CDATA[// Remove/Retrieve and item from the Queue.
+// Usage: fbInstance.Dequeue((ADR(destination));
+METHOD Dequeue
+VAR_INPUT
+	pReadData : POINTER TO DWORD;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// queue has (valid) elements
+IF _count > 0 AND _sizeof > 0 THEN
+	
+	// calculate dequeue pointer
+	_ptrDequeue := ptrArrData + TO_DWORD(_sizeof * _idxDequeue);
+	
+	// copy dequeue pointer to read data
+	MEMCPY(pReadData, _ptrDequeue, _sizeof);
+	
+	// increment pop ptr
+	_idxDequeue := (_idxDequeue + 1) MOD Length;
+	
+	// decrement element count
+	_count := _count - 1;
+	
+	// clear full
+	_full := FALSE;
+END_IF
+
+// set empty
+IF _count = 0 THEN
+	_empty := TRUE;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Enqueue" Id="{f4d24e47-7862-4855-a4f2-309763f71887}">
+      <Declaration><![CDATA[// Add an item to the Queue. Returns true if successful.
+// Usage: fbInstance.Enqueue(item);
+METHOD Enqueue : BOOL
+VAR_INPUT
+	Val : ANY;	// Queued Item
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// reset empty
+_empty := FALSE;
+
+// if first call to enqueue
+IF _ptrEnqueue = 0 THEN
+	
+	// initialize pointers
+	_ptrEnqueue := ptrArrData;
+	_ptrDequeue := _ptrEnqueue;
+	
+	// get element size
+	_sizeof := TO_UDINT(Val.diSize);
+END_IF 
+
+// only overwrite data if in Ring buffer mode
+IF (NOT _full) OR (_full AND Ring) THEN
+	
+	IF (_full AND Ring) THEN
+		// increment dequeue ptr
+		_idxDequeue := (_idxDequeue + 1) MOD Length;
+	END_IF
+	
+	// calculate enqueue pointer
+	_ptrEnqueue := ptrArrData + TO_DWORD(_sizeof * _idxEnqueue);
+	
+	// load value into buffer
+	MEMCPY(_ptrEnqueue, Val.pValue, TO_UDINT(_sizeof));
+
+	// increment enqueue ptr
+	_idxEnqueue := (_idxEnqueue + 1) MOD Length;
+	
+	// increment element count
+	IF NOT _full THEN 
+		_count := _count + 1; 
+	END_IF
+	
+	Enqueue := TRUE;
+ELSE
+	Enqueue := FALSE;
+END_IF
+
+// buffer full
+IF _count = Length THEN
+	_full := TRUE;
+ELSE
+	_full := FALSE;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="IsEmpty" Id="{7b47624c-a63c-45bb-9386-d6c8c611e0d0}">
+      <Declaration><![CDATA[PROPERTY IsEmpty : BOOL]]></Declaration>
+      <Get Name="Get" Id="{0684a788-e37e-4fb0-b467-6deb5e26fc4f}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[IsEmpty := _empty;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="IsFull" Id="{026de543-9a0d-497d-a2c4-b2f5d12a8d52}">
+      <Declaration><![CDATA[PROPERTY IsFull : BOOL]]></Declaration>
+      <Get Name="Get" Id="{e1b87579-fdf3-4559-92ca-becc4e795f6c}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[IsFull := _full;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="Sort" Id="{0f9e115a-8d90-4973-9470-b5451226bf7b}">
+      <Declaration><![CDATA[// Sorts FIFO elements in data array by entry order.
+// Usage: fbInstance.Sort();
+METHOD Sort
+VAR
+	_arrTemp : POINTER TO BYTE;
+	_elemTemp : POINTER TO BYTE;
+	_countTemp : UDINT;
+	i : UDINT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// data can be sorted
+IF Length < 1 OR _count < 1 OR _sizeof < 1 THEN
+	RETURN;
+END_IF
+
+// allocate memory for temporary copies
+_arrTemp := __NEW(BYTE, (_sizeof * _count));
+_elemTemp := __NEW(BYTE, _sizeof);
+
+// get count
+_countTemp := _count;
+
+// copy to temp memory via Dequeue method (maintains queue order)
+FOR i := 0 TO _countTemp - 1 DO
+	THIS^.Dequeue(ADR(_elemTemp[0]));
+	MEMCPY(ADR(_arrTemp[i * _sizeof]), ADR(_elemTemp[0]), _sizeof);
+END_FOR
+
+// clear queue data
+THIS^.Clear();
+
+// copy temp data back into queue
+MEMCPY(ptrArrData, ADR(_arrTemp[0]), (_sizeof * _countTemp));
+
+// reset count
+_count := _countTemp;
+
+// reset enqueue/dequeue pointers
+_idxEnqueue := _countTemp MOD Length;
+_idxDequeue := 0;
+
+// reset empty/full
+_empty := FALSE;
+IF _count = Length THEN
+	_full := TRUE;
+END_IF
+
+// free memory
+__DELETE(_arrTemp);
+__DELETE(_elemTemp);]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_FifoQueue">
+      <LineId Id="3" Count="1" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_FifoQueue.Clear">
+      <LineId Id="3" Count="5" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_FifoQueue.Count.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_FifoQueue.Dequeue">
+      <LineId Id="3" Count="21" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_FifoQueue.Enqueue">
+      <LineId Id="3" Count="45" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_FifoQueue.IsEmpty.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_FifoQueue.IsFull.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_FifoQueue.Sort">
+      <LineId Id="3" Count="38" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

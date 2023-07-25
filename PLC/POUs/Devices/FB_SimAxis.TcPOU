@@ -61,8 +61,7 @@ END_VAR
       </Implementation>
     </Method>
     <Property Name="Enabled" Id="{f3f8d52e-5df6-4243-aa25-918a9e170110}">
-      <Declaration><![CDATA[{warning 'add property implementation'}
-PROPERTY Enabled : BOOL
+      <Declaration><![CDATA[PROPERTY Enabled : BOOL
 ]]></Declaration>
       <Get Name="Get" Id="{d88da46b-61c6-47b7-b442-5182c4f2e019}">
         <Declaration><![CDATA[VAR
@@ -86,11 +85,10 @@ END_VAR
       </Get>
     </Property>
     <Method Name="Execute" Id="{89a09af4-88ca-434f-b209-f841df8dcc8a}">
-      <Declaration><![CDATA[{warning 'add method implementation '}
-METHOD Execute : BOOL
+      <Declaration><![CDATA[METHOD Execute : BOOL
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[]]></ST>
+        <ST><![CDATA[RETURN;]]></ST>
       </Implementation>
     </Method>
     <Method Name="JogFwd" Id="{87e78a3f-8c03-4ed4-8c8a-3309978460dc}">
@@ -116,8 +114,7 @@ fActPosition := fActPosition - (Velocity / 101.9);]]></ST>
       </Implementation>
     </Method>
     <Property Name="MaxTorque" Id="{28351169-0fb5-4ee9-b297-7ac321290eb4}">
-      <Declaration><![CDATA[{warning 'add property implementation'}
-PROPERTY MaxTorque : LREAL
+      <Declaration><![CDATA[PROPERTY MaxTorque : LREAL
 ]]></Declaration>
       <Get Name="Get" Id="{d9c32682-64c9-405f-9c27-4540ede287fc}">
         <Declaration><![CDATA[VAR
@@ -145,28 +142,28 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF fActPosition < (Target - 1.5) THEN
+        <ST><![CDATA[bBusy := TRUE;
+IF fActPosition < (Target - 1.5) THEN
 	THIS^.JogFwd(Velocity);
 	MoveAbsolute := FALSE;
 ELSIF fActPosition > (Target + 1.5) THEN
 	THIS^.JogRev(Velocity);
 	MoveAbsolute := FALSE;
 ELSE
+	bBusy := FALSE;
 	MoveAbsolute := TRUE;
 END_IF]]></ST>
       </Implementation>
     </Method>
     <Method Name="Reset" Id="{f5a9cd22-7729-4246-9d15-881079fb27b0}">
-      <Declaration><![CDATA[{warning 'add method implementation '}
-METHOD Reset : BOOL
+      <Declaration><![CDATA[METHOD Reset : BOOL
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[]]></ST>
       </Implementation>
     </Method>
     <Method Name="SetHome" Id="{9fe7e810-3b40-4c68-944c-d24f373a3e2b}">
-      <Declaration><![CDATA[{warning 'add method implementation '}
-METHOD SetHome : BOOL
+      <Declaration><![CDATA[METHOD SetHome : BOOL
 VAR_INPUT
 	Target	: LREAL;
 END_VAR
@@ -176,8 +173,7 @@ END_VAR
       </Implementation>
     </Method>
     <Method Name="StopMove" Id="{ac02ecb5-302e-4f6e-aacf-d73b1da7ef6a}">
-      <Declaration><![CDATA[{warning 'add method implementation '}
-METHOD StopMove : BOOL
+      <Declaration><![CDATA[METHOD StopMove : BOOL
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[]]></ST>
@@ -221,11 +217,14 @@ METHOD StopMove : BOOL
       <LineId Id="2" Count="0" />
     </LineIds>
     <LineIds Name="FB_SimAxis.MoveAbsolute">
+      <LineId Id="25" Count="0" />
       <LineId Id="9" Count="1" />
       <LineId Id="16" Count="0" />
       <LineId Id="12" Count="1" />
       <LineId Id="17" Count="0" />
-      <LineId Id="14" Count="1" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="24" Count="0" />
+      <LineId Id="15" Count="0" />
       <LineId Id="11" Count="0" />
     </LineIds>
     <LineIds Name="FB_SimAxis.Reset">

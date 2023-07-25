@@ -10,14 +10,16 @@ VAR
 	eAutoMan					: E_AutoMan := E_AutoMan.MANUAL;
 	State						: E_CellState;
 	
-	InfeedConveyor				: IAxis;
-	IndexConveyor				: IAxis;
-	InfeedActuator				: IActuator;
-	RejectActuator				: IActuator;
+	InfeedConveyor				: IAxis := Devices.fbInfeedConveyor;
+	IndexConveyor				: IAxis := Devices.fbIndexConveyor;
+	InfeedActuator				: IActuator := Devices.fbInfeedActuator;
+	RejectActuator				: IActuator := Devices.fbRejectActuator;
 	
 	Stations					: ARRAY[0..9] OF IStation;
+	PartStatus					: ARRAY[0..9] OF ST_PartStatus;
 	iStationCount				: DINT := 0;
 	i							: DINT;
+	PartBuffer					: FB_FifoQueue;
 	
 	bAllStationsReady			: BOOL;
 	bStationPartPresent			: BOOL;
@@ -27,12 +29,18 @@ VAR
 	bStopReq					: BOOL;
 	bPartPresentAtInfeed		: BOOL;
 	
-	fIndexPosition				: LREAL;
-	INDEX_DIST					: LREAL;
-	INDEX_VEL					: LREAL;
-	INFEED_VEL					: LREAL;
+	bFeeding					: BOOL;
+	bFeedingComplete			: BOOL;
+	bIndexing					: BOOL;
+	bIndexComplete				: BOOL;
 	
 	tmrStationWait				: TON;
+	NewPart						: ST_PartStatus;
+	
+	fIndexPosition				: LREAL;
+	INDEX_DIST					: LREAL := 100.0;
+	INDEX_VEL					: LREAL := 100.0;
+	INFEED_VEL					: LREAL := 100.0;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -46,75 +54,97 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[Stations[iStationCount] := Station;
+Station.PartStatus := ADR(PartStatus[iStationCount]);
 iStationCount := iStationCount + 1;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="DeviceMgr" Id="{13ca6ea9-3dad-422e-a41a-d290e3b27aff}">
+      <Declaration><![CDATA[METHOD PRIVATE DeviceMgr : PVOID
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF InfeedConveyor <> 0 THEN
+	InfeedConveyor.Execute();
+END_IF
+IF IndexConveyor <> 0 THEN
+	IndexConveyor.Execute();
+END_IF]]></ST>
       </Implementation>
     </Method>
     <Method Name="Execute" Id="{d7efdd70-bdc8-43b5-82c2-5ff6cb9ffaaa}">
       <Declaration><![CDATA[METHOD PUBLIC Execute : PVOID
 VAR_INPUT
 END_VAR
-]]></Declaration>
+VAR
+	
+END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[THIS^.StationMgr();
-IF InfeedConveyor <> 0 THEN
-	InfeedConveyor.Execute();
-END_IF
-IF IndexConveyor <> 0 THEN
-	IndexConveyor.Execute();
-END_IF
+        <ST><![CDATA[StationMgr();
+DeviceMgr();
+PartBuffer(ptrArrData:=ADR(PartStatus), Length:=TO_UDINT(iStationCount), Ring:= TRUE);
 
 IF eAutoMan = E_AutoMan.AUTO THEN
-	
-	// continuous jog infeed conveyor
-	InfeedConveyor.JogFwd(INFEED_VEL);
 			
 	CASE State OF
 		
 		E_CellState.STOPPED:
 		
 			IF bStartReq THEN
-				State := E_CellState.IDLE;
+				State := E_CellState.RUNNING;
 				bStartReq := FALSE;
 			END_IF
-		
-		E_CellState.IDLE:
-		
-			IF bPartPresentAtInfeed THEN
-				State := E_CellState.FEED;
-			ELSIF bStationPartPresent THEN
-				State := E_CellState.WAIT_STATION;
+			
+		E_CellState.RUNNING:
+			
+			InfeedConveyor.JogFwd(INFEED_VEL);
+			
+			IF bPartPresentAtInfeed AND NOT bIndexing 
+			AND (Stations[0] <> 0 AND NOT Stations[0].PartPresent) THEN
+				bFeeding := TRUE;
 			END_IF
 			
-		E_CellState.FEED:
-		
-			IF InfeedActuator.Cycle() THEN
-				State := E_CellState.WAIT_STATION;		
+			IF bFeeding THEN
+				IF NOT bFeedingComplete THEN
+					IF InfeedActuator.Cycle() THEN
+						PartBuffer.Enqueue(NewPart);
+						bFeedingComplete := TRUE;
+					END_IF
+				ELSE
+					tmrStationWait(IN:=TRUE, PT:=T#500MS);
+					IF tmrStationWait.Q THEN
+						tmrStationWait(IN:=FALSE);
+						bFeedingComplete := FALSE;
+						bFeeding := FALSE;
+					END_IF
+				END_IF
 			END_IF
 			
-		E_CellState.WAIT_STATION:
-		
-			tmrStationWait(IN:=TRUE, PT:=T#500MS);
-			IF tmrStationWait.Q = TRUE AND bAllStationsReady THEN
-				tmrStationWait(IN:=FALSE);
-				State := E_CellState.INDEXING;
+			IF bAllStationsReady AND bStationPartPresent AND NOT bFeeding THEN
+				tmrStationWait(IN:=TRUE, PT:=T#500MS);
+				IF tmrStationWait.Q THEN
+					tmrStationWait(IN:=FALSE);
+					bIndexing := TRUE;
+				END_IF
 			END_IF
 			
-		E_CellState.INDEXING:
-			
-			fIndexPosition := IndexConveyor.ActPosition + INDEX_DIST;
-			IF (IndexConveyor.MoveAbsolute(fIndexPosition, INDEX_VEL)) THEN
-				State := E_CellState.SEQ_DONE;
+			IF bIndexing THEN
+				IF NOT bIndexComplete THEN
+					fIndexPosition := IndexConveyor.ActPosition + INDEX_DIST;
+					IF (IndexConveyor.MoveAbsolute(fIndexPosition, INDEX_VEL)) AND NOT bIndexComplete THEN
+						bIndexComplete := TRUE;
+					END_IF
+				ELSE
+					tmrStationWait(IN:=TRUE, PT:=T#500MS);
+					IF tmrStationWait.Q THEN
+						tmrStationWait(IN:=FALSE);
+						bIndexComplete := FALSE;
+						bIndexing := FALSE;
+					END_IF
+				END_IF
+				
 			END_IF
 			
-		E_CellState.SEQ_DONE:
-			
-			IF bStopReq THEN
-				State := E_CellState.STOPPED;
-				bStopReq := FALSE;
-			ELSE
-				State:= E_CellState.FEED;
-			END_IF
-	
 	END_CASE
 END_IF]]></ST>
       </Implementation>
@@ -129,24 +159,25 @@ END_VAR
 	RETURN;
 END_IF
 
-FOR i := 0 TO iStationCount	DO
+bAllStationsReady := TRUE;
+bStationFaulted := FALSE;
+bStationPartPresent := FALSE;
+
+FOR i := 0 TO iStationCount - 1	DO
 	IF (Stations[i] = 0) THEN
 		CONTINUE;
 	END_IF
 	
 	Stations[i].Execute();
-
-	bAllStationsReady := TRUE;
-	IF (NOT Stations[i].Ready OR Stations[i].Busy) THEN
+	
+	IF (NOT Stations[i].Ready) THEN
 		bAllStationsReady := FALSE;
 	END_IF
 	
-	bStationFaulted := FALSE;
 	IF Stations[i].Faulted THEN
 		bStationFaulted := TRUE;
 	END_IF
 	
-	bStationPartPresent := FALSE;
 	IF Stations[i].PartPresent THEN
 		bStationPartPresent := TRUE;
 	END_IF
@@ -159,53 +190,72 @@ END_FOR]]></ST>
     </LineIds>
     <LineIds Name="FB_Cell.AddStation">
       <LineId Id="7" Count="0" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Cell.DeviceMgr">
+      <LineId Id="6" Count="4" />
       <LineId Id="5" Count="0" />
     </LineIds>
     <LineIds Name="FB_Cell.Execute">
       <LineId Id="29" Count="0" />
-      <LineId Id="122" Count="5" />
       <LineId Id="53" Count="0" />
+      <LineId Id="222" Count="0" />
+      <LineId Id="122" Count="0" />
       <LineId Id="30" Count="0" />
-      <LineId Id="82" Count="0" />
-      <LineId Id="102" Count="0" />
-      <LineId Id="100" Count="1" />
+      <LineId Id="101" Count="0" />
       <LineId Id="56" Count="0" />
       <LineId Id="83" Count="4" />
       <LineId Id="89" Count="0" />
       <LineId Id="88" Count="0" />
-      <LineId Id="57" Count="2" />
-      <LineId Id="61" Count="0" />
-      <LineId Id="110" Count="0" />
-      <LineId Id="115" Count="1" />
-      <LineId Id="63" Count="0" />
-      <LineId Id="106" Count="1" />
-      <LineId Id="113" Count="0" />
-      <LineId Id="111" Count="0" />
-      <LineId Id="114" Count="0" />
-      <LineId Id="108" Count="0" />
-      <LineId Id="67" Count="2" />
-      <LineId Id="117" Count="0" />
-      <LineId Id="70" Count="0" />
-      <LineId Id="118" Count="0" />
-      <LineId Id="71" Count="8" />
-      <LineId Id="94" Count="1" />
-      <LineId Id="93" Count="0" />
-      <LineId Id="80" Count="0" />
-      <LineId Id="92" Count="0" />
-      <LineId Id="90" Count="0" />
-      <LineId Id="96" Count="1" />
-      <LineId Id="91" Count="0" />
-      <LineId Id="81" Count="0" />
+      <LineId Id="205" Count="1" />
+      <LineId Id="168" Count="0" />
+      <LineId Id="167" Count="0" />
+      <LineId Id="169" Count="0" />
+      <LineId Id="171" Count="0" />
+      <LineId Id="208" Count="0" />
+      <LineId Id="172" Count="3" />
+      <LineId Id="209" Count="0" />
+      <LineId Id="212" Count="0" />
+      <LineId Id="221" Count="0" />
+      <LineId Id="213" Count="0" />
+      <LineId Id="210" Count="0" />
+      <LineId Id="214" Count="0" />
+      <LineId Id="216" Count="4" />
+      <LineId Id="215" Count="0" />
+      <LineId Id="211" Count="0" />
+      <LineId Id="179" Count="2" />
+      <LineId Id="223" Count="1" />
+      <LineId Id="227" Count="0" />
+      <LineId Id="225" Count="1" />
+      <LineId Id="183" Count="2" />
+      <LineId Id="192" Count="0" />
+      <LineId Id="195" Count="2" />
+      <LineId Id="193" Count="0" />
+      <LineId Id="198" Count="2" />
+      <LineId Id="204" Count="0" />
+      <LineId Id="201" Count="0" />
+      <LineId Id="203" Count="0" />
+      <LineId Id="202" Count="0" />
+      <LineId Id="194" Count="0" />
+      <LineId Id="191" Count="0" />
+      <LineId Id="170" Count="0" />
+      <LineId Id="106" Count="0" />
       <LineId Id="54" Count="1" />
     </LineIds>
     <LineIds Name="FB_Cell.StationMgr">
       <LineId Id="22" Count="0" />
       <LineId Id="24" Count="1" />
+      <LineId Id="52" Count="0" />
       <LineId Id="23" Count="0" />
+      <LineId Id="54" Count="1" />
+      <LineId Id="53" Count="0" />
       <LineId Id="6" Count="0" />
-      <LineId Id="26" Count="13" />
+      <LineId Id="26" Count="4" />
+      <LineId Id="32" Count="3" />
+      <LineId Id="37" Count="2" />
       <LineId Id="21" Count="0" />
-      <LineId Id="43" Count="1" />
+      <LineId Id="44" Count="0" />
       <LineId Id="46" Count="2" />
       <LineId Id="45" Count="0" />
       <LineId Id="5" Count="0" />

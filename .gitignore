@@ -23,3 +23,13 @@ _Boot/
 _CompileInfo/
 _Libraries/
 _ModuleInstall/
+
+.engineering_servers/
+liveview_*
+*.cache
+*.db-shm
+*.db-wal
+*.pid
+.hmiframework/
+.hmipkgs/*-*-*-*/
+tchmipublish.journal.json

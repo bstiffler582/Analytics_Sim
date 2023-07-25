@@ -6,11 +6,7 @@
 TYPE E_CellState :
 (
 	STOPPED := 0,
-	IDLE := 1,
-	FEED := 2,
-	WAIT_STATION := 3,
-	INDEXING := 4,
-	SEQ_DONE := 5
+	RUNNING := 1
 );
 END_TYPE
 ]]></Declaration>
