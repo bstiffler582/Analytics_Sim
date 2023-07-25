@@ -24,6 +24,13 @@ _CompileInfo/
 _Libraries/
 _ModuleInstall/
 
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+
 .engineering_servers/
 liveview_*
 *.cache
@@ -33,3 +40,4 @@ liveview_*
 .hmiframework/
 .hmipkgs/*-*-*-*/
 tchmipublish.journal.json
+Analytics_Sim.project.~u
