@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_SimCheckWeigher" Id="{6e33866b-3474-4e96-8cf0-c26d69bfb058}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_SimCheckWeigher EXTENDS FB_SimStation
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR	
+	tmrWork						: TON;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="DoWork" Id="{71bfd5a5-86f3-4639-9c36-fd5ab9d1fe15}">
+      <Declaration><![CDATA[METHOD PROTECTED  DoWork : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[tmrWork(IN:=TRUE, PT:=T#2S);
+IF tmrWork.Q THEN
+	tmrWork(IN:=FALSE);
+	DoWork := TRUE;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="UpdatePartStatus" Id="{0a54fb0a-f4e0-450f-814a-141a3dd7ad3e}">
+      <Declaration><![CDATA[METHOD PROTECTED  UpdatePartStatus : PVOID
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF pPartStatus <> 0 THEN
+	pPartStatus^.bWeightStatus := TRUE;
+	pPartStatus^.fActualWeightMg := 100;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_SimCheckWeigher">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_SimCheckWeigher.DoWork">
+      <LineId Id="6" Count="3" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_SimCheckWeigher.UpdatePartStatus">
+      <LineId Id="5" Count="1" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

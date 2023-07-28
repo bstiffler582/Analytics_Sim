@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="MAIN" Id="{978cad62-4036-4e47-9e8a-459f7b1451b8}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+	fbSimAxisTest	: FB_SimAxis;
+	fbSimActTest	: FB_SimActuator;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[fbSimAxisTest();
+fbSimActTest();]]></ST>
+    </Implementation>
+    <LineIds Name="MAIN">
+      <LineId Id="2" Count="0" />
+      <LineId Id="11" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

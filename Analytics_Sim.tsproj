@@ -13,9 +13,204 @@
 		</System>
 		<Plc>
 			<Project GUID="{A7710401-C0B0-4CA5-AF33-91A2C35CCB11}" Name="PLC" PrjFilePath="PLC\PLC.plcproj" TmcFilePath="PLC\PLC.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC\PLC.tmc" TmcHash="{248882E0-68A5-42A9-CECF-2CF6F3A9A926}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC\PLC.tmc" TmcHash="{B28F3486-8F5E-CBBF-F25B-7A2A1BC3A47A}">
 					<Name>PLC Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
+					<Vars VarGrpType="1">
+						<Name>PlcTask Inputs</Name>
+						<Var>
+							<Name>MAIN.fbAxisTest.fActPosition</Name>
+							<Type>LREAL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbAxisTest.fActVelocity</Name>
+							<Type>LREAL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbAxisTest.bReady</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbAxisTest.bBusy</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbAxisTest.bError</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbActTest.bExtended</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbActTest.bRetracted</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbCell.bStartBtn</Name>
+							<Comment><![CDATA[ IO]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbCell.bStopBtn</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbCell.bPartPresentAtInfeed</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbCell.bPartPresentAtOutfeed</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbCell.fbInfeedActuator.bExtended</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbCell.fbInfeedActuator.bRetracted</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbCell.fbOutfeedActuator.bExtended</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbCell.fbOutfeedActuator.bRetracted</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbCell.fbInfeedConveyor.fActPosition</Name>
+							<Type>LREAL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbCell.fbInfeedConveyor.fActVelocity</Name>
+							<Type>LREAL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbCell.fbInfeedConveyor.bReady</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbCell.fbInfeedConveyor.bBusy</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbCell.fbInfeedConveyor.bError</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbCell.fbIndexConveyor.fActPosition</Name>
+							<Type>LREAL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbCell.fbIndexConveyor.fActVelocity</Name>
+							<Type>LREAL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbCell.fbIndexConveyor.bReady</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbCell.fbIndexConveyor.bBusy</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbCell.fbIndexConveyor.bError</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbCell.fbBarcoder.bPartPresent</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbCell.fbFiller.bPartPresent</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbCell.fbCapper.bPartPresent</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbCell.fbCheckWeigher.bPartPresent</Name>
+							<Type>BOOL</Type>
+						</Var>
+					</Vars>
+					<Vars VarGrpType="2" AreaNo="1">
+						<Name>PlcTask Outputs</Name>
+						<Var>
+							<Name>MAIN.fbAxisTest.bJogFwdCmd</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbAxisTest.bMoveAbsCmd</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbAxisTest.fPositionCmd</Name>
+							<Type>LREAL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbAxisTest.fVelocityCmd</Name>
+							<Type>LREAL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbActTest.bExtendCmd</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbActTest.bRetractCmd</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbCell.fbInfeedActuator.bExtendCmd</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbCell.fbInfeedActuator.bRetractCmd</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbCell.fbOutfeedActuator.bExtendCmd</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbCell.fbOutfeedActuator.bRetractCmd</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbCell.fbInfeedConveyor.bJogFwdCmd</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbCell.fbInfeedConveyor.bMoveAbsCmd</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbCell.fbInfeedConveyor.fPositionCmd</Name>
+							<Type>LREAL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbCell.fbInfeedConveyor.fVelocityCmd</Name>
+							<Type>LREAL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbCell.fbIndexConveyor.bJogFwdCmd</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbCell.fbIndexConveyor.bMoveAbsCmd</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbCell.fbIndexConveyor.fPositionCmd</Name>
+							<Type>LREAL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbCell.fbIndexConveyor.fVelocityCmd</Name>
+							<Type>LREAL</Type>
+						</Var>
+					</Vars>
 					<Contexts>
 						<Context>
 							<Id>0</Id>
@@ -32,6 +227,96 @@
 					</TaskPouOids>
 				</Instance>
 			</Project>
+			<Project GUID="{3CA6AD6D-9730-4384-B9AB-2C933A562319}" Name="SIM" PrjFilePath="SIM\SIM.plcproj" TmcFilePath="SIM\SIM.tmc" ReloadTmc="true" AmsPort="852" FileArchiveSettings="#x000e" SymbolicMapping="true">
+				<Instance Id="#x08502040" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{C4A4FACE-555F-92DC-E176-2376139C2B27}">
+					<Name>SIM Instance</Name>
+					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
+					<Vars VarGrpType="1">
+						<Name>PlcTask Inputs</Name>
+						<Var>
+							<Name>MAIN.fbSimAxisTest.fPositionCmd</Name>
+							<Type>LREAL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbSimAxisTest.fVelocityCmd</Name>
+							<Type>LREAL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbSimAxisTest.bJogFwdCmd</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbSimAxisTest.bMoveAbsCmd</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbSimActTest.bExtendCmd</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbSimActTest.bRetractCmd</Name>
+							<Type>BOOL</Type>
+						</Var>
+					</Vars>
+					<Vars VarGrpType="2" AreaNo="1">
+						<Name>PlcTask Outputs</Name>
+						<Var>
+							<Name>MAIN.fbSimAxisTest.fActPosition</Name>
+							<Type>LREAL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbSimAxisTest.fActVelocity</Name>
+							<Type>LREAL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbSimAxisTest.bReady</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbSimAxisTest.bBusy</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbSimAxisTest.bError</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbSimActTest.bExtended</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbSimActTest.bRetracted</Name>
+							<Type>BOOL</Type>
+						</Var>
+					</Vars>
+					<Contexts>
+						<Context>
+							<Id>0</Id>
+							<Name>PlcTask</Name>
+							<ManualConfig>
+								<OTCID>#x02010030</OTCID>
+							</ManualConfig>
+							<Priority>20</Priority>
+							<CycleTime>10000000</CycleTime>
+						</Context>
+					</Contexts>
+					<TaskPouOids>
+						<TaskPouOid Prio="20" OTCID="#x08502041"/>
+					</TaskPouOids>
+				</Instance>
+			</Project>
 		</Plc>
+		<Io/>
 	</Project>
+	<Mappings>
+		<MappingInfo Identifier="{00000000-2001-0850-0020-500840205008}" Id="#x02030010"/>
+		<OwnerA Name="TIPC^PLC^PLC Instance">
+			<OwnerB Name="TIPC^SIM^SIM Instance">
+				<Link VarA="PlcTask Inputs^MAIN.fbActTest.bExtended" VarB="PlcTask Outputs^MAIN.fbSimActTest.bExtended"/>
+				<Link VarA="PlcTask Inputs^MAIN.fbActTest.bRetracted" VarB="PlcTask Outputs^MAIN.fbSimActTest.bRetracted"/>
+				<Link VarA="PlcTask Outputs^MAIN.fbActTest.bExtendCmd" VarB="PlcTask Inputs^MAIN.fbSimActTest.bExtendCmd"/>
+				<Link VarA="PlcTask Outputs^MAIN.fbActTest.bRetractCmd" VarB="PlcTask Inputs^MAIN.fbSimActTest.bRetractCmd"/>
+			</OwnerB>
+		</OwnerA>
+	</Mappings>
 </TcSmProject>

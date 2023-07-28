@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_SimCapper" Id="{84003403-a58a-475b-b316-c108bd8518cd}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_SimCapper EXTENDS FB_SimStation
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	tmrWork						: TON;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="DoWork" Id="{98a2339c-2826-4eac-a5b9-47f72a58485a}">
+      <Declaration><![CDATA[METHOD PROTECTED  DoWork : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[tmrWork(IN:=TRUE, PT:=T#2S);
+IF tmrWork.Q THEN
+	tmrWork(IN:=FALSE);
+	DoWork := TRUE;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="UpdatePartStatus" Id="{69b5a33a-351a-4da4-957b-7d2171099c68}">
+      <Declaration><![CDATA[METHOD PROTECTED  UpdatePartStatus : PVOID
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF pPartStatus <> 0 THEN
+	pPartStatus^.bCapperStatus := TRUE;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_SimCapper">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_SimCapper.DoWork">
+      <LineId Id="6" Count="1" />
+      <LineId Id="9" Count="1" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_SimCapper.UpdatePartStatus">
+      <LineId Id="5" Count="2" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

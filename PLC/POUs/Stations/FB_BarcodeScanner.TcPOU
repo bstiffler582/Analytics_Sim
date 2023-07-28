@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_BarcodeScanner" Id="{83862807-4f6b-4b20-89ce-4ca729399ad6}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_BarcodeScanner EXTENDS FB_Station
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	bTriggerRead			AT %Q* : BOOL;
+	sBarcodeRead			AT %I* : STRING(255);
+	iWorkState				: DINT;
+END_VAR
+VAR CONSTANT
+	NO_READ					: STRING(255) := 'NO_READ';
+	READ_RETRY_COUNT		: DINT := 3;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="DoWork" Id="{d51b3fb6-d4ff-4009-ab0d-2fab363dee34}">
+      <Declaration><![CDATA[METHOD PROTECTED  DoWork : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[CASE iWorkState OF
+	0:
+		;
+	10:
+		;
+	20:
+		;
+	30:
+		;
+END_CASE]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="FaultHandler" Id="{54f9818e-7814-4bbf-b316-1b6a174d9bf6}">
+      <Declaration><![CDATA[METHOD PROTECTED  FaultHandler : E_StationState
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="UpdatePartStatus" Id="{ae1db822-95d6-4971-9a29-f4974f77a7b3}">
+      <Declaration><![CDATA[METHOD PROTECTED  UpdatePartStatus : PVOID
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF pPartStatus <> 0 THEN
+	pPartStatus^.bBarcodeStatus := (sBarcodeRead <> NO_READ);
+	pPartStatus^.sBarcode := sBarcodeRead;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_BarcodeScanner">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_BarcodeScanner.DoWork">
+      <LineId Id="5" Count="1" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_BarcodeScanner.FaultHandler">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_BarcodeScanner.UpdatePartStatus">
+      <LineId Id="6" Count="0" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="8" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

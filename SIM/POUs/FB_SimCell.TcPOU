@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_SimCell" Id="{04fe6bf7-e7cc-4102-8854-b7f2cb31d082}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_SimCell
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	bStartBtn					AT %Q* : BOOL;
+	bStopBtn					AT %Q* : BOOL;
+	bPartPresentAtInfeed		AT %Q* : BOOL;
+	bPartPresentAtOutfeed		AT %Q* : BOOL;
+	
+	fbInfeedActuator			: FB_SimActuator;
+	fbOutfeedActuator			: FB_SimActuator;
+	fbInfeedConveyor			: FB_SimAxis;
+	fbOutfeedConveyor			: FB_SimAxis;
+	
+	bStationsPartPresent		: ARRAY[0..3] OF BOOL;
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <LineIds Name="FB_SimCell">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

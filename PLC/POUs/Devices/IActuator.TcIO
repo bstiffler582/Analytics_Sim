@@ -9,6 +9,12 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
+    <Property Name="Error" Id="{299b403a-f3b5-4e38-a4a8-4fe277717217}">
+      <Declaration><![CDATA[PROPERTY Error : BOOL]]></Declaration>
+      <Get Name="Get" Id="{f0a1f3ea-292c-4ff9-892d-ed441dd98355}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
     <Method Name="Extend" Id="{2ff4ea27-8d78-4e8d-841c-8dde8ed66a43}">
       <Declaration><![CDATA[METHOD Extend : BOOL
 VAR_INPUT

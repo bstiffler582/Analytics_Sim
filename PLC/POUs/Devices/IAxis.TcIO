@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <Itf Name="IAxis" Id="{f50373d0-2bcc-4cde-a5cd-da355d80cd0a}">
     <Declaration><![CDATA[INTERFACE IAxis
 ]]></Declaration>
@@ -39,12 +39,6 @@ END_VAR
         <Declaration><![CDATA[]]></Declaration>
       </Get>
     </Property>
-    <Method Name="Execute" Id="{f6a529a7-d387-455d-8c21-604f91ed921a}">
-      <Declaration><![CDATA[METHOD Execute : BOOL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-    </Method>
     <Method Name="JogFwd" Id="{16c7f9ae-a326-452d-a08c-988c3446bedf}">
       <Declaration><![CDATA[METHOD JogFwd : BOOL
 VAR_INPUT

@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_SimStation" Id="{652e3183-24a4-44ce-821b-86424bd43b56}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK ABSTRACT FB_SimStation IMPLEMENTS IStation
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	bPartPresent				AT %I* : BOOL;
+	bReady						: BOOL;
+	bFaulted					: BOOL;
+	
+	StationState				: E_SimStationState;
+	pPartStatus					: POINTER TO ST_PartStatus;
+	tmrDelay					: TON;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="DoWork" Id="{ecc776db-db39-47b6-ab26-9a292e8a2694}">
+      <Declaration><![CDATA[METHOD PROTECTED ABSTRACT DoWork : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Execute" Id="{810bc9a2-3455-4001-b511-f17f596081c2}">
+      <Declaration><![CDATA[METHOD Execute : PVOID
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[CASE StationState OF
+	
+	E_SimStationState.IDLE:
+		
+		tmrDelay(IN:=bPartPresent, PT:=T#100MS);
+		
+		IF bPartPresent THEN
+			bReady := FALSE;
+			IF tmrDelay.Q THEN
+				StationState := E_SimStationState.WORKING;
+			END_IF
+		ELSE
+			bReady := TRUE;
+		END_IF
+		
+	E_SimStationState.WORKING:
+		
+		bReady := FALSE;
+		
+		IF DoWork() THEN
+			StationState := E_SimStationState.DONE;
+		END_IF
+	
+	E_SimStationState.DONE:
+	
+		bReady := TRUE;
+		
+		IF NOT bPartPresent THEN
+			UpdatePartStatus();
+			StationState := E_SimStationState.IDLE;
+		END_IF
+		
+END_CASE]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Faulted" Id="{08a80eca-2fd7-4430-8828-a9e5b69b7479}">
+      <Declaration><![CDATA[PROPERTY Faulted : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{0c0f5e8e-2d04-4c34-9a2e-9fb3de86cf0d}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Faulted := bFaulted;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="PartPresent" Id="{b8cf2840-06cb-4324-b340-2bd471b18987}">
+      <Declaration><![CDATA[PROPERTY PartPresent : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{6c61540d-d53c-4f21-a792-f4070c5aac11}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[PartPresent := bPartPresent;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="PartStatus" Id="{1e680408-f976-40e4-9e94-be3fe2c6fcdb}">
+      <Declaration><![CDATA[PROPERTY PartStatus : POINTER TO ST_PartStatus
+]]></Declaration>
+      <Set Name="Set" Id="{525e35f7-1820-415a-9700-c5d36d610128}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[pPartStatus := PartStatus;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Property Name="Ready" Id="{01c818ef-b4cd-457f-8d89-c6695942a95b}">
+      <Declaration><![CDATA[PROPERTY Ready : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{064696c7-b595-402f-8346-af9fef0ba8c6}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Ready := bReady;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="UpdatePartStatus" Id="{1931ee90-b418-424e-b0a8-d3a0a0a746a0}">
+      <Declaration><![CDATA[METHOD PROTECTED ABSTRACT UpdatePartStatus : PVOID
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_SimStation">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_SimStation.DoWork">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_SimStation.Execute">
+      <LineId Id="5" Count="3" />
+      <LineId Id="44" Count="1" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="43" Count="0" />
+      <LineId Id="11" Count="4" />
+      <LineId Id="17" Count="4" />
+      <LineId Id="23" Count="0" />
+      <LineId Id="25" Count="1" />
+      <LineId Id="28" Count="4" />
+      <LineId Id="34" Count="1" />
+      <LineId Id="38" Count="3" />
+      <LineId Id="4" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_SimStation.Faulted.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_SimStation.PartPresent.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_SimStation.PartStatus.Set">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_SimStation.Ready.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_SimStation.UpdatePartStatus">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

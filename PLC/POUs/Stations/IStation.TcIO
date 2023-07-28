@@ -3,12 +3,6 @@
   <Itf Name="IStation" Id="{45cff2cc-58be-4c22-9fd9-11924f5790cb}">
     <Declaration><![CDATA[INTERFACE IStation
 ]]></Declaration>
-    <Property Name="Busy" Id="{4fc5c0e7-13cf-4567-b2f5-677d7776b18e}">
-      <Declaration><![CDATA[PROPERTY Busy : BOOL]]></Declaration>
-      <Get Name="Get" Id="{04d7b57e-39b6-4240-ad95-769311436a15}">
-        <Declaration><![CDATA[]]></Declaration>
-      </Get>
-    </Property>
     <Method Name="Execute" Id="{671ded2a-ae12-4b2a-bae9-8a08b12af770}">
       <Declaration><![CDATA[METHOD Execute : PVOID
 VAR_INPUT
@@ -29,9 +23,6 @@ END_VAR
     </Property>
     <Property Name="PartStatus" Id="{c1e008da-d7c2-49dc-880f-9943d5db0eaa}">
       <Declaration><![CDATA[PROPERTY PartStatus : POINTER TO ST_PartStatus]]></Declaration>
-      <Get Name="Get" Id="{b0d278b5-84eb-4f44-b206-7d95112d91f7}">
-        <Declaration><![CDATA[]]></Declaration>
-      </Get>
       <Set Name="Set" Id="{7ca3bc6f-e02b-46e3-bc11-2373d67ba0f2}">
         <Declaration><![CDATA[]]></Declaration>
       </Set>
