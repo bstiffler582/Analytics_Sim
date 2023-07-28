@@ -28,10 +28,10 @@ VAR
 	OutfeedActuator				: IActuator := fbOutfeedActuator;
 	
 	// stations
-	fbBarcoder					: FB_SimBarcodeScanner;
-	fbFiller					: FB_SimFiller;
-	fbCapper					: FB_SimCapper;
-	fbCheckWeigher				: FB_SimCheckWeigher;
+	fbBarcoder					: FB_BarcodeScanner;
+	fbFiller					: FB_Filler;
+	fbCapper					: FB_Capper;
+	fbCheckWeigher				: FB_CheckWeigher;
 	Stations					: ARRAY[0..3] OF IStation := [fbBarcoder, fbFiller, fbCapper, fbCheckWeigher];
 	iStationCount				: DINT := 4;
 	i							: DINT;

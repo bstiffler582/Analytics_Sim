@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
-  <POU Name="FB_BarcodeScanner" Id="{83862807-4f6b-4b20-89ce-4ca729399ad6}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK FB_BarcodeScanner EXTENDS FB_Station
+  <POU Name="FB_CheckWeigher" Id="{f2b6ec40-0a7e-498d-ad24-1bc64cb8a48b}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_CheckWeigher EXTENDS FB_Station
 VAR_INPUT
 END_VAR
 VAR_OUTPUT
@@ -21,7 +21,7 @@ END_VAR
     <Implementation>
       <ST><![CDATA[]]></ST>
     </Implementation>
-    <Method Name="DoWork" Id="{d51b3fb6-d4ff-4009-ab0d-2fab363dee34}">
+    <Method Name="DoWork" Id="{06478269-7e8f-4cf3-8ab9-628ebb68d97b}">
       <Declaration><![CDATA[METHOD PROTECTED  DoWork : BOOL
 VAR_INPUT
 END_VAR
@@ -71,7 +71,7 @@ END_VAR
 END_CASE]]></ST>
       </Implementation>
     </Method>
-    <Method Name="FaultHandler" Id="{54f9818e-7814-4bbf-b316-1b6a174d9bf6}">
+    <Method Name="FaultHandler" Id="{f883c496-e31b-4a3f-bc0d-333d136fe914}">
       <Declaration><![CDATA[METHOD PROTECTED  FaultHandler : E_StationState
 VAR_INPUT
 END_VAR
@@ -80,10 +80,10 @@ END_VAR
         <ST><![CDATA[]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="FB_BarcodeScanner">
+    <LineIds Name="FB_CheckWeigher">
       <LineId Id="9" Count="0" />
     </LineIds>
-    <LineIds Name="FB_BarcodeScanner.DoWork">
+    <LineIds Name="FB_CheckWeigher.DoWork">
       <LineId Id="5" Count="1" />
       <LineId Id="25" Count="0" />
       <LineId Id="15" Count="1" />
@@ -114,7 +114,7 @@ END_VAR
       <LineId Id="45" Count="0" />
       <LineId Id="7" Count="0" />
     </LineIds>
-    <LineIds Name="FB_BarcodeScanner.FaultHandler">
+    <LineIds Name="FB_CheckWeigher.FaultHandler">
       <LineId Id="5" Count="0" />
     </LineIds>
   </POU>

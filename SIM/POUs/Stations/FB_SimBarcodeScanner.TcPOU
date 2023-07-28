@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
-  <POU Name="FB_SimBarcodeScanner" Id="{aaabbb18-d528-4ab4-a05e-daf444c77711}" SpecialFunc="None">
+  <POU Name="FB_SimBarcodeScanner" Id="{24c3bcaa-826f-4abc-9b5e-ecb042fac50e}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_SimBarcodeScanner EXTENDS FB_SimStation
 VAR_INPUT
 END_VAR
@@ -15,7 +15,7 @@ END_VAR
     <Implementation>
       <ST><![CDATA[]]></ST>
     </Implementation>
-    <Method Name="DoWork" Id="{590a7327-f3eb-4471-a88f-0b554007160f}">
+    <Method Name="DoWork" Id="{f59c586a-4c8b-4d13-9bc3-2e6874ccde19}">
       <Declaration><![CDATA[METHOD PROTECTED  DoWork : BOOL
 VAR_INPUT
 END_VAR
@@ -30,7 +30,7 @@ IF tmrWork.Q THEN
 END_IF]]></ST>
       </Implementation>
     </Method>
-    <Method Name="UpdatePartStatus" Id="{6bb335b6-c98f-49c7-a83c-0c6714d37d29}">
+    <Method Name="UpdatePartStatus" Id="{8d2d264c-f8a9-4133-89e4-0c8ade5fdced}">
       <Declaration><![CDATA[METHOD PROTECTED  UpdatePartStatus : PVOID
 VAR_INPUT
 END_VAR

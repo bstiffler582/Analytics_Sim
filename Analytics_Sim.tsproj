@@ -13,39 +13,11 @@
 		</System>
 		<Plc>
 			<Project GUID="{A7710401-C0B0-4CA5-AF33-91A2C35CCB11}" Name="PLC" PrjFilePath="PLC\PLC.plcproj" TmcFilePath="PLC\PLC.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC\PLC.tmc" TmcHash="{B28F3486-8F5E-CBBF-F25B-7A2A1BC3A47A}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC\PLC.tmc" TmcHash="{31876AC9-B2FB-846A-632A-AF1E8896D273}">
 					<Name>PLC Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1">
 						<Name>PlcTask Inputs</Name>
-						<Var>
-							<Name>MAIN.fbAxisTest.fActPosition</Name>
-							<Type>LREAL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.fbAxisTest.fActVelocity</Name>
-							<Type>LREAL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.fbAxisTest.bReady</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.fbAxisTest.bBusy</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.fbAxisTest.bError</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.fbActTest.bExtended</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.fbActTest.bRetracted</Name>
-							<Type>BOOL</Type>
-						</Var>
 						<Var>
 							<Name>MAIN.fbCell.bStartBtn</Name>
 							<Comment><![CDATA[ IO]]></Comment>
@@ -124,44 +96,64 @@
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
+							<Name>MAIN.fbCell.fbBarcoder.sBarcodeRead</Name>
+							<Type>STRING(255)</Type>
+						</Var>
+						<Var>
 							<Name>MAIN.fbCell.fbFiller.bPartPresent</Name>
 							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbCell.fbFiller.sBarcodeRead</Name>
+							<Type>STRING(255)</Type>
 						</Var>
 						<Var>
 							<Name>MAIN.fbCell.fbCapper.bPartPresent</Name>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
+							<Name>MAIN.fbCell.fbCapper.sBarcodeRead</Name>
+							<Type>STRING(255)</Type>
+						</Var>
+						<Var>
 							<Name>MAIN.fbCell.fbCheckWeigher.bPartPresent</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbCell.fbCheckWeigher.sBarcodeRead</Name>
+							<Type>STRING(255)</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbAxisTest.fActPosition</Name>
+							<Type>LREAL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbAxisTest.fActVelocity</Name>
+							<Type>LREAL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbAxisTest.bReady</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbAxisTest.bBusy</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbAxisTest.bError</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbActTest.bExtended</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbActTest.bRetracted</Name>
 							<Type>BOOL</Type>
 						</Var>
 					</Vars>
 					<Vars VarGrpType="2" AreaNo="1">
 						<Name>PlcTask Outputs</Name>
-						<Var>
-							<Name>MAIN.fbAxisTest.bJogFwdCmd</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.fbAxisTest.bMoveAbsCmd</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.fbAxisTest.fPositionCmd</Name>
-							<Type>LREAL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.fbAxisTest.fVelocityCmd</Name>
-							<Type>LREAL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.fbActTest.bExtendCmd</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.fbActTest.bRetractCmd</Name>
-							<Type>BOOL</Type>
-						</Var>
 						<Var>
 							<Name>MAIN.fbCell.fbInfeedActuator.bExtendCmd</Name>
 							<Type>BOOL</Type>
@@ -209,6 +201,46 @@
 						<Var>
 							<Name>MAIN.fbCell.fbIndexConveyor.fVelocityCmd</Name>
 							<Type>LREAL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbCell.fbBarcoder.bTriggerRead</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbCell.fbFiller.bTriggerRead</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbCell.fbCapper.bTriggerRead</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbCell.fbCheckWeigher.bTriggerRead</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbAxisTest.bJogFwdCmd</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbAxisTest.bMoveAbsCmd</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbAxisTest.fPositionCmd</Name>
+							<Type>LREAL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbAxisTest.fVelocityCmd</Name>
+							<Type>LREAL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbActTest.bExtendCmd</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbActTest.bRetractCmd</Name>
+							<Type>BOOL</Type>
 						</Var>
 					</Vars>
 					<Contexts>

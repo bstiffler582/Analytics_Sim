@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
-  <POU Name="FB_SimStation" Id="{652e3183-24a4-44ce-821b-86424bd43b56}" SpecialFunc="None">
+  <POU Name="FB_SimStation" Id="{d0a3379f-7809-46be-8a25-c7aab289bc1a}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK ABSTRACT FB_SimStation IMPLEMENTS IStation
 VAR_INPUT
 END_VAR
@@ -19,7 +19,7 @@ END_VAR
     <Implementation>
       <ST><![CDATA[]]></ST>
     </Implementation>
-    <Method Name="DoWork" Id="{ecc776db-db39-47b6-ab26-9a292e8a2694}">
+    <Method Name="DoWork" Id="{e5a556de-42b2-42cf-b082-085ffc0c5809}">
       <Declaration><![CDATA[METHOD PROTECTED ABSTRACT DoWork : BOOL
 VAR_INPUT
 END_VAR
@@ -28,7 +28,7 @@ END_VAR
         <ST><![CDATA[]]></ST>
       </Implementation>
     </Method>
-    <Method Name="Execute" Id="{810bc9a2-3455-4001-b511-f17f596081c2}">
+    <Method Name="Execute" Id="{22f70b89-6c8b-41b6-85f0-a0877a445ffc}">
       <Declaration><![CDATA[METHOD Execute : PVOID
 ]]></Declaration>
       <Implementation>
@@ -67,10 +67,10 @@ END_VAR
 END_CASE]]></ST>
       </Implementation>
     </Method>
-    <Property Name="Faulted" Id="{08a80eca-2fd7-4430-8828-a9e5b69b7479}">
+    <Property Name="Faulted" Id="{bba4ac03-8451-4afa-850d-3d9f30cc03cc}">
       <Declaration><![CDATA[PROPERTY Faulted : BOOL
 ]]></Declaration>
-      <Get Name="Get" Id="{0c0f5e8e-2d04-4c34-9a2e-9fb3de86cf0d}">
+      <Get Name="Get" Id="{d888a9d9-d513-462c-a1d9-d769c3a3cf57}">
         <Declaration><![CDATA[VAR
 END_VAR
 ]]></Declaration>
@@ -79,10 +79,10 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
-    <Property Name="PartPresent" Id="{b8cf2840-06cb-4324-b340-2bd471b18987}">
+    <Property Name="PartPresent" Id="{93b29da4-32df-4649-80a2-9cd532bebaff}">
       <Declaration><![CDATA[PROPERTY PartPresent : BOOL
 ]]></Declaration>
-      <Get Name="Get" Id="{6c61540d-d53c-4f21-a792-f4070c5aac11}">
+      <Get Name="Get" Id="{f6607e3c-3f2a-4515-b47c-0c118b440b03}">
         <Declaration><![CDATA[VAR
 END_VAR
 ]]></Declaration>
@@ -91,10 +91,10 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
-    <Property Name="PartStatus" Id="{1e680408-f976-40e4-9e94-be3fe2c6fcdb}">
+    <Property Name="PartStatus" Id="{2b5862fc-d124-4970-8444-6d63caf7fb86}">
       <Declaration><![CDATA[PROPERTY PartStatus : POINTER TO ST_PartStatus
 ]]></Declaration>
-      <Set Name="Set" Id="{525e35f7-1820-415a-9700-c5d36d610128}">
+      <Set Name="Set" Id="{4241aacb-02f9-4f86-8c79-0e8cb03aaabd}">
         <Declaration><![CDATA[VAR
 END_VAR
 ]]></Declaration>
@@ -103,10 +103,10 @@ END_VAR
         </Implementation>
       </Set>
     </Property>
-    <Property Name="Ready" Id="{01c818ef-b4cd-457f-8d89-c6695942a95b}">
+    <Property Name="Ready" Id="{8d558544-163c-40c3-b4b3-67bbf215193b}">
       <Declaration><![CDATA[PROPERTY Ready : BOOL
 ]]></Declaration>
-      <Get Name="Get" Id="{064696c7-b595-402f-8346-af9fef0ba8c6}">
+      <Get Name="Get" Id="{14a9f377-1a11-46ad-991d-5dadbd5a3997}">
         <Declaration><![CDATA[VAR
 END_VAR
 ]]></Declaration>
@@ -115,7 +115,7 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
-    <Method Name="UpdatePartStatus" Id="{1931ee90-b418-424e-b0a8-d3a0a0a746a0}">
+    <Method Name="UpdatePartStatus" Id="{509a9894-fb9e-425c-aff0-b182d101e493}">
       <Declaration><![CDATA[METHOD PROTECTED ABSTRACT UpdatePartStatus : PVOID
 VAR_INPUT
 END_VAR

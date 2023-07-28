@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
-  <DUT Name="E_SimStationState" Id="{5b0f2620-b728-4e4d-9b3f-935b1bf49c3f}">
+  <DUT Name="E_SimStationState" Id="{015a3e3e-a22f-4b95-bec4-ccc634b591cb}">
     <Declaration><![CDATA[{attribute 'qualified_only'}
 {attribute 'strict'}
 TYPE E_SimStationState :

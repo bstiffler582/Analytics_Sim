@@ -65,7 +65,6 @@ CASE eState OF
 		bBusy := FALSE;
 		
 		IF NOT bPartPresent THEN
-			UpdatePartStatus();
 			eState := E_StationState.IDLE_READY;
 		END_IF
 	
@@ -144,15 +143,6 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
-    <Method Name="UpdatePartStatus" Id="{9a6169a7-491a-413f-9af9-6e85e86923ff}">
-      <Declaration><![CDATA[METHOD PROTECTED ABSTRACT UpdatePartStatus : PVOID
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[]]></ST>
-      </Implementation>
-    </Method>
     <LineIds Name="FB_Station">
       <LineId Id="9" Count="0" />
     </LineIds>
@@ -177,7 +167,7 @@ END_VAR
       <LineId Id="34" Count="0" />
       <LineId Id="44" Count="0" />
       <LineId Id="60" Count="0" />
-      <LineId Id="55" Count="1" />
+      <LineId Id="55" Count="0" />
       <LineId Id="58" Count="0" />
       <LineId Id="57" Count="0" />
       <LineId Id="15" Count="1" />
@@ -203,9 +193,6 @@ END_VAR
     </LineIds>
     <LineIds Name="FB_Station.State.Get">
       <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Station.UpdatePartStatus">
-      <LineId Id="5" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>
