@@ -7,15 +7,16 @@ END_VAR
 VAR_OUTPUT
 END_VAR
 VAR
-	bTriggerRead			AT %Q* : BOOL;
-	sBarcodeRead			AT %I* : STRING(255);
+	bClamp					AT %Q* : BOOL;
+	bCapperTrigger			AT %Q* : BOOL;
+	bCapperDone				AT %I* : BOOL;
+	bCapperFail				AT %I* : BOOL;
+	
+	tmrClamp				: TON;
 	iWorkState				: DINT;
-	iRetries				: DINT;
-	tmrRetry				: TON;
 END_VAR
 VAR CONSTANT
-	NO_READ					: STRING(255) := 'NO_READ';
-	READ_RETRY_COUNT		: DINT := 3;
+	tmClamp					: TIME := T#500MS;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -29,42 +30,30 @@ END_VAR
       <Implementation>
         <ST><![CDATA[CASE iWorkState OF
 	0:
-		iRetries := 0;
-		sBarcodeRead := '';
-		iWorkState := 10;
-		bTriggerRead := TRUE;
-		
-	10:
-		IF sBarcodeRead <> '' THEN
-			bTriggerRead := FALSE;
-			iWorkState := 20;
+		bClamp := TRUE;
+		tmrClamp(IN:=TRUE, PT:=tmClamp);
+		IF tmrClamp.Q THEN
+			tmrClamp(IN:=FALSE);
+			iWorkState := 10;
 		END_IF
 		
-	11:
-		tmrRetry(IN:=TRUE, PT:=T#500MS);
-		IF tmrRetry.Q THEN
-			tmrRetry(IN:=FALSE);
-			bTriggerRead := TRUE;
-			iWorkState := 20;
+	10:
+		bCapperTrigger := TRUE;
+		IF bCapperDone THEN
+			iWorkState := 20; 
 		END_IF
 		
 	20:
-		IF sBarcodeRead = NO_READ THEN
-			IF iRetries < READ_RETRY_COUNT THEN
-				iRetries := iRetries + 1;
-				iWorkState := 11;
-			ELSE
-				pPartStatus^.bBarcodeStatus := FALSE;
-				pPartStatus^.sBarcode := NO_READ;
-				iWorkState := 30;
-			END_IF
-		ELSE
-			pPartStatus^.bBarcodeStatus := TRUE;
-			pPartStatus^.sBarcode := sBarcodeRead;
+		bClamp := FALSE;
+		tmrClamp(IN:=TRUE, PT:=tmClamp);
+		IF tmrClamp.Q THEN
+			tmrClamp(IN:=FALSE);
+			pPartStatus^.bCapperStatus := NOT bCapperFail;
 			iWorkState := 30;
 		END_IF
 		
 	30:
+		bCapperTrigger := FALSE;
 		iWorkState := 0;
 		DoWork := TRUE;
 	
@@ -85,30 +74,24 @@ END_VAR
     </LineIds>
     <LineIds Name="FB_Capper.DoWork">
       <LineId Id="5" Count="1" />
-      <LineId Id="25" Count="0" />
-      <LineId Id="15" Count="1" />
       <LineId Id="37" Count="0" />
+      <LineId Id="67" Count="1" />
+      <LineId Id="71" Count="0" />
+      <LineId Id="69" Count="1" />
       <LineId Id="17" Count="0" />
       <LineId Id="8" Count="0" />
-      <LineId Id="18" Count="0" />
-      <LineId Id="22" Count="0" />
-      <LineId Id="19" Count="1" />
-      <LineId Id="46" Count="0" />
-      <LineId Id="48" Count="5" />
-      <LineId Id="47" Count="0" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="60" Count="2" />
       <LineId Id="12" Count="0" />
       <LineId Id="9" Count="0" />
-      <LineId Id="21" Count="0" />
-      <LineId Id="28" Count="1" />
-      <LineId Id="31" Count="0" />
-      <LineId Id="33" Count="2" />
-      <LineId Id="54" Count="0" />
-      <LineId Id="30" Count="0" />
-      <LineId Id="26" Count="1" />
-      <LineId Id="36" Count="0" />
-      <LineId Id="55" Count="0" />
-      <LineId Id="24" Count="0" />
+      <LineId Id="77" Count="0" />
+      <LineId Id="73" Count="1" />
+      <LineId Id="79" Count="0" />
+      <LineId Id="78" Count="0" />
+      <LineId Id="76" Count="0" />
+      <LineId Id="72" Count="0" />
       <LineId Id="56" Count="1" />
+      <LineId Id="80" Count="0" />
       <LineId Id="59" Count="0" />
       <LineId Id="58" Count="0" />
       <LineId Id="45" Count="0" />

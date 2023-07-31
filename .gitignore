@@ -13,10 +13,13 @@
 #   2. You've created a standalone PLC-project and added events to it, as these are stored in the TMC-file.
 *.tmc
 *.tmcRefac
+
 *.library
-*.project.~u
 *.tsproj.bak
+*.tsproj.orig
 *.xti.bak
+*.xti.orig
+*.project.~u
 LineIDs.dbg
 LineIDs.dbg.bak
 _Boot/

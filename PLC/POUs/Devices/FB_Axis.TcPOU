@@ -112,26 +112,6 @@ END_VAR
         <ST><![CDATA[]]></ST>
       </Implementation>
     </Method>
-    <Property Name="MaxTorque" Id="{28351169-0fb5-4ee9-b297-7ac321290eb4}">
-      <Declaration><![CDATA[PROPERTY MaxTorque : LREAL
-]]></Declaration>
-      <Get Name="Get" Id="{d9c32682-64c9-405f-9c27-4540ede287fc}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[]]></ST>
-        </Implementation>
-      </Get>
-      <Set Name="Set" Id="{76b8cf73-ae3b-407b-bf89-e40bb50026f9}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[]]></ST>
-        </Implementation>
-      </Set>
-    </Property>
     <Method Name="MoveAbsolute" Id="{25522c8a-7bd7-4697-8c0a-22d3b9a92e61}">
       <Declaration><![CDATA[METHOD MoveAbsolute : BOOL
 VAR_INPUT
@@ -218,12 +198,6 @@ bMoveAbsCmd := FALSE;]]></ST>
     </LineIds>
     <LineIds Name="FB_Axis.JogRev">
       <LineId Id="8" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Axis.MaxTorque.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Axis.MaxTorque.Set">
-      <LineId Id="2" Count="0" />
     </LineIds>
     <LineIds Name="FB_Axis.MoveAbsolute">
       <LineId Id="61" Count="0" />

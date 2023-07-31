@@ -53,15 +53,6 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Property Name="MaxTorque" Id="{8e93bdcb-0de4-485c-b315-ab17d05b238f}">
-      <Declaration><![CDATA[PROPERTY MaxTorque : LREAL]]></Declaration>
-      <Get Name="Get" Id="{fde0a724-b004-4c29-a768-429e41571809}">
-        <Declaration><![CDATA[]]></Declaration>
-      </Get>
-      <Set Name="Set" Id="{ca308947-91ce-4817-ace5-ff0157f7238f}">
-        <Declaration><![CDATA[]]></Declaration>
-      </Set>
-    </Property>
     <Method Name="MoveAbsolute" Id="{991b5d3b-2868-4465-9244-b3e85a752cc9}">
       <Declaration><![CDATA[METHOD MoveAbsolute : BOOL
 VAR_INPUT

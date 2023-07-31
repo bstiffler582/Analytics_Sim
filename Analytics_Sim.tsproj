@@ -13,11 +13,19 @@
 		</System>
 		<Plc>
 			<Project GUID="{A7710401-C0B0-4CA5-AF33-91A2C35CCB11}" Name="PLC" PrjFilePath="PLC\PLC.plcproj" TmcFilePath="PLC\PLC.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC\PLC.tmc" TmcHash="{31876AC9-B2FB-846A-632A-AF1E8896D273}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC\PLC.tmc" TmcHash="{A261846B-4D2D-1536-D272-454E2B3C01C2}">
 					<Name>PLC Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1">
 						<Name>PlcTask Inputs</Name>
+						<Var>
+							<Name>MAIN.fbActTest.bExtended</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbActTest.bRetracted</Name>
+							<Type>BOOL</Type>
+						</Var>
 						<Var>
 							<Name>MAIN.fbCell.bStartBtn</Name>
 							<Comment><![CDATA[ IO]]></Comment>
@@ -104,16 +112,20 @@
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>MAIN.fbCell.fbFiller.sBarcodeRead</Name>
-							<Type>STRING(255)</Type>
+							<Name>MAIN.fbCell.fbFiller.fVolumeFilled</Name>
+							<Type>LREAL</Type>
 						</Var>
 						<Var>
 							<Name>MAIN.fbCell.fbCapper.bPartPresent</Name>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>MAIN.fbCell.fbCapper.sBarcodeRead</Name>
-							<Type>STRING(255)</Type>
+							<Name>MAIN.fbCell.fbCapper.bDone</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbCell.fbCapper.bFail</Name>
+							<Type>BOOL</Type>
 						</Var>
 						<Var>
 							<Name>MAIN.fbCell.fbCheckWeigher.bPartPresent</Name>
@@ -143,17 +155,17 @@
 							<Name>MAIN.fbAxisTest.bError</Name>
 							<Type>BOOL</Type>
 						</Var>
-						<Var>
-							<Name>MAIN.fbActTest.bExtended</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.fbActTest.bRetracted</Name>
-							<Type>BOOL</Type>
-						</Var>
 					</Vars>
 					<Vars VarGrpType="2" AreaNo="1">
 						<Name>PlcTask Outputs</Name>
+						<Var>
+							<Name>MAIN.fbActTest.bExtendCmd</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbActTest.bRetractCmd</Name>
+							<Type>BOOL</Type>
+						</Var>
 						<Var>
 							<Name>MAIN.fbCell.fbInfeedActuator.bExtendCmd</Name>
 							<Type>BOOL</Type>
@@ -207,11 +219,15 @@
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>MAIN.fbCell.fbFiller.bTriggerRead</Name>
+							<Name>MAIN.fbCell.fbFiller.bFillValve</Name>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>MAIN.fbCell.fbCapper.bTriggerRead</Name>
+							<Name>MAIN.fbCell.fbCapper.bClamp</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbCell.fbCapper.bTrigger</Name>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
@@ -233,14 +249,6 @@
 						<Var>
 							<Name>MAIN.fbAxisTest.fVelocityCmd</Name>
 							<Type>LREAL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.fbActTest.bExtendCmd</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.fbActTest.bRetractCmd</Name>
-							<Type>BOOL</Type>
 						</Var>
 					</Vars>
 					<Contexts>
