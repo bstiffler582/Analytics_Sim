@@ -11,7 +11,8 @@ VAR
 	bFillValve				AT %Q* : BOOL;
 	
 	fFillSetpoint			: LREAL;
-	iWorkState				: DINT; 
+	tmrDone					: TON;
+	iWorkState				: DINT;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -36,8 +37,13 @@ END_VAR
 		END_IF
 		
 	20:
-		iWorkState := 0;
-		DoWork := TRUE;
+		tmrDone(IN:=TRUE, PT:=T#200MS);
+		IF tmrDone.Q THEN
+			tmrDone(IN:=FALSE);
+			iWorkState := 0;
+			DoWork := TRUE;
+		END_IF
+		
 	
 END_CASE]]></ST>
       </Implementation>
@@ -86,7 +92,12 @@ END_VAR
       <LineId Id="64" Count="0" />
       <LineId Id="12" Count="0" />
       <LineId Id="9" Count="0" />
-      <LineId Id="66" Count="1" />
+      <LineId Id="69" Count="1" />
+      <LineId Id="74" Count="0" />
+      <LineId Id="71" Count="0" />
+      <LineId Id="73" Count="0" />
+      <LineId Id="72" Count="0" />
+      <LineId Id="66" Count="0" />
       <LineId Id="45" Count="0" />
       <LineId Id="7" Count="0" />
     </LineIds>

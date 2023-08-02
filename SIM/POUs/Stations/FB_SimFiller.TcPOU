@@ -1,51 +1,65 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
-  <POU Name="FB_SimFiller" Id="{6bee331e-be56-474c-9a18-2ef85f21cd1f}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK FB_SimFiller EXTENDS FB_SimStation
+  <POU Name="FB_SimFiller" Id="{45f26f00-5e10-4615-86cf-ae8ecf9db752}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_SimFiller
 VAR_INPUT
 END_VAR
 VAR_OUTPUT
 END_VAR
 VAR
-	tmrWork						: TON;
+	fVolumeFilled				AT %Q* : LREAL;
+	bFillValve					AT %I* : BOOL;
+	
+	rand						: DRAND;
+	iState						: DINT;
+END_VAR
+VAR CONSTANT
+	FLOW_RATE					: LREAL := 1.0;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[]]></ST>
+      <ST><![CDATA[rand(Seed:=113);
+
+CASE iState OF
+	0:
+		IF bFillValve THEN
+			iState := 10;
+		ELSE
+			fVolumeFilled := 0.0;
+		END_IF
+		
+	10:
+		IF bFillValve THEN
+			fVolumeFilled := fVolumeFilled + (FLOW_RATE + rand.Num);
+		ELSE
+			iState := 20;
+		END_IF
+		
+	20:
+		iState := 0;
+		
+END_CASE]]></ST>
     </Implementation>
-    <Method Name="DoWork" Id="{72732ac0-3e5e-4b19-952a-00594ea25046}">
-      <Declaration><![CDATA[METHOD PROTECTED  DoWork : BOOL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[tmrWork(IN:=TRUE, PT:=T#2S);
-IF tmrWork.Q THEN
-	tmrWork(IN:=FALSE);
-	DoWork := TRUE;
-END_IF]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="UpdatePartStatus" Id="{68b4bb71-60bd-4115-9d54-02fc25aa357c}">
-      <Declaration><![CDATA[METHOD PROTECTED  UpdatePartStatus : PVOID
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[IF pPartStatus <> 0 THEN
-	pPartStatus^.bFillerStatus := TRUE;
-END_IF]]></ST>
-      </Implementation>
-    </Method>
     <LineIds Name="FB_SimFiller">
       <LineId Id="9" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_SimFiller.DoWork">
-      <LineId Id="6" Count="3" />
-      <LineId Id="5" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_SimFiller.UpdatePartStatus">
-      <LineId Id="5" Count="2" />
+      <LineId Id="25" Count="0" />
+      <LineId Id="24" Count="0" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="31" Count="0" />
+      <LineId Id="35" Count="0" />
+      <LineId Id="82" Count="1" />
+      <LineId Id="33" Count="0" />
+      <LineId Id="41" Count="0" />
+      <LineId Id="29" Count="0" />
+      <LineId Id="44" Count="0" />
+      <LineId Id="88" Count="0" />
+      <LineId Id="86" Count="1" />
+      <LineId Id="85" Count="0" />
+      <LineId Id="37" Count="0" />
+      <LineId Id="30" Count="0" />
+      <LineId Id="61" Count="0" />
+      <LineId Id="56" Count="0" />
+      <LineId Id="28" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

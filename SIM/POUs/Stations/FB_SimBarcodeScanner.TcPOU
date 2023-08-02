@@ -1,60 +1,83 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="FB_SimBarcodeScanner" Id="{24c3bcaa-826f-4abc-9b5e-ecb042fac50e}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK FB_SimBarcodeScanner EXTENDS FB_SimStation
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_SimBarcodeScanner
 VAR_INPUT
 END_VAR
 VAR_OUTPUT
 END_VAR
 VAR
+	bTriggerRead				AT %I* : BOOL;
+	sBarcode					AT %Q* : STRING(255);
+	
 	rand						: DRAND;
+	fRand						: LREAL;
 	tmrWork						: TON;
-	sBarcode					: STRING(255);
+	iWorkMs						: DINT;
+	iState						: DINT;
+END_VAR
+VAR CONSTANT
+	CHANCE_NOREAD				: LREAL := 0.05;
+	NO_READ						: STRING(255) := 'NO_READ';
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[]]></ST>
+      <ST><![CDATA[rand(Seed:=107);
+
+CASE iState OF
+	0:
+		IF bTriggerRead THEN
+			fRand := rand.Num;
+			iWorkMs := 250 + TO_DINT(fRand * 1000);
+			iState := 10;
+		ELSE
+			sBarcode := '';
+		END_IF
+		
+	10:
+		tmrWork(IN:=TRUE, PT:=TO_TIME(iWorkMs));
+		IF tmrWork.Q THEN
+			tmrWork(IN:=FALSE);
+			IF rand.Num > CHANCE_NOREAD THEN
+				sBarcode := CONCAT('BRCD_', TO_STRING(TO_DINT(fRand * 100000)));
+			ELSE
+				sBarcode := NO_READ;
+			END_IF
+			iState := 20;
+		END_IF
+		
+	20:
+		iState := 0;
+		
+END_CASE]]></ST>
     </Implementation>
-    <Method Name="DoWork" Id="{f59c586a-4c8b-4d13-9bc3-2e6874ccde19}">
-      <Declaration><![CDATA[METHOD PROTECTED  DoWork : BOOL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[rand(Seed:=777);
-tmrWork(IN:=TRUE, PT:=T#3S);
-IF tmrWork.Q THEN
-	sBarcode := CONCAT('BRCD', TO_STRING(TO_DINT(rand.Num * 10000)));
-	tmrWork(IN:=FALSE);
-	DoWork := TRUE;
-END_IF]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="UpdatePartStatus" Id="{8d2d264c-f8a9-4133-89e4-0c8ade5fdced}">
-      <Declaration><![CDATA[METHOD PROTECTED  UpdatePartStatus : PVOID
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[IF pPartStatus <> 0 THEN
-	pPartStatus^.bBarcodeStatus := TRUE;
-	pPartStatus^.sBarcode := sBarcode;
-END_IF]]></ST>
-      </Implementation>
-    </Method>
     <LineIds Name="FB_SimBarcodeScanner">
       <LineId Id="9" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_SimBarcodeScanner.DoWork">
-      <LineId Id="9" Count="0" />
-      <LineId Id="5" Count="2" />
-      <LineId Id="10" Count="1" />
-      <LineId Id="8" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_SimBarcodeScanner.UpdatePartStatus">
-      <LineId Id="5" Count="1" />
-      <LineId Id="8" Count="0" />
-      <LineId Id="7" Count="0" />
+      <LineId Id="25" Count="0" />
+      <LineId Id="24" Count="0" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="31" Count="1" />
+      <LineId Id="40" Count="0" />
+      <LineId Id="35" Count="0" />
+      <LineId Id="58" Count="0" />
+      <LineId Id="60" Count="0" />
+      <LineId Id="33" Count="0" />
+      <LineId Id="41" Count="0" />
+      <LineId Id="29" Count="0" />
+      <LineId Id="36" Count="0" />
+      <LineId Id="42" Count="0" />
+      <LineId Id="55" Count="0" />
+      <LineId Id="43" Count="0" />
+      <LineId Id="45" Count="0" />
+      <LineId Id="50" Count="1" />
+      <LineId Id="46" Count="0" />
+      <LineId Id="54" Count="0" />
+      <LineId Id="44" Count="0" />
+      <LineId Id="37" Count="0" />
+      <LineId Id="30" Count="0" />
+      <LineId Id="61" Count="0" />
+      <LineId Id="56" Count="0" />
+      <LineId Id="28" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

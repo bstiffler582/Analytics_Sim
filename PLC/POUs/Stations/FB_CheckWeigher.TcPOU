@@ -7,15 +7,16 @@ END_VAR
 VAR_OUTPUT
 END_VAR
 VAR
-	bTriggerRead			AT %Q* : BOOL;
-	sBarcodeRead			AT %I* : STRING(255);
+	bLift					AT %Q* : BOOL;
+	fScaleReading			AT %I* : LREAL;
+	
+	fWeightSetpoint			: LREAL;
 	iWorkState				: DINT;
-	iRetries				: DINT;
-	tmrRetry				: TON;
+	tmrLift					: TON;
+	tmrWeigh				: TON;
 END_VAR
 VAR CONSTANT
-	NO_READ					: STRING(255) := 'NO_READ';
-	READ_RETRY_COUNT		: DINT := 3;
+	WEIGH_DB				: LREAL := 0.05;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -29,43 +30,29 @@ END_VAR
       <Implementation>
         <ST><![CDATA[CASE iWorkState OF
 	0:
-		iRetries := 0;
-		sBarcodeRead := '';
-		iWorkState := 10;
-		bTriggerRead := TRUE;
-		
-	10:
-		IF sBarcodeRead <> '' THEN
-			bTriggerRead := FALSE;
-			iWorkState := 20;
+		bLift := TRUE;
+		tmrLift(IN:=TRUE, PT:=T#500MS);
+		IF tmrLift.Q THEN
+			tmrLift(IN:=FALSE);
+			iWorkState := 10;
 		END_IF
 		
-	11:
-		tmrRetry(IN:=TRUE, PT:=T#500MS);
-		IF tmrRetry.Q THEN
-			tmrRetry(IN:=FALSE);
-			bTriggerRead := TRUE;
+	10:
+		tmrWeigh(IN:=TRUE, PT:=T#1S);
+		IF tmrWeigh.Q THEN
+			tmrWeigh(IN:=FALSE);
+			pPartStatus^.fActualWeightMg := fScaleReading;
 			iWorkState := 20;
 		END_IF
 		
 	20:
-		IF sBarcodeRead = NO_READ THEN
-			IF iRetries < READ_RETRY_COUNT THEN
-				iRetries := iRetries + 1;
-				iWorkState := 11;
-			ELSE
-				pPartStatus^.bBarcodeStatus := FALSE;
-				pPartStatus^.sBarcode := NO_READ;
-				iWorkState := 30;
-			END_IF
-		ELSE
-			pPartStatus^.bBarcodeStatus := TRUE;
-			pPartStatus^.sBarcode := sBarcodeRead;
-			iWorkState := 30;
-		END_IF
+		pPartStatus^.bWeightStatus := (pPartStatus^.fActualWeightMg + WEIGH_DB <= fWeightSetpoint)
+			AND (pPartStatus^.fActualWeightMg - WEIGH_DB >= fWeightSetpoint);
+		iWorkState := 30;
 		
 	30:
 		iWorkState := 0;
+		bLift := FALSE;
 		DoWork := TRUE;
 	
 END_CASE]]></ST>
@@ -80,42 +67,59 @@ END_VAR
         <ST><![CDATA[]]></ST>
       </Implementation>
     </Method>
+    <Property Name="WeightSetpoint" Id="{bcd69f3f-e46c-435d-8dc6-52ac1348307b}">
+      <Declaration><![CDATA[PROPERTY WeightSetpoint : LREAL]]></Declaration>
+      <Get Name="Get" Id="{ddfa2beb-3ddd-46f8-91ac-8f792523171f}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[WeightSetpoint := fWeightSetpoint;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{6e5a6597-84b3-4881-857d-ce864c136d93}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[fWeightSetpoint := WeightSetpoint;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
     <LineIds Name="FB_CheckWeigher">
       <LineId Id="9" Count="0" />
     </LineIds>
     <LineIds Name="FB_CheckWeigher.DoWork">
       <LineId Id="5" Count="1" />
-      <LineId Id="25" Count="0" />
-      <LineId Id="15" Count="1" />
       <LineId Id="37" Count="0" />
+      <LineId Id="60" Count="2" />
+      <LineId Id="64" Count="0" />
+      <LineId Id="63" Count="0" />
       <LineId Id="17" Count="0" />
       <LineId Id="8" Count="0" />
-      <LineId Id="18" Count="0" />
-      <LineId Id="22" Count="0" />
-      <LineId Id="19" Count="1" />
-      <LineId Id="46" Count="0" />
-      <LineId Id="48" Count="5" />
-      <LineId Id="47" Count="0" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="65" Count="1" />
+      <LineId Id="68" Count="1" />
+      <LineId Id="67" Count="0" />
       <LineId Id="12" Count="0" />
       <LineId Id="9" Count="0" />
-      <LineId Id="21" Count="0" />
-      <LineId Id="28" Count="1" />
-      <LineId Id="31" Count="0" />
-      <LineId Id="33" Count="2" />
-      <LineId Id="54" Count="0" />
-      <LineId Id="30" Count="0" />
-      <LineId Id="26" Count="1" />
-      <LineId Id="36" Count="0" />
-      <LineId Id="55" Count="0" />
-      <LineId Id="24" Count="0" />
+      <LineId Id="71" Count="0" />
+      <LineId Id="73" Count="1" />
       <LineId Id="56" Count="1" />
       <LineId Id="59" Count="0" />
+      <LineId Id="75" Count="0" />
       <LineId Id="58" Count="0" />
       <LineId Id="45" Count="0" />
       <LineId Id="7" Count="0" />
     </LineIds>
     <LineIds Name="FB_CheckWeigher.FaultHandler">
       <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_CheckWeigher.WeightSetpoint.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_CheckWeigher.WeightSetpoint.Set">
+      <LineId Id="2" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

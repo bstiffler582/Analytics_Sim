@@ -1,54 +1,77 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
-  <POU Name="FB_SimCheckWeigher" Id="{2bc826d0-2435-4851-b294-22b86bb03990}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK FB_SimCheckWeigher EXTENDS FB_SimStation
+  <POU Name="FB_SimCheckWeigher" Id="{92bab77b-be28-48d9-9ba6-55ffa9050dd6}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_SimCheckWeigher
 VAR_INPUT
 END_VAR
 VAR_OUTPUT
 END_VAR
-VAR	
+VAR
+	bLift						AT %I* : BOOL;
+	fScaleReading				AT %Q* : LREAL;
+	
+	rand						: DRAND;
+	fWeightSetpoint				: LREAL;
 	tmrWork						: TON;
+	iWorkMs						: DINT;
+	iState						: DINT;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[]]></ST>
+      <ST><![CDATA[rand(Seed:=123);
+
+CASE iState OF
+	0:
+		IF bLift THEN
+			iState := 10;
+		ELSE
+			fScaleReading := 0.0 + (rand.Num / 1000);
+		END_IF
+
+	10:
+		IF fScaleReading < fWeightSetpoint THEN
+			fScaleReading := fScaleReading + (fWeightSetpoint / 5) + (rand.Num * 10);
+		ELSE
+			iState := 20;
+		END_IF
+		
+	20:
+		IF NOT bLift THEN
+			IF fScaleReading < fWeightSetpoint THEN
+				fScaleReading := fScaleReading + (rand.Num / 1000);
+			ELSE
+				fScaleReading := fScaleReading - (rand.Num / 1000);
+			END_IF
+		ELSE
+			iState := 0;
+		END_IF
+		
+END_CASE]]></ST>
     </Implementation>
-    <Method Name="DoWork" Id="{4e138fe9-779e-4e87-923d-53932539d36a}">
-      <Declaration><![CDATA[METHOD PROTECTED  DoWork : BOOL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[tmrWork(IN:=TRUE, PT:=T#2S);
-IF tmrWork.Q THEN
-	tmrWork(IN:=FALSE);
-	DoWork := TRUE;
-END_IF]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="UpdatePartStatus" Id="{6105ab60-d8e9-42be-9b92-74513eee66cd}">
-      <Declaration><![CDATA[METHOD PROTECTED  UpdatePartStatus : PVOID
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[IF pPartStatus <> 0 THEN
-	pPartStatus^.bWeightStatus := TRUE;
-	pPartStatus^.fActualWeightMg := 100;
-END_IF]]></ST>
-      </Implementation>
-    </Method>
     <LineIds Name="FB_SimCheckWeigher">
       <LineId Id="9" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_SimCheckWeigher.DoWork">
-      <LineId Id="6" Count="3" />
-      <LineId Id="5" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_SimCheckWeigher.UpdatePartStatus">
-      <LineId Id="5" Count="1" />
-      <LineId Id="8" Count="0" />
-      <LineId Id="7" Count="0" />
+      <LineId Id="25" Count="0" />
+      <LineId Id="24" Count="0" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="82" Count="1" />
+      <LineId Id="85" Count="1" />
+      <LineId Id="84" Count="0" />
+      <LineId Id="41" Count="0" />
+      <LineId Id="29" Count="0" />
+      <LineId Id="91" Count="1" />
+      <LineId Id="94" Count="1" />
+      <LineId Id="93" Count="0" />
+      <LineId Id="37" Count="0" />
+      <LineId Id="30" Count="0" />
+      <LineId Id="96" Count="0" />
+      <LineId Id="101" Count="1" />
+      <LineId Id="104" Count="1" />
+      <LineId Id="103" Count="0" />
+      <LineId Id="97" Count="0" />
+      <LineId Id="99" Count="0" />
+      <LineId Id="98" Count="0" />
+      <LineId Id="56" Count="0" />
+      <LineId Id="28" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

@@ -1,52 +1,76 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
-  <POU Name="FB_SimCapper" Id="{312f05aa-d931-4045-b02b-85fef6632140}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK FB_SimCapper EXTENDS FB_SimStation
+  <POU Name="FB_SimCapper" Id="{3ab80ab6-5b4a-46b9-ad1a-33a3418ccbd2}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_SimCapper
 VAR_INPUT
 END_VAR
 VAR_OUTPUT
 END_VAR
 VAR
-	tmrWork						: TON;
+	bClamp						AT %I* : BOOL;
+	bCapTrigger					AT %I* : BOOL;
+	bCapDone					AT %Q* : BOOL;
+	bCapFail					AT %Q* : BOOL;
+	
+	rand						: DRAND;
+	iCapMs						: DINT;
+	tmrCap						: TON;
+	iState						: DINT;
+END_VAR
+VAR CONSTANT
+	CHANCE_FAIL					: LREAL := 0.01;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[]]></ST>
+      <ST><![CDATA[rand(Seed:=117);
+
+CASE iState OF
+	0:
+		IF bCapTrigger THEN
+			iState := 10;
+			iCapMs := 1000 + TO_DINT(rand.Num * 100);
+		ELSE
+			bCapDone := FALSE;
+			bCapFail := FALSE;
+		END_IF
+		
+	10:
+		tmrCap(IN:=TRUE, PT:=TO_TIME(iCapMs));
+		IF tmrCap.Q THEN
+			tmrCap(IN:=FALSE);
+			IF rand.Num < CHANCE_FAIL THEN
+				bCapFail := TRUE;
+			END_IF
+			bCapDone := TRUE;
+			iState := 20;
+		END_IF
+		
+	20:
+		iState := 0;
+		
+END_CASE]]></ST>
     </Implementation>
-    <Method Name="DoWork" Id="{f8bdc5fc-48ee-417d-818d-05c834db6b2c}">
-      <Declaration><![CDATA[METHOD PROTECTED  DoWork : BOOL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[tmrWork(IN:=TRUE, PT:=T#2S);
-IF tmrWork.Q THEN
-	tmrWork(IN:=FALSE);
-	DoWork := TRUE;
-END_IF]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="UpdatePartStatus" Id="{ac0855e9-56ed-4e3a-bda0-bb9637350323}">
-      <Declaration><![CDATA[METHOD PROTECTED  UpdatePartStatus : PVOID
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[IF pPartStatus <> 0 THEN
-	pPartStatus^.bCapperStatus := TRUE;
-END_IF]]></ST>
-      </Implementation>
-    </Method>
     <LineIds Name="FB_SimCapper">
       <LineId Id="9" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_SimCapper.DoWork">
-      <LineId Id="6" Count="1" />
-      <LineId Id="9" Count="1" />
-      <LineId Id="5" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_SimCapper.UpdatePartStatus">
-      <LineId Id="5" Count="2" />
+      <LineId Id="25" Count="0" />
+      <LineId Id="24" Count="0" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="31" Count="0" />
+      <LineId Id="35" Count="0" />
+      <LineId Id="113" Count="0" />
+      <LineId Id="109" Count="2" />
+      <LineId Id="33" Count="0" />
+      <LineId Id="41" Count="0" />
+      <LineId Id="29" Count="0" />
+      <LineId Id="85" Count="0" />
+      <LineId Id="114" Count="1" />
+      <LineId Id="117" Count="4" />
+      <LineId Id="116" Count="0" />
+      <LineId Id="37" Count="0" />
+      <LineId Id="30" Count="0" />
+      <LineId Id="61" Count="0" />
+      <LineId Id="56" Count="0" />
+      <LineId Id="28" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

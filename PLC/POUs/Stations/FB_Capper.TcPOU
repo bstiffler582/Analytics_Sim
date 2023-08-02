@@ -8,15 +8,15 @@ VAR_OUTPUT
 END_VAR
 VAR
 	bClamp					AT %Q* : BOOL;
-	bCapperTrigger			AT %Q* : BOOL;
-	bCapperDone				AT %I* : BOOL;
-	bCapperFail				AT %I* : BOOL;
+	bCapTrigger				AT %Q* : BOOL;
+	bCapDone				AT %I* : BOOL;
+	bCapFail				AT %I* : BOOL;
 	
 	tmrClamp				: TON;
 	iWorkState				: DINT;
 END_VAR
 VAR CONSTANT
-	tmClamp					: TIME := T#500MS;
+	CLAMP_TIME				: TIME := T#500MS;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -31,15 +31,15 @@ END_VAR
         <ST><![CDATA[CASE iWorkState OF
 	0:
 		bClamp := TRUE;
-		tmrClamp(IN:=TRUE, PT:=tmClamp);
+		tmrClamp(IN:=TRUE, PT:=CLAMP_TIME);
 		IF tmrClamp.Q THEN
 			tmrClamp(IN:=FALSE);
 			iWorkState := 10;
 		END_IF
 		
 	10:
-		bCapperTrigger := TRUE;
-		IF bCapperDone THEN
+		bCapTrigger := TRUE;
+		IF bCapDone THEN
 			iWorkState := 20; 
 		END_IF
 		
@@ -48,12 +48,12 @@ END_VAR
 		tmrClamp(IN:=TRUE, PT:=tmClamp);
 		IF tmrClamp.Q THEN
 			tmrClamp(IN:=FALSE);
-			pPartStatus^.bCapperStatus := NOT bCapperFail;
+			pPartStatus^.bCapperStatus := NOT bCapFail;
 			iWorkState := 30;
 		END_IF
 		
 	30:
-		bCapperTrigger := FALSE;
+		bCapTrigger := FALSE;
 		iWorkState := 0;
 		DoWork := TRUE;
 	

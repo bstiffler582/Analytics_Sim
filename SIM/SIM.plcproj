@@ -33,13 +33,7 @@
     <Compile Include="POUs\MAIN.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\Stations\E_SimStationState.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="POUs\Stations\FB_SimBarcodeScanner.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="POUs\Stations\FB_SimCapper.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\Stations\FB_SimCheckWeigher.TcPOU">
@@ -48,7 +42,7 @@
     <Compile Include="POUs\Stations\FB_SimFiller.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\Stations\FB_SimStation.TcPOU">
+    <Compile Include="POUs\Stations\FB_SimCapper.TcPOU">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
