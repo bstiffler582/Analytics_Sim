@@ -9,6 +9,7 @@ END_VAR
 VAR
 	bLift						AT %I* : BOOL;
 	fScaleReading				AT %Q* : LREAL;
+	bPartPresent				AT %Q* : BOOL;
 	
 	rand						: DRAND;
 	fWeightSetpoint				: LREAL;

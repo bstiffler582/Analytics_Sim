@@ -16,16 +16,117 @@ VAR
 	fbOutfeedActuator			: FB_SimActuator;
 	fbInfeedConveyor			: FB_SimAxis;
 	fbOutfeedConveyor			: FB_SimAxis;
+	fbIndexConveyor				: FB_SimAxis;
 	
-	bStationsPartPresent		: ARRAY[0..3] OF BOOL;
+	fbSimScanner				: FB_SimBarcodeScanner;
+	fbSimFiller					: FB_SimFiller;
+	fbSimCapper					: FB_SimCapper;
+	fbSimWeigher				: FB_SimCheckWeigher;
 	
+	fbTmrs						: ARRAY[0..9] OF TON;
+	rand						: ARRAY[0..9] OF DRAND;
+	i,j,k						: INT;
+	bStationLoaded				: ARRAY[0..3] OF BOOL;
+	
+	iIndexState					: DINT;
+	iInfeedState				: DINT;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[]]></ST>
+      <ST><![CDATA[FOR i := 0 TO 9 DO
+	rand[i](Seed:=i);
+END_FOR
+
+fbInfeedActuator();
+fbOutfeedActuator();
+fbInfeedConveyor();
+fbOutfeedConveyor();
+
+fbSimScanner();
+fbSimFiller();
+fbSimCapper();
+fbSimWeigher();
+
+// Infeed
+CASE iInfeedState OF
+	0:
+		;
+		// infeed conv running, timer, set part present
+		// on infeed act extend,
+		// part present = false, station 1 part present = true
+		
+END_CASE
+
+
+CASE iIndexState OF
+	0:
+		// conveyor indexing
+		IF fbIndexConveyor.bMoveAbsCmd AND 
+			(fbIndexConveyor.fActPosition <> fbIndexConveyor.fPositionCmd) THEN
+			iIndexState := 1;
+		END_IF
+		
+	1:
+		fbSimScanner.bPartPresent := FALSE;
+		fbSimFiller.bPartPresent := FALSE;
+		fbSimCapper.bPartPresent := FALSE;
+		fbSimWeigher.bPartPresent := FALSE;
+		
+		// index complete
+		IF fbIndexConveyor.fActPosition = fbIndexConveyor.fPositionCmd THEN
+			iIndexState := 2;
+		END_IF
+		
+	2:
+		// shift parts
+		fbSimScanner.bPartPresent := FALSE;
+		fbSimFiller.bPartPresent := bStationLoaded[0];
+		fbSimCapper.bPartPresent := bStationLoaded[1];
+		fbSimWeigher.bPartPresent := bStationLoaded[2];
+		
+		bStationLoaded[3] := bStationLoaded[2];
+		bStationLoaded[2] := bStationLoaded[1];
+		bStationLoaded[1] := bStationLoaded[0];
+		bStationLoaded[0] := FALSE;
+		
+		iIndexState := 0;
+		
+END_CASE
+]]></ST>
     </Implementation>
     <LineIds Name="FB_SimCell">
+      <LineId Id="41" Count="0" />
+      <LineId Id="44" Count="1" />
+      <LineId Id="42" Count="0" />
+      <LineId Id="31" Count="0" />
+      <LineId Id="33" Count="2" />
+      <LineId Id="32" Count="0" />
       <LineId Id="9" Count="0" />
+      <LineId Id="49" Count="2" />
+      <LineId Id="56" Count="0" />
+      <LineId Id="53" Count="0" />
+      <LineId Id="117" Count="1" />
+      <LineId Id="123" Count="3" />
+      <LineId Id="120" Count="0" />
+      <LineId Id="119" Count="0" />
+      <LineId Id="72" Count="1" />
+      <LineId Id="60" Count="0" />
+      <LineId Id="69" Count="0" />
+      <LineId Id="89" Count="0" />
+      <LineId Id="75" Count="2" />
+      <LineId Id="74" Count="0" />
+      <LineId Id="79" Count="6" />
+      <LineId Id="90" Count="0" />
+      <LineId Id="86" Count="2" />
+      <LineId Id="91" Count="1" />
+      <LineId Id="103" Count="0" />
+      <LineId Id="108" Count="0" />
+      <LineId Id="99" Count="3" />
+      <LineId Id="104" Count="3" />
+      <LineId Id="112" Count="1" />
+      <LineId Id="71" Count="0" />
+      <LineId Id="70" Count="0" />
+      <LineId Id="59" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

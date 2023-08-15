@@ -13,11 +13,19 @@
 		</System>
 		<Plc>
 			<Project GUID="{A7710401-C0B0-4CA5-AF33-91A2C35CCB11}" Name="PLC" PrjFilePath="PLC\PLC.plcproj" TmcFilePath="PLC\PLC.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC\PLC.tmc" TmcHash="{31876AC9-B2FB-846A-632A-AF1E8896D273}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC\PLC.tmc" TmcHash="{A261846B-4D2D-1536-D272-454E2B3C01C2}">
 					<Name>PLC Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1">
 						<Name>PlcTask Inputs</Name>
+						<Var>
+							<Name>MAIN.fbActTest.bExtended</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbActTest.bRetracted</Name>
+							<Type>BOOL</Type>
+						</Var>
 						<Var>
 							<Name>MAIN.fbCell.bStartBtn</Name>
 							<Comment><![CDATA[ IO]]></Comment>
@@ -104,16 +112,20 @@
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>MAIN.fbCell.fbFiller.sBarcodeRead</Name>
-							<Type>STRING(255)</Type>
+							<Name>MAIN.fbCell.fbFiller.fVolumeFilled</Name>
+							<Type>LREAL</Type>
 						</Var>
 						<Var>
 							<Name>MAIN.fbCell.fbCapper.bPartPresent</Name>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>MAIN.fbCell.fbCapper.sBarcodeRead</Name>
-							<Type>STRING(255)</Type>
+							<Name>MAIN.fbCell.fbCapper.bDone</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbCell.fbCapper.bFail</Name>
+							<Type>BOOL</Type>
 						</Var>
 						<Var>
 							<Name>MAIN.fbCell.fbCheckWeigher.bPartPresent</Name>
@@ -143,17 +155,17 @@
 							<Name>MAIN.fbAxisTest.bError</Name>
 							<Type>BOOL</Type>
 						</Var>
-						<Var>
-							<Name>MAIN.fbActTest.bExtended</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.fbActTest.bRetracted</Name>
-							<Type>BOOL</Type>
-						</Var>
 					</Vars>
 					<Vars VarGrpType="2" AreaNo="1">
 						<Name>PlcTask Outputs</Name>
+						<Var>
+							<Name>MAIN.fbActTest.bExtendCmd</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbActTest.bRetractCmd</Name>
+							<Type>BOOL</Type>
+						</Var>
 						<Var>
 							<Name>MAIN.fbCell.fbInfeedActuator.bExtendCmd</Name>
 							<Type>BOOL</Type>
@@ -207,11 +219,15 @@
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>MAIN.fbCell.fbFiller.bTriggerRead</Name>
+							<Name>MAIN.fbCell.fbFiller.bFillValve</Name>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>MAIN.fbCell.fbCapper.bTriggerRead</Name>
+							<Name>MAIN.fbCell.fbCapper.bClamp</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbCell.fbCapper.bTrigger</Name>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
@@ -234,14 +250,6 @@
 							<Name>MAIN.fbAxisTest.fVelocityCmd</Name>
 							<Type>LREAL</Type>
 						</Var>
-						<Var>
-							<Name>MAIN.fbActTest.bExtendCmd</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.fbActTest.bRetractCmd</Name>
-							<Type>BOOL</Type>
-						</Var>
 					</Vars>
 					<Contexts>
 						<Context>
@@ -260,7 +268,7 @@
 				</Instance>
 			</Project>
 			<Project GUID="{3CA6AD6D-9730-4384-B9AB-2C933A562319}" Name="SIM" PrjFilePath="SIM\SIM.plcproj" TmcFilePath="SIM\SIM.tmc" ReloadTmc="true" AmsPort="852" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502040" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{C4A4FACE-555F-92DC-E176-2376139C2B27}">
+				<Instance Id="#x08502040" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="SIM\SIM.tmc" TmcHash="{C4A4FACE-555F-92DC-E176-2376139C2B27}">
 					<Name>SIM Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1">
@@ -338,6 +346,140 @@
 				</Instance>
 			</Project>
 		</Plc>
+		<Analytics>
+			<Name>ANALYTICS</Name>
+			<ImageId>281</ImageId>
+			<Symbols>
+				<Symbol>PlcTask Inputs.MAIN.fbActTest.bExtended</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbActTest.bRetracted</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbCell.bStartBtn</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbCell.bStopBtn</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbCell.bPartPresentAtInfeed</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbCell.bPartPresentAtOutfeed</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbCell.fbInfeedActuator.bExtended</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbCell.fbInfeedActuator.bRetracted</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbCell.fbOutfeedActuator.bExtended</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbCell.fbOutfeedActuator.bRetracted</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbCell.fbInfeedConveyor.fActPosition</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbCell.fbInfeedConveyor.fActVelocity</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbCell.fbInfeedConveyor.bReady</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbCell.fbInfeedConveyor.bBusy</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbCell.fbInfeedConveyor.bError</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbCell.fbIndexConveyor.fActPosition</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbCell.fbIndexConveyor.fActVelocity</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbCell.fbIndexConveyor.bReady</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbCell.fbIndexConveyor.bBusy</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbCell.fbIndexConveyor.bError</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbCell.fbBarcoder.bPartPresent</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbCell.fbBarcoder.sBarcodeRead</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbCell.fbFiller.bPartPresent</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbCell.fbFiller.fVolumeFilled</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbCell.fbCapper.bPartPresent</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbCell.fbCapper.bDone</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbCell.fbCapper.bFail</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbCell.fbCheckWeigher.bPartPresent</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbCell.fbCheckWeigher.sBarcodeRead</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbAxisTest.fActPosition</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbAxisTest.fActVelocity</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbAxisTest.bReady</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbAxisTest.bBusy</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbAxisTest.bError</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbActTest.bExtendCmd</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbActTest.bRetractCmd</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbCell.fbInfeedActuator.bExtendCmd</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbCell.fbInfeedActuator.bRetractCmd</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbCell.fbOutfeedActuator.bExtendCmd</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbCell.fbOutfeedActuator.bRetractCmd</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbCell.fbInfeedConveyor.bJogFwdCmd</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbCell.fbInfeedConveyor.bMoveAbsCmd</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbCell.fbInfeedConveyor.fPositionCmd</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbCell.fbInfeedConveyor.fVelocityCmd</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbCell.fbIndexConveyor.bJogFwdCmd</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbCell.fbIndexConveyor.bMoveAbsCmd</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbCell.fbIndexConveyor.fPositionCmd</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbCell.fbIndexConveyor.fVelocityCmd</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbCell.fbBarcoder.bTriggerRead</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbCell.fbFiller.bFillValve</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbCell.fbCapper.bClamp</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbCell.fbCapper.bTrigger</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbCell.fbCheckWeigher.bTriggerRead</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbAxisTest.bJogFwdCmd</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbAxisTest.bMoveAbsCmd</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbAxisTest.fPositionCmd</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbAxisTest.fVelocityCmd</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbSimAxisTest.fPositionCmd</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbSimAxisTest.fVelocityCmd</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbSimAxisTest.bJogFwdCmd</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbSimAxisTest.bMoveAbsCmd</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbSimActTest.bExtendCmd</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbSimActTest.bRetractCmd</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbSimAxisTest.fActPosition</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbSimAxisTest.fActVelocity</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbSimAxisTest.bReady</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbSimAxisTest.bBusy</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbSimAxisTest.bError</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbSimActTest.bExtended</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbSimActTest.bRetracted</Symbol>
+			</Symbols>
+			<AddiStreamDescription>
+				<Address></Address>
+				<Longitude></Longitude>
+				<Latitude></Latitude>
+			</AddiStreamDescription>
+			<SystemAlias></SystemAlias>
+			<DataLogger GUID="{6BCDA7F9-E251-E4B9-00D3-D2791AB68DC3}">
+				<Name>Data Logger 1</Name>
+				<Name></Name>
+				<ParameterValues>
+					<Value>
+						<Name>Data Format</Name>
+						<EnumText>ANALYTICS_FORMAT_FILE</EnumText>
+					</Value>
+					<Value>
+						<Name>Data Compression</Name>
+						<EnumText>ANALYTICS_COMPRESSION_RL</EnumText>
+					</Value>
+					<Value>
+						<Name>Max. Compression Compare Width</Name>
+						<EnumText>ANALYTICS_COMP_WIDTH_8</EnumText>
+					</Value>
+					<Value>
+						<Name>MQTT Host Name</Name>
+						<String>127.0.0.1</String>
+					</Value>
+					<Value>
+						<Name>MQTT Tcp Port</Name>
+						<Value>1883</Value>
+					</Value>
+					<Value>
+						<Name>MQTT Main Topic</Name>
+						<String>DefaultMainTopic</String>
+					</Value>
+					<Value>
+						<Name>MQTT Client ID</Name>
+						<String></String>
+					</Value>
+					<Value>
+						<Name>MQTT User Name</Name>
+						<String></String>
+					</Value>
+					<Value>
+						<Name>MQTT Password</Name>
+						<String></String>
+					</Value>
+				</ParameterValues>
+				<Stream Caller="#x08502001" Adi="#x08502000" Id="#x02040003" CntAds="#x00000020" CntFile="#x00000010" CntRing="#x00000002" SamplingDivider="1">
+					<Name>PLC.PLC Instance.PlcTask</Name>
+					<DisplayName>PlcStream1</DisplayName>
+					<FileDir>%TC_BOOTPRJPATH%</FileDir>
+				</Stream>
+				<Stream Caller="#x08502041" Adi="#x08502040" Id="#x02040004" CntAds="#x00000020" CntFile="#x00000010" CntRing="#x00000002" SamplingDivider="1">
+					<Name>SIM.SIM Instance.PlcTask</Name>
+					<DisplayName>PlcStream2</DisplayName>
+					<FileDir>%TC_BOOTPRJPATH%</FileDir>
+				</Stream>
+			</DataLogger>
+		</Analytics>
 		<Io/>
 	</Project>
 	<Mappings>

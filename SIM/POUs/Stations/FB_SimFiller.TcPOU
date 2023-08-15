@@ -9,6 +9,7 @@ END_VAR
 VAR
 	fVolumeFilled				AT %Q* : LREAL;
 	bFillValve					AT %I* : BOOL;
+	bPartPresent				AT %Q* : BOOL;
 	
 	rand						: DRAND;
 	iState						: DINT;

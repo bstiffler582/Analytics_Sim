@@ -11,6 +11,7 @@ VAR
 	bCapTrigger					AT %I* : BOOL;
 	bCapDone					AT %Q* : BOOL;
 	bCapFail					AT %Q* : BOOL;
+	bPartPresent				AT %Q* : BOOL;
 	
 	rand						: DRAND;
 	iCapMs						: DINT;

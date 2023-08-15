@@ -9,15 +9,18 @@ END_VAR
 VAR
 	bTriggerRead				AT %I* : BOOL;
 	sBarcode					AT %Q* : STRING(255);
+	bPartPresent				AT %Q* : BOOL;
 	
 	rand						: DRAND;
 	fRand						: LREAL;
 	tmrWork						: TON;
 	iWorkMs						: DINT;
 	iState						: DINT;
+	iRetryCount					: DINT;
 END_VAR
 VAR CONSTANT
 	CHANCE_NOREAD				: LREAL := 0.05;
+	CHANCE_FAIL					: LREAL := 0.01;
 	NO_READ						: STRING(255) := 'NO_READ';
 END_VAR
 ]]></Declaration>
@@ -29,7 +32,12 @@ CASE iState OF
 		IF bTriggerRead THEN
 			fRand := rand.Num;
 			iWorkMs := 250 + TO_DINT(fRand * 1000);
-			iState := 10;
+			IF rand.Num < CHANCE_FAIL THEN
+				iRetryCount := 0;
+				iState := 11;
+			ELSE
+				iState := 10;
+			END_IF
 		ELSE
 			sBarcode := '';
 		END_IF
@@ -46,6 +54,22 @@ CASE iState OF
 			iState := 20;
 		END_IF
 		
+	11:
+		IF bTriggerRead THEN
+			tmrWork(IN:=TRUE, PT:=TO_TIME(iWorkMs));
+			IF tmrWork.Q THEN
+				tmrWork(IN:=FALSE);
+				sBarcode := NO_READ;
+				iRetryCount := iRetryCount + 1;
+			END_IF
+		ELSE
+			IF iRetryCount >= 3 THEN
+				iState := 0;
+			END_IF
+			sBarcode := '';
+		END_IF
+		
+		
 	20:
 		iState := 0;
 		
@@ -58,7 +82,11 @@ END_CASE]]></ST>
       <LineId Id="27" Count="0" />
       <LineId Id="31" Count="1" />
       <LineId Id="40" Count="0" />
-      <LineId Id="35" Count="0" />
+      <LineId Id="88" Count="0" />
+      <LineId Id="110" Count="0" />
+      <LineId Id="89" Count="0" />
+      <LineId Id="91" Count="1" />
+      <LineId Id="90" Count="0" />
       <LineId Id="58" Count="0" />
       <LineId Id="60" Count="0" />
       <LineId Id="33" Count="0" />
@@ -73,6 +101,16 @@ END_CASE]]></ST>
       <LineId Id="46" Count="0" />
       <LineId Id="54" Count="0" />
       <LineId Id="44" Count="0" />
+      <LineId Id="93" Count="1" />
+      <LineId Id="100" Count="0" />
+      <LineId Id="103" Count="3" />
+      <LineId Id="111" Count="0" />
+      <LineId Id="101" Count="0" />
+      <LineId Id="107" Count="0" />
+      <LineId Id="112" Count="2" />
+      <LineId Id="108" Count="0" />
+      <LineId Id="102" Count="0" />
+      <LineId Id="98" Count="0" />
       <LineId Id="37" Count="0" />
       <LineId Id="30" Count="0" />
       <LineId Id="61" Count="0" />
