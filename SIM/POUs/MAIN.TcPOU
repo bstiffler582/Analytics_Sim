@@ -3,16 +3,13 @@
   <POU Name="MAIN" Id="{978cad62-4036-4e47-9e8a-459f7b1451b8}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
-	fbSimAxisTest	: FB_SimAxis;
-	fbSimActTest	: FB_SimActuator;
+	fbSimCell		: FB_SimCell;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[fbSimAxisTest();
-fbSimActTest();]]></ST>
+      <ST><![CDATA[fbSimCell();]]></ST>
     </Implementation>
     <LineIds Name="MAIN">
-      <LineId Id="2" Count="0" />
       <LineId Id="11" Count="0" />
     </LineIds>
   </POU>

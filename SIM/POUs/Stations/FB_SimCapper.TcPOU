@@ -51,6 +51,25 @@ CASE iState OF
 		
 END_CASE]]></ST>
     </Implementation>
+    <Property Name="PartPresent" Id="{efc26c2b-b625-4294-9b57-f9b9be747116}">
+      <Declaration><![CDATA[PROPERTY PUBLIC PartPresent : BOOL]]></Declaration>
+      <Get Name="Get" Id="{98a2d9a4-2be2-42de-8631-311054916242}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[PartPresent := bPartPresent;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{627d8900-14c9-4717-ae1c-9b51d4fd6e3f}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[bPartPresent := PartPresent;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
     <LineIds Name="FB_SimCapper">
       <LineId Id="9" Count="0" />
       <LineId Id="25" Count="0" />
@@ -72,6 +91,12 @@ END_CASE]]></ST>
       <LineId Id="61" Count="0" />
       <LineId Id="56" Count="0" />
       <LineId Id="28" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_SimCapper.PartPresent.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_SimCapper.PartPresent.Set">
+      <LineId Id="2" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

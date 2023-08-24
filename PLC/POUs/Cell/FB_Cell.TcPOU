@@ -21,6 +21,7 @@ VAR
 	fbOutfeedActuator			: FB_Actuator;
 	fbInfeedConveyor			: FB_Axis;
 	fbIndexConveyor				: FB_Axis;
+	fbOutfeedConveyor			: FB_Axis;
 	
 	InfeedConveyor				: IAxis := fbInfeedConveyor;
 	IndexConveyor				: IAxis := fbIndexConveyor;
@@ -49,7 +50,7 @@ VAR
 	OutfeedPart					: ST_PartStatus;
 	
 	fIndexPosition				: LREAL;
-	INDEX_DIST					: LREAL := 100.0;
+	INDEX_DIST					: LREAL := 300.0;
 	INDEX_VEL					: LREAL := 100.0;
 	INFEED_VEL					: LREAL := 100.0;
 	
@@ -97,6 +98,7 @@ IF eAutoMan = E_AutoMan.AUTO THEN
 			IF bAllStationsReady AND bCellPartPresent THEN
 				tmrStationWait(IN:=TRUE, PT:=T#500MS);
 				IF tmrStationWait.Q THEN
+					tmrStationWait(IN:=FALSE);
 					State := E_CellState.INDEX;
 				END_IF
 			END_IF
@@ -125,10 +127,11 @@ IF eAutoMan = E_AutoMan.AUTO THEN
 				bIndexing := TRUE;
 			END_IF
 			
-			IF (IndexConveyor.MoveAbsolute(fIndexPosition, INDEX_VEL)) THEN
+			IF (IndexConveyor.MoveAbsolute(fIndexPosition, INDEX_VEL)) AND bIndexing THEN
 				bIndexing := FALSE;
 				OutfeedPart := PartStatus[3];
-				MEMCPY(ADR(PartStatus[0]), ADR(PartStatus[1]), SIZEOF(ST_PartStatus)*3);
+				MEMCPY(ADR(PartStatus[1]), ADR(PartStatus[0]), SIZEOF(ST_PartStatus)*3);
+				MEMSET(ADR(PartStatus[0]), 0, SIZEOF(ST_PartStatus));
 				State := E_CellState.IDLE_WAIT;
 			END_IF
 			
@@ -226,7 +229,9 @@ END_FOR]]></ST>
       <LineId Id="308" Count="0" />
       <LineId Id="259" Count="1" />
       <LineId Id="270" Count="2" />
-      <LineId Id="274" Count="2" />
+      <LineId Id="274" Count="0" />
+      <LineId Id="314" Count="0" />
+      <LineId Id="275" Count="1" />
       <LineId Id="273" Count="0" />
       <LineId Id="309" Count="1" />
       <LineId Id="313" Count="0" />
@@ -245,7 +250,9 @@ END_FOR]]></ST>
       <LineId Id="284" Count="0" />
       <LineId Id="279" Count="1" />
       <LineId Id="282" Count="1" />
-      <LineId Id="285" Count="2" />
+      <LineId Id="285" Count="1" />
+      <LineId Id="315" Count="0" />
+      <LineId Id="287" Count="0" />
       <LineId Id="281" Count="0" />
       <LineId Id="180" Count="0" />
       <LineId Id="54" Count="0" />

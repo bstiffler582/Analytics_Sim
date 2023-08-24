@@ -45,7 +45,7 @@ END_VAR
 		
 	20:
 		bClamp := FALSE;
-		tmrClamp(IN:=TRUE, PT:=tmClamp);
+		tmrClamp(IN:=TRUE, PT:=CLAMP_TIME);
 		IF tmrClamp.Q THEN
 			tmrClamp(IN:=FALSE);
 			pPartStatus^.bCapperStatus := NOT bCapFail;

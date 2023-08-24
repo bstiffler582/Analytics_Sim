@@ -49,6 +49,25 @@ CASE iState OF
 		
 END_CASE]]></ST>
     </Implementation>
+    <Property Name="PartPresent" Id="{0d2531d8-1940-42c4-b0c2-849dfc637b41}">
+      <Declaration><![CDATA[PROPERTY PUBLIC PartPresent : BOOL]]></Declaration>
+      <Get Name="Get" Id="{89580202-1e1c-4436-b39d-e116d591c4bc}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[PartPresent := bPartPresent;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{1aa9f137-4566-4a00-8fbd-3af25d42fcc4}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[bPartPresent := PartPresent;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
     <LineIds Name="FB_SimCheckWeigher">
       <LineId Id="9" Count="0" />
       <LineId Id="25" Count="0" />
@@ -73,6 +92,12 @@ END_CASE]]></ST>
       <LineId Id="98" Count="0" />
       <LineId Id="56" Count="0" />
       <LineId Id="28" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_SimCheckWeigher.PartPresent.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_SimCheckWeigher.PartPresent.Set">
+      <LineId Id="2" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

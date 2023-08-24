@@ -7,8 +7,6 @@ END_VAR
 VAR_OUTPUT
 END_VAR
 VAR
-	bStartBtn					AT %Q* : BOOL;
-	bStopBtn					AT %Q* : BOOL;
 	bPartPresentAtInfeed		AT %Q* : BOOL;
 	bPartPresentAtOutfeed		AT %Q* : BOOL;
 	
@@ -23,7 +21,7 @@ VAR
 	fbSimCapper					: FB_SimCapper;
 	fbSimWeigher				: FB_SimCheckWeigher;
 	
-	fbTmrs						: ARRAY[0..9] OF TON;
+	fbTmr						: ARRAY[0..9] OF TON;
 	rand						: ARRAY[0..9] OF DRAND;
 	i,j,k						: INT;
 	bStationLoaded				: ARRAY[0..3] OF BOOL;
@@ -38,8 +36,9 @@ END_VAR
 END_FOR
 
 fbInfeedActuator();
-fbOutfeedActuator();
 fbInfeedConveyor();
+fbIndexConveyor();
+fbOutfeedActuator();
 fbOutfeedConveyor();
 
 fbSimScanner();
@@ -50,10 +49,27 @@ fbSimWeigher();
 // Infeed
 CASE iInfeedState OF
 	0:
-		;
-		// infeed conv running, timer, set part present
-		// on infeed act extend,
-		// part present = false, station 1 part present = true
+		fbTmr[0].PT := TO_TIME(1000 + rand[0].Num * 1000);
+		iInfeedState := 1;
+		
+	1:
+		fbTmr[0](IN:=(fbInfeedConveyor.State <> 0 AND NOT bPartPresentAtInfeed));
+		IF fbTmr[0].Q THEN
+			fbTmr[0](IN:=FALSE);
+			bPartPresentAtInfeed := TRUE;
+			iInfeedState := 2;
+		END_IF
+		
+	2:
+		IF fbInfeedActuator.bExtended THEN
+			bPartPresentAtInfeed := FALSE;
+			fbSimScanner.PartPresent := TRUE;
+			bStationLoaded[0] := TRUE;
+			iInfeedState := 3;
+		END_IF
+	
+	3:
+		iInfeedState := 0;
 		
 END_CASE
 
@@ -67,10 +83,10 @@ CASE iIndexState OF
 		END_IF
 		
 	1:
-		fbSimScanner.bPartPresent := FALSE;
-		fbSimFiller.bPartPresent := FALSE;
-		fbSimCapper.bPartPresent := FALSE;
-		fbSimWeigher.bPartPresent := FALSE;
+		fbSimScanner.PartPresent := FALSE;
+		fbSimFiller.PartPresent := FALSE;
+		fbSimCapper.PartPresent := FALSE;
+		fbSimWeigher.PartPresent := FALSE;
 		
 		// index complete
 		IF fbIndexConveyor.fActPosition = fbIndexConveyor.fPositionCmd THEN
@@ -79,10 +95,10 @@ CASE iIndexState OF
 		
 	2:
 		// shift parts
-		fbSimScanner.bPartPresent := FALSE;
-		fbSimFiller.bPartPresent := bStationLoaded[0];
-		fbSimCapper.bPartPresent := bStationLoaded[1];
-		fbSimWeigher.bPartPresent := bStationLoaded[2];
+		fbSimScanner.PartPresent := FALSE;
+		fbSimFiller.PartPresent := bStationLoaded[0];
+		fbSimCapper.PartPresent := bStationLoaded[1];
+		fbSimWeigher.PartPresent := bStationLoaded[2];
 		
 		bStationLoaded[3] := bStationLoaded[2];
 		bStationLoaded[2] := bStationLoaded[1];
@@ -99,14 +115,27 @@ END_CASE
       <LineId Id="44" Count="1" />
       <LineId Id="42" Count="0" />
       <LineId Id="31" Count="0" />
-      <LineId Id="33" Count="2" />
+      <LineId Id="179" Count="1" />
+      <LineId Id="33" Count="0" />
+      <LineId Id="35" Count="0" />
       <LineId Id="32" Count="0" />
       <LineId Id="9" Count="0" />
       <LineId Id="49" Count="2" />
       <LineId Id="56" Count="0" />
       <LineId Id="53" Count="0" />
-      <LineId Id="117" Count="1" />
-      <LineId Id="123" Count="3" />
+      <LineId Id="117" Count="0" />
+      <LineId Id="173" Count="3" />
+      <LineId Id="118" Count="0" />
+      <LineId Id="158" Count="1" />
+      <LineId Id="178" Count="0" />
+      <LineId Id="160" Count="0" />
+      <LineId Id="162" Count="0" />
+      <LineId Id="161" Count="0" />
+      <LineId Id="163" Count="3" />
+      <LineId Id="168" Count="1" />
+      <LineId Id="177" Count="0" />
+      <LineId Id="167" Count="0" />
+      <LineId Id="170" Count="2" />
       <LineId Id="120" Count="0" />
       <LineId Id="119" Count="0" />
       <LineId Id="72" Count="1" />

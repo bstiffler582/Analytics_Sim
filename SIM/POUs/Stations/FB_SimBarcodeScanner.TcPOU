@@ -75,6 +75,25 @@ CASE iState OF
 		
 END_CASE]]></ST>
     </Implementation>
+    <Property Name="PartPresent" Id="{20434da3-0e36-4ba4-919f-7f980e428bad}">
+      <Declaration><![CDATA[PROPERTY PUBLIC PartPresent : BOOL]]></Declaration>
+      <Get Name="Get" Id="{c5238dec-471e-4d37-815d-46cd608efa6d}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[PartPresent := bPartPresent;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{cb171cbc-09bb-4436-b089-139751bc78fd}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[bPartPresent := PartPresent;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
     <LineIds Name="FB_SimBarcodeScanner">
       <LineId Id="9" Count="0" />
       <LineId Id="25" Count="0" />
@@ -116,6 +135,12 @@ END_CASE]]></ST>
       <LineId Id="61" Count="0" />
       <LineId Id="56" Count="0" />
       <LineId Id="28" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_SimBarcodeScanner.PartPresent.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_SimBarcodeScanner.PartPresent.Set">
+      <LineId Id="2" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

@@ -52,7 +52,11 @@
       "type": "Stylesheet"
     }
   ],
-  "userControls": [],
+  "userControls": [
+    {
+      "url": "User Controls/PartStatus.usercontrol"
+    }
+  ],
   "content": [],
   "views": [
     {
@@ -68,7 +72,84 @@
     "themedResources": {}
   },
   "trigger": [],
-  "actionTemplates": [],
+  "actionTemplates": [
+    {
+      "displayname": "StatusBool",
+      "name": "StatusBool",
+      "category": "Action Templates",
+      "actions": [
+        {
+          "objectType": "Condition",
+          "active": true,
+          "parts": [
+            {
+              "if": [
+                {
+                  "compare1": {
+                    "objectType": "Symbol",
+                    "valueType": "tchmi:general#/definitions/String",
+                    "symbolExpression": "%tp%Status%/tp%"
+                  },
+                  "compare2": {
+                    "objectType": "StaticValue",
+                    "valueType": "tchmi:general#/definitions/BOOL",
+                    "value": false
+                  },
+                  "compareOperator": "==",
+                  "logic": null
+                }
+              ],
+              "then": [
+                {
+                  "objectType": "WriteToSymbol",
+                  "active": true,
+                  "symbolExpression": "%tp%Control::BackgroundColor%/tp%",
+                  "value": {
+                    "objectType": "StaticValue",
+                    "valueType": "tchmi:framework#/definitions/Color",
+                    "value": {
+                      "color": "rgba(253, 153, 153, 1)"
+                    }
+                  },
+                  "asyncWait": true
+                }
+              ]
+            },
+            {
+              "else": [
+                {
+                  "objectType": "WriteToSymbol",
+                  "active": true,
+                  "symbolExpression": "%tp%Control::BackgroundColor%/tp%",
+                  "value": {
+                    "objectType": "StaticValue",
+                    "valueType": "tchmi:framework#/definitions/Color",
+                    "value": {
+                      "color": "rgba(153, 253, 188, 1)"
+                    }
+                  },
+                  "asyncWait": true
+                }
+              ]
+            }
+          ],
+          "asyncWait": true
+        }
+      ],
+      "parameters": [
+        {
+          "name": "Control",
+          "type": "tchmi:framework#/definitions/Control",
+          "description": ""
+        },
+        {
+          "name": "Status",
+          "type": "tchmi:general#/definitions/BOOL",
+          "description": ""
+        }
+      ]
+    }
+  ],
   "languages": {
     "de": "Localization/de.localization",
     "en": "Localization/en.localization"

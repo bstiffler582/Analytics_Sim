@@ -27,7 +27,82 @@
     "DEFAULTTIMEFORMATLOCALE": "client",
     "DEFAULTTIMEZONE": "client",
     "DEFAULTUSERGROUP": "__SystemUsers",
-    "DEFINITIONS": {},
+    "DEFINITIONS": {
+        "PLC1.ARRAY_0..3_OF-ST_PartStatus": {
+            "items": {
+                "$ref": "#/definitions/PLC1.ST_PartStatus"
+            },
+            "maxItems": 4,
+            "minItems": 4,
+            "type": "array"
+        },
+        "PLC1.ST_PartStatus": {
+            "properties": {
+                "bBarcodeStatus": {
+                    "allOf": [
+                        {
+                            "$ref": "tchmi:general#/definitions/BOOL"
+                        },
+                        {
+                            "propertyOrder": 1
+                        }
+                    ]
+                },
+                "bCapperStatus": {
+                    "allOf": [
+                        {
+                            "$ref": "tchmi:general#/definitions/BOOL"
+                        },
+                        {
+                            "propertyOrder": 4
+                        }
+                    ]
+                },
+                "bFillerStatus": {
+                    "allOf": [
+                        {
+                            "$ref": "tchmi:general#/definitions/BOOL"
+                        },
+                        {
+                            "propertyOrder": 3
+                        }
+                    ]
+                },
+                "bWeightStatus": {
+                    "allOf": [
+                        {
+                            "$ref": "tchmi:general#/definitions/BOOL"
+                        },
+                        {
+                            "propertyOrder": 5
+                        }
+                    ]
+                },
+                "fActualWeightMg": {
+                    "allOf": [
+                        {
+                            "$ref": "tchmi:general#/definitions/LREAL"
+                        },
+                        {
+                            "propertyOrder": 6
+                        }
+                    ]
+                },
+                "sBarcode": {
+                    "allOf": [
+                        {
+                            "maxLength": 255,
+                            "propertyOrder": 2
+                        },
+                        {
+                            "$ref": "tchmi:general#/definitions/String"
+                        }
+                    ]
+                }
+            },
+            "type": "object"
+        }
+    },
     "DEFLATECOMPRESSIONLEVEL": 5,
     "DIAGNOSTICS_DOMAINS": [],
     "DISABLED_CONFIGURATION_HINTS": [],
@@ -2499,6 +2574,254 @@
             },
             "USEMAPPING": true
         },
+        "PLC1.MAIN.fbCell.PartStatus": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::fbCell::PartStatus",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:server#/definitions/PLC1.ARRAY_0..3_OF-ST_PartStatus"
+                    },
+                    {
+                        "propertyOrder": 30
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MAIN.fbCell.bPartPresentAtInfeed": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::fbCell::bPartPresentAtInfeed",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "attributes": {
+                            "TcAddressType": "Input"
+                        },
+                        "propertyOrder": 5
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MAIN.fbCell.bPartPresentAtOutfeed": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::fbCell::bPartPresentAtOutfeed",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "attributes": {
+                            "TcAddressType": "Input"
+                        },
+                        "propertyOrder": 6
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MAIN.fbCell.bStartReq": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::fbCell::bStartReq",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 37
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MAIN.fbCell.bStopReq": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::fbCell::bStopReq",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 38
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MAIN.fbCell.fbBarcoder.bPartPresent": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::fbCell::fbBarcoder::bPartPresent",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "attributes": {
+                            "TcAddressType": "Input"
+                        },
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MAIN.fbCell.fbCapper.bPartPresent": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::fbCell::fbCapper::bPartPresent",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "attributes": {
+                            "TcAddressType": "Input"
+                        },
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MAIN.fbCell.fbCheckWeigher.bPartPresent": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::fbCell::fbCheckWeigher::bPartPresent",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "attributes": {
+                            "TcAddressType": "Input"
+                        },
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MAIN.fbCell.fbFiller.bPartPresent": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::fbCell::fbFiller::bPartPresent",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "attributes": {
+                            "TcAddressType": "Input"
+                        },
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MAIN.fbCell.fbIndexConveyor.bBusy": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::fbCell::fbIndexConveyor::bBusy",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "attributes": {
+                            "TcAddressType": "Input"
+                        },
+                        "propertyOrder": 4
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MAIN.fbCell.fbInfeedActuator.iCycleState": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::fbCell::fbInfeedActuator::iCycleState",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/DINT"
+                    },
+                    {
+                        "propertyOrder": 5
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MAIN.fbCell.fbInfeedConveyor.bBusy": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::fbCell::fbInfeedConveyor::bBusy",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "attributes": {
+                            "TcAddressType": "Input"
+                        },
+                        "propertyOrder": 4
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MAIN.fbCell.fbOutfeedConveyor.bBusy": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::fbCell::fbOutfeedConveyor::bBusy",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "attributes": {
+                            "TcAddressType": "Input"
+                        },
+                        "propertyOrder": 4
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
         "RefreshDefinitions": {
             "ACCESS": 3,
             "DOMAIN": "TcHmiSrv",
@@ -3418,6 +3741,19 @@
                 "LocalizeText": 3,
                 "Login": 3,
                 "Logout": 3,
+                "PLC1.MAIN.fbCell.PartStatus": 3,
+                "PLC1.MAIN.fbCell.bPartPresentAtInfeed": 3,
+                "PLC1.MAIN.fbCell.bPartPresentAtOutfeed": 3,
+                "PLC1.MAIN.fbCell.bStartReq": 3,
+                "PLC1.MAIN.fbCell.bStopReq": 3,
+                "PLC1.MAIN.fbCell.fbBarcoder.bPartPresent": 3,
+                "PLC1.MAIN.fbCell.fbCapper.bPartPresent": 3,
+                "PLC1.MAIN.fbCell.fbCheckWeigher.bPartPresent": 3,
+                "PLC1.MAIN.fbCell.fbFiller.bPartPresent": 3,
+                "PLC1.MAIN.fbCell.fbIndexConveyor.bBusy": 3,
+                "PLC1.MAIN.fbCell.fbInfeedActuator.iCycleState": 3,
+                "PLC1.MAIN.fbCell.fbInfeedConveyor.bBusy": 3,
+                "PLC1.MAIN.fbCell.fbOutfeedConveyor.bBusy": 3,
                 "SetLocale": 3,
                 "SubscribeEvents": 3,
                 "TcHmiSqliteLogger.Diagnostics": 1,
