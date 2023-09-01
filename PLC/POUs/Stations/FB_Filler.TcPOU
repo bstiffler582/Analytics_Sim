@@ -10,7 +10,7 @@ VAR
 	fVolumeFilled			AT %I* : LREAL;
 	bFillValve				AT %Q* : BOOL;
 	
-	fFillSetpoint			: LREAL;
+	fFillSetpoint			: LREAL := 1000.0;
 	tmrDone					: TON;
 	iWorkState				: DINT;
 END_VAR
@@ -26,8 +26,13 @@ END_VAR
       <Implementation>
         <ST><![CDATA[CASE iWorkState OF
 	0:
-		iWorkState := 10;
-		bFillValve := TRUE;
+		IF pPartStatus^.bBarcodeStatus THEN
+			iWorkState := 10;
+			bFillValve := TRUE;
+		ELSE
+			DoWork := TRUE;
+		END_IF
+		
 		
 	10:
 		IF fVolumeFilled >= fFillSetpoint THEN
@@ -81,8 +86,10 @@ END_VAR
     </LineIds>
     <LineIds Name="FB_Filler.DoWork">
       <LineId Id="5" Count="1" />
+      <LineId Id="78" Count="1" />
+      <LineId Id="81" Count="2" />
+      <LineId Id="80" Count="0" />
       <LineId Id="62" Count="0" />
-      <LineId Id="37" Count="0" />
       <LineId Id="17" Count="0" />
       <LineId Id="8" Count="0" />
       <LineId Id="20" Count="0" />

@@ -12,36 +12,36 @@ VAR
 	bPartPresent				AT %Q* : BOOL;
 	
 	rand						: DRAND;
-	fWeightSetpoint				: LREAL;
+	fWeightSetpoint				: LREAL := 1000.0;
 	tmrWork						: TON;
 	iWorkMs						: DINT;
 	iState						: DINT;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[rand(Seed:=123);
+      <ST><![CDATA[rand(Seed:=MAIN.Seed+13);
 
 CASE iState OF
 	0:
 		IF bLift THEN
 			iState := 10;
 		ELSE
-			fScaleReading := 0.0 + (rand.Num / 1000);
+			fScaleReading := 0.0 + (rand.Num / 5000);
 		END_IF
 
 	10:
 		IF fScaleReading < fWeightSetpoint THEN
-			fScaleReading := fScaleReading + (fWeightSetpoint / 5) + (rand.Num * 10);
+			fScaleReading := fScaleReading + (fWeightSetpoint / 50) + (rand.Num * 10);
 		ELSE
 			iState := 20;
 		END_IF
 		
 	20:
-		IF NOT bLift THEN
+		IF bLift THEN
 			IF fScaleReading < fWeightSetpoint THEN
-				fScaleReading := fScaleReading + (rand.Num / 1000);
+				fScaleReading := fScaleReading + rand.Num;
 			ELSE
-				fScaleReading := fScaleReading - (rand.Num / 1000);
+				fScaleReading := fScaleReading - rand.Num;
 			END_IF
 		ELSE
 			iState := 0;
@@ -87,9 +87,8 @@ END_VAR
       <LineId Id="101" Count="1" />
       <LineId Id="104" Count="1" />
       <LineId Id="103" Count="0" />
-      <LineId Id="97" Count="0" />
-      <LineId Id="99" Count="0" />
-      <LineId Id="98" Count="0" />
+      <LineId Id="122" Count="0" />
+      <LineId Id="97" Count="1" />
       <LineId Id="56" Count="0" />
       <LineId Id="28" Count="0" />
     </LineIds>

@@ -48,7 +48,7 @@ END_VAR
 		IF tmrRetry.Q THEN
 			tmrRetry(IN:=FALSE);
 			bTriggerRead := TRUE;
-			iWorkState := 20;
+			iWorkState := 10;
 		END_IF
 		
 	20:

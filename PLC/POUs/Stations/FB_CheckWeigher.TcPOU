@@ -10,13 +10,13 @@ VAR
 	bLift					AT %Q* : BOOL;
 	fScaleReading			AT %I* : LREAL;
 	
-	fWeightSetpoint			: LREAL;
+	fWeightSetpoint			: LREAL := 1000;
 	iWorkState				: DINT;
 	tmrLift					: TON;
 	tmrWeigh				: TON;
 END_VAR
 VAR CONSTANT
-	WEIGH_DB				: LREAL := 0.05;
+	WEIGH_DB				: LREAL := 0.85;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -30,15 +30,20 @@ END_VAR
       <Implementation>
         <ST><![CDATA[CASE iWorkState OF
 	0:
-		bLift := TRUE;
-		tmrLift(IN:=TRUE, PT:=T#500MS);
-		IF tmrLift.Q THEN
-			tmrLift(IN:=FALSE);
-			iWorkState := 10;
+		IF pPartStatus^.bCapperStatus THEN
+			bLift := TRUE;
+			tmrLift(IN:=TRUE, PT:=T#500MS);
+			IF tmrLift.Q THEN
+				tmrLift(IN:=FALSE);
+				iWorkState := 10;
+			END_IF
+		ELSE
+			DoWork := TRUE;
 		END_IF
 		
+		
 	10:
-		tmrWeigh(IN:=TRUE, PT:=T#1S);
+		tmrWeigh(IN:=TRUE, PT:=T#2S);
 		IF tmrWeigh.Q THEN
 			tmrWeigh(IN:=FALSE);
 			pPartStatus^.fActualWeightMg := fScaleReading;
@@ -46,13 +51,13 @@ END_VAR
 		END_IF
 		
 	20:
-		pPartStatus^.bWeightStatus := (pPartStatus^.fActualWeightMg + WEIGH_DB <= fWeightSetpoint)
-			AND (pPartStatus^.fActualWeightMg - WEIGH_DB >= fWeightSetpoint);
+		pPartStatus^.bWeightStatus := (pPartStatus^.fActualWeightMg > fWeightSetpoint - WEIGH_DB)
+			AND (pPartStatus^.fActualWeightMg < fWeightSetpoint + WEIGH_DB);
 		iWorkState := 30;
 		
 	30:
-		iWorkState := 0;
 		bLift := FALSE;
+		iWorkState := 0;
 		DoWork := TRUE;
 	
 END_CASE]]></ST>
@@ -91,9 +96,11 @@ END_VAR
     </LineIds>
     <LineIds Name="FB_CheckWeigher.DoWork">
       <LineId Id="5" Count="1" />
-      <LineId Id="37" Count="0" />
-      <LineId Id="60" Count="2" />
-      <LineId Id="64" Count="0" />
+      <LineId Id="79" Count="0" />
+      <LineId Id="82" Count="4" />
+      <LineId Id="80" Count="0" />
+      <LineId Id="87" Count="1" />
+      <LineId Id="81" Count="0" />
       <LineId Id="63" Count="0" />
       <LineId Id="17" Count="0" />
       <LineId Id="8" Count="0" />
@@ -106,8 +113,8 @@ END_VAR
       <LineId Id="71" Count="0" />
       <LineId Id="73" Count="1" />
       <LineId Id="56" Count="1" />
+      <LineId Id="89" Count="0" />
       <LineId Id="59" Count="0" />
-      <LineId Id="75" Count="0" />
       <LineId Id="58" Count="0" />
       <LineId Id="45" Count="0" />
       <LineId Id="7" Count="0" />

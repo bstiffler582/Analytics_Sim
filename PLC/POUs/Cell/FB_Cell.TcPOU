@@ -27,6 +27,7 @@ VAR
 	IndexConveyor				: IAxis := fbIndexConveyor;
 	InfeedActuator				: IActuator := fbInfeedActuator;
 	OutfeedActuator				: IActuator := fbOutfeedActuator;
+	OutfeedConveyor				: IAxis := fbOutfeedConveyor;
 	
 	// stations
 	fbBarcoder					: FB_BarcodeScanner;
@@ -138,7 +139,9 @@ IF eAutoMan = E_AutoMan.AUTO THEN
 	END_CASE
 	
 	IF State <> E_CellState.STOPPED THEN
+		
 		InfeedConveyor.JogFwd(INFEED_VEL);
+		OutfeedConveyor.JogFwd(INFEED_VEL);
 		
 		IF bPartPresentAtOutfeed THEN
 			// bad part
@@ -153,6 +156,7 @@ IF eAutoMan = E_AutoMan.AUTO THEN
 		END_IF
 	ELSE
 		InfeedConveyor.StopMove();
+		OutfeedConveyor.StopMove();
 	END_IF
 	
 END_IF
@@ -257,7 +261,10 @@ END_FOR]]></ST>
       <LineId Id="180" Count="0" />
       <LineId Id="54" Count="0" />
       <LineId Id="288" Count="0" />
-      <LineId Id="290" Count="1" />
+      <LineId Id="290" Count="0" />
+      <LineId Id="318" Count="0" />
+      <LineId Id="291" Count="0" />
+      <LineId Id="317" Count="0" />
       <LineId Id="293" Count="1" />
       <LineId Id="299" Count="0" />
       <LineId Id="295" Count="0" />
@@ -267,6 +274,7 @@ END_FOR]]></ST>
       <LineId Id="303" Count="1" />
       <LineId Id="302" Count="0" />
       <LineId Id="305" Count="1" />
+      <LineId Id="319" Count="0" />
       <LineId Id="289" Count="0" />
       <LineId Id="292" Count="0" />
       <LineId Id="55" Count="0" />

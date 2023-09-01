@@ -28,11 +28,12 @@ VAR
 	
 	iIndexState					: DINT;
 	iInfeedState				: DINT;
+	iOutfeedState				: DINT;
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[FOR i := 0 TO 9 DO
-	rand[i](Seed:=i);
+	rand[i](Seed:=MAIN.Seed+i);
 END_FOR
 
 fbInfeedActuator();
@@ -99,6 +100,7 @@ CASE iIndexState OF
 		fbSimFiller.PartPresent := bStationLoaded[0];
 		fbSimCapper.PartPresent := bStationLoaded[1];
 		fbSimWeigher.PartPresent := bStationLoaded[2];
+		bPartPresentAtOutfeed := bStationLoaded[3];
 		
 		bStationLoaded[3] := bStationLoaded[2];
 		bStationLoaded[2] := bStationLoaded[1];
@@ -106,6 +108,28 @@ CASE iIndexState OF
 		bStationLoaded[0] := FALSE;
 		
 		iIndexState := 0;
+		
+END_CASE
+
+// Outfeed
+CASE iOutfeedState OF
+	0:
+		IF bPartPresentAtOutfeed THEN
+			iOutFeedState := 1;
+		END_IF
+		
+	1:
+		fbTmr[1](IN:=TRUE, PT:=T#3S);
+		IF fbTmr[1].Q THEN
+			bPartPresentAtOutfeed := FALSE;
+			iOutfeedState := 0;
+			fbTmr[1](IN:=FALSE);
+		END_IF
+		
+		IF fbOutfeedActuator.bExtended THEN
+			bPartPresentAtOutfeed := FALSE;
+			iOutfeedState := 0;
+		END_IF
 		
 END_CASE
 ]]></ST>
@@ -150,11 +174,25 @@ END_CASE
       <LineId Id="91" Count="1" />
       <LineId Id="103" Count="0" />
       <LineId Id="108" Count="0" />
-      <LineId Id="99" Count="3" />
+      <LineId Id="99" Count="2" />
+      <LineId Id="209" Count="0" />
+      <LineId Id="102" Count="0" />
       <LineId Id="104" Count="3" />
       <LineId Id="112" Count="1" />
       <LineId Id="71" Count="0" />
       <LineId Id="70" Count="0" />
+      <LineId Id="211" Count="4" />
+      <LineId Id="238" Count="1" />
+      <LineId Id="217" Count="1" />
+      <LineId Id="260" Count="4" />
+      <LineId Id="252" Count="0" />
+      <LineId Id="244" Count="0" />
+      <LineId Id="224" Count="0" />
+      <LineId Id="240" Count="0" />
+      <LineId Id="242" Count="0" />
+      <LineId Id="241" Count="0" />
+      <LineId Id="236" Count="0" />
+      <LineId Id="210" Count="0" />
       <LineId Id="59" Count="0" />
     </LineIds>
   </POU>

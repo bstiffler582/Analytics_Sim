@@ -4,12 +4,15 @@
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
 	fbSimCell		: FB_SimCell;
+	Seed			: INT;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[fbSimCell();]]></ST>
+      <ST><![CDATA[Seed := Seed + 1;
+fbSimCell();]]></ST>
     </Implementation>
     <LineIds Name="MAIN">
+      <LineId Id="17" Count="0" />
       <LineId Id="11" Count="0" />
     </LineIds>
   </POU>

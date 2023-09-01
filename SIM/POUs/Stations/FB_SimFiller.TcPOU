@@ -15,11 +15,11 @@ VAR
 	iState						: DINT;
 END_VAR
 VAR CONSTANT
-	FLOW_RATE					: LREAL := 1.0;
+	FLOW_RATE					: LREAL := 1.7;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[rand(Seed:=113);
+      <ST><![CDATA[rand(Seed:=MAIN.Seed+17);
 
 CASE iState OF
 	0:

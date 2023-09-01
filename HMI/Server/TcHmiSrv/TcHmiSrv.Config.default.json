@@ -2574,6 +2574,23 @@
             },
             "USEMAPPING": true
         },
+        "PLC1.MAIN.fbCell.OutfeedPart": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::fbCell::OutfeedPart",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:server#/definitions/PLC1.ST_PartStatus"
+                    },
+                    {
+                        "propertyOrder": 33
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
         "PLC1.MAIN.fbCell.PartStatus": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -2685,6 +2702,24 @@
             },
             "USEMAPPING": true
         },
+        "PLC1.MAIN.fbCell.fbBarcoder.sBarcodeRead": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::fbCell::fbBarcoder::sBarcodeRead",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "maxLength": 255,
+                        "propertyOrder": 10
+                    },
+                    {
+                        "$ref": "tchmi:general#/definitions/String"
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
         "PLC1.MAIN.fbCell.fbCapper.bPartPresent": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -2720,6 +2755,26 @@
                             "TcAddressType": "Input"
                         },
                         "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MAIN.fbCell.fbCheckWeigher.fScaleReading": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::fbCell::fbCheckWeigher::fScaleReading",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/LREAL"
+                    },
+                    {
+                        "attributes": {
+                            "TcAddressType": "Input"
+                        },
+                        "propertyOrder": 9
                     }
                 ]
             },
@@ -2797,6 +2852,23 @@
                             "TcAddressType": "Input"
                         },
                         "propertyOrder": 4
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MAIN.fbCell.fbOutfeedActuator.iCycleState": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::fbCell::fbOutfeedActuator::iCycleState",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/DINT"
+                    },
+                    {
+                        "propertyOrder": 5
                     }
                 ]
             },
@@ -3741,18 +3813,22 @@
                 "LocalizeText": 3,
                 "Login": 3,
                 "Logout": 3,
+                "PLC1.MAIN.fbCell.OutfeedPart": 3,
                 "PLC1.MAIN.fbCell.PartStatus": 3,
                 "PLC1.MAIN.fbCell.bPartPresentAtInfeed": 3,
                 "PLC1.MAIN.fbCell.bPartPresentAtOutfeed": 3,
                 "PLC1.MAIN.fbCell.bStartReq": 3,
                 "PLC1.MAIN.fbCell.bStopReq": 3,
                 "PLC1.MAIN.fbCell.fbBarcoder.bPartPresent": 3,
+                "PLC1.MAIN.fbCell.fbBarcoder.sBarcodeRead": 3,
                 "PLC1.MAIN.fbCell.fbCapper.bPartPresent": 3,
                 "PLC1.MAIN.fbCell.fbCheckWeigher.bPartPresent": 3,
+                "PLC1.MAIN.fbCell.fbCheckWeigher.fScaleReading": 3,
                 "PLC1.MAIN.fbCell.fbFiller.bPartPresent": 3,
                 "PLC1.MAIN.fbCell.fbIndexConveyor.bBusy": 3,
                 "PLC1.MAIN.fbCell.fbInfeedActuator.iCycleState": 3,
                 "PLC1.MAIN.fbCell.fbInfeedConveyor.bBusy": 3,
+                "PLC1.MAIN.fbCell.fbOutfeedActuator.iCycleState": 3,
                 "PLC1.MAIN.fbCell.fbOutfeedConveyor.bBusy": 3,
                 "SetLocale": 3,
                 "SubscribeEvents": 3,
