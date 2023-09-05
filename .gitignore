@@ -22,6 +22,7 @@
 *.project.~u
 LineIDs.dbg
 LineIDs.dbg.bak
+.vs/
 _Boot/
 _CompileInfo/
 _Libraries/
@@ -43,4 +44,3 @@ liveview_*
 .hmiframework/
 .hmipkgs/*-*-*-*/
 tchmipublish.journal.json
-Analytics_Sim.project.~u
