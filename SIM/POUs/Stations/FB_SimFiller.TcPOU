@@ -3,8 +3,10 @@
   <POU Name="FB_SimFiller" Id="{45f26f00-5e10-4615-86cf-ae8ecf9db752}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_SimFiller
 VAR_INPUT
+	fFillRate					: LREAL;
 END_VAR
 VAR_OUTPUT
+	fFillAmount					: LREAL;
 END_VAR
 VAR
 	fVolumeFilled				AT %Q* : LREAL;
@@ -13,9 +15,9 @@ VAR
 	
 	rand						: DRAND;
 	iState						: DINT;
-END_VAR
-VAR CONSTANT
-	FLOW_RATE					: LREAL := 1.7;
+	fFailRate					: LREAL;
+	fThresh						: LREAL := 2.875;
+	fFillSetpoint				: LREAL := 1000.0;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -30,13 +32,19 @@ CASE iState OF
 		END_IF
 		
 	10:
+		fFillAmount := 0;
 		IF bFillValve THEN
-			fVolumeFilled := fVolumeFilled + (FLOW_RATE + rand.Num);
+			fVolumeFilled := fVolumeFilled + fFillRate + rand.Num / 10;
 		ELSE
+			fFailRate := ABS(fFillRate - fThresh + 0.01) / 10;
+			fVolumeFilled := SEL(fFillRate <= fThresh, 
+				fFillSetpoint + (rand.Num * ((fFillRate + 1.0) / fThresh)), 
+				fFillSetpoint + (rand.Num * (1.0 + fFailRate))); 
 			iState := 20;
 		END_IF
 		
 	20:
+		fFillAmount := fVolumeFilled;
 		iState := 0;
 		
 END_CASE]]></ST>
@@ -71,12 +79,18 @@ END_VAR
       <LineId Id="33" Count="0" />
       <LineId Id="41" Count="0" />
       <LineId Id="29" Count="0" />
+      <LineId Id="105" Count="0" />
       <LineId Id="44" Count="0" />
       <LineId Id="88" Count="0" />
-      <LineId Id="86" Count="1" />
+      <LineId Id="86" Count="0" />
+      <LineId Id="114" Count="0" />
+      <LineId Id="137" Count="0" />
+      <LineId Id="139" Count="1" />
+      <LineId Id="87" Count="0" />
       <LineId Id="85" Count="0" />
       <LineId Id="37" Count="0" />
       <LineId Id="30" Count="0" />
+      <LineId Id="104" Count="0" />
       <LineId Id="61" Count="0" />
       <LineId Id="56" Count="0" />
       <LineId Id="28" Count="0" />

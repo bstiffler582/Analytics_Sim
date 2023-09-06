@@ -16,7 +16,8 @@ VAR
 	tmrWeigh				: TON;
 END_VAR
 VAR CONSTANT
-	WEIGH_DB				: LREAL := 0.85;
+	WEIGH_DB_HI				: LREAL := 1.0;
+	WEIGH_DB_LO				: LREAL := 0.2;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -51,8 +52,8 @@ END_VAR
 		END_IF
 		
 	20:
-		pPartStatus^.bWeightStatus := (pPartStatus^.fActualWeightMg > fWeightSetpoint - WEIGH_DB)
-			AND (pPartStatus^.fActualWeightMg < fWeightSetpoint + WEIGH_DB);
+		pPartStatus^.bWeightStatus := (pPartStatus^.fActualWeightMg > fWeightSetpoint - WEIGH_DB_LO)
+			AND (pPartStatus^.fActualWeightMg < fWeightSetpoint + WEIGH_DB_HI);
 		iWorkState := 30;
 		
 	30:

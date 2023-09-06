@@ -13,7 +13,7 @@
 		</System>
 		<Plc>
 			<Project GUID="{A7710401-C0B0-4CA5-AF33-91A2C35CCB11}" Name="PLC" PrjFilePath="PLC\PLC.plcproj" TmcFilePath="PLC\PLC.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC\PLC.tmc" TmcHash="{BE13D9E0-F092-AE9F-7992-29B57D032097}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC\PLC.tmc" TmcHash="{E96D0856-F744-374C-A53E-B53111E3AE17}">
 					<Name>PLC Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1">
@@ -151,6 +151,10 @@
 					<Vars VarGrpType="2" AreaNo="1">
 						<Name>PlcTask Outputs</Name>
 						<Var>
+							<Name>MAIN.fbCell.fFillRate</Name>
+							<Type>LREAL</Type>
+						</Var>
+						<Var>
 							<Name>MAIN.fbCell.fbInfeedActuator.bExtendCmd</Name>
 							<Type>BOOL</Type>
 						</Var>
@@ -252,11 +256,15 @@
 				</Instance>
 			</Project>
 			<Project GUID="{3CA6AD6D-9730-4384-B9AB-2C933A562319}" Name="SIM" PrjFilePath="SIM\SIM.plcproj" TmcFilePath="SIM\SIM.tmc" ReloadTmc="true" AmsPort="852" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502040" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="SIM\SIM.tmc" TmcHash="{2E5FBED5-CD0F-EDA6-67C3-3400B3C6957C}">
+				<Instance Id="#x08502040" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="SIM\SIM.tmc" TmcHash="{6060C574-0CD0-C073-EA7E-4A91549A86AD}">
 					<Name>SIM Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1">
 						<Name>PlcTask Inputs</Name>
+						<Var>
+							<Name>MAIN.fbSimCell.fFillRate</Name>
+							<Type>LREAL</Type>
+						</Var>
 						<Var>
 							<Name>MAIN.fbSimCell.fbInfeedActuator.bExtendCmd</Name>
 							<Type>BOOL</Type>
@@ -518,6 +526,7 @@
 				<Link VarA="PlcTask Inputs^MAIN.fbCell.fbOutfeedConveyor.bReady" VarB="PlcTask Outputs^MAIN.fbSimCell.fbOutfeedConveyor.bReady"/>
 				<Link VarA="PlcTask Inputs^MAIN.fbCell.fbOutfeedConveyor.fActPosition" VarB="PlcTask Outputs^MAIN.fbSimCell.fbOutfeedConveyor.fActPosition"/>
 				<Link VarA="PlcTask Inputs^MAIN.fbCell.fbOutfeedConveyor.fActVelocity" VarB="PlcTask Outputs^MAIN.fbSimCell.fbOutfeedConveyor.fActVelocity"/>
+				<Link VarA="PlcTask Outputs^MAIN.fbCell.fFillRate" VarB="PlcTask Inputs^MAIN.fbSimCell.fFillRate"/>
 				<Link VarA="PlcTask Outputs^MAIN.fbCell.fbBarcoder.bTriggerRead" VarB="PlcTask Inputs^MAIN.fbSimCell.fbSimScanner.bTriggerRead"/>
 				<Link VarA="PlcTask Outputs^MAIN.fbCell.fbCapper.bCapTrigger" VarB="PlcTask Inputs^MAIN.fbSimCell.fbSimCapper.bCapTrigger"/>
 				<Link VarA="PlcTask Outputs^MAIN.fbCell.fbCapper.bClamp" VarB="PlcTask Inputs^MAIN.fbSimCell.fbSimCapper.bClamp"/>

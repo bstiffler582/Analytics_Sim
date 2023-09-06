@@ -2648,6 +2648,27 @@
             },
             "USEMAPPING": true
         },
+        "PLC1.MAIN.fbCell.bStartBtn": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::fbCell::bStartBtn",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "attributes": {
+                            "TcAddressType": "Input"
+                        },
+                        "comment": "IO",
+                        "propertyOrder": 3
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
         "PLC1.MAIN.fbCell.bStartReq": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -2660,6 +2681,26 @@
                     },
                     {
                         "propertyOrder": 37
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MAIN.fbCell.bStopBtn": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::fbCell::bStopBtn",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "attributes": {
+                            "TcAddressType": "Input"
+                        },
+                        "propertyOrder": 4
                     }
                 ]
             },
@@ -3817,7 +3858,9 @@
                 "PLC1.MAIN.fbCell.PartStatus": 3,
                 "PLC1.MAIN.fbCell.bPartPresentAtInfeed": 3,
                 "PLC1.MAIN.fbCell.bPartPresentAtOutfeed": 3,
+                "PLC1.MAIN.fbCell.bStartBtn": 3,
                 "PLC1.MAIN.fbCell.bStartReq": 3,
+                "PLC1.MAIN.fbCell.bStopBtn": 3,
                 "PLC1.MAIN.fbCell.bStopReq": 3,
                 "PLC1.MAIN.fbCell.fbBarcoder.bPartPresent": 3,
                 "PLC1.MAIN.fbCell.fbBarcoder.sBarcodeRead": 3,

@@ -15,6 +15,7 @@ VAR
 	bStopBtn					AT %I* : BOOL;
 	bPartPresentAtInfeed		AT %I* : BOOL;
 	bPartPresentAtOutfeed		AT %I* : BOOL;
+	fFillRate					AT %Q* : LREAL := 2.5;
 	
 	// devices
 	fbInfeedActuator			: FB_Actuator;
@@ -58,6 +59,9 @@ VAR
 	bStartReq					: BOOL;
 	bStopReq					: BOOL;
 	bInit 						: BOOL := TRUE;
+	
+	bFillRateTest				: BOOL;
+	tmrFillRate					: TON;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -154,6 +158,14 @@ IF eAutoMan = E_AutoMan.AUTO THEN
 				bOutfeeding := FALSE;
 			END_IF
 		END_IF
+		
+		IF bFillRateTest THEN
+			tmrFillRate(IN:=NOT tmrFillRate.Q, PT:=T#15M); 
+			IF tmrFillRate.Q THEN
+				fFillRate := fFillRate + 0.05;
+			END_IF
+		END_IF
+		
 	ELSE
 		InfeedConveyor.StopMove();
 		OutfeedConveyor.StopMove();
@@ -273,6 +285,10 @@ END_FOR]]></ST>
       <LineId Id="300" Count="1" />
       <LineId Id="303" Count="1" />
       <LineId Id="302" Count="0" />
+      <LineId Id="320" Count="0" />
+      <LineId Id="324" Count="4" />
+      <LineId Id="321" Count="0" />
+      <LineId Id="329" Count="0" />
       <LineId Id="305" Count="1" />
       <LineId Id="319" Count="0" />
       <LineId Id="289" Count="0" />
