@@ -44,3 +44,8 @@ liveview_*
 .hmiframework/
 .hmipkgs/*-*-*-*/
 tchmipublish.journal.json
+
+# analytics
+Thumbs/
+VSSettings/
+*.dll

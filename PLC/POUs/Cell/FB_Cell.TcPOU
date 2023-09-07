@@ -174,10 +174,12 @@ IF eAutoMan = E_AutoMan.AUTO THEN
 END_IF
 
 IF bStartBtn THEN
+	bStopReq := FALSE;
 	bStartReq := TRUE;
 END_IF
 
 IF bStopBtn THEN
+	bStartReq := FALSE;
 	bStopReq := TRUE;
 END_IF]]></ST>
       </Implementation>
@@ -294,7 +296,11 @@ END_FOR]]></ST>
       <LineId Id="289" Count="0" />
       <LineId Id="292" Count="0" />
       <LineId Id="55" Count="0" />
-      <LineId Id="240" Count="6" />
+      <LineId Id="240" Count="1" />
+      <LineId Id="331" Count="0" />
+      <LineId Id="242" Count="3" />
+      <LineId Id="330" Count="0" />
+      <LineId Id="246" Count="0" />
       <LineId Id="239" Count="0" />
     </LineIds>
     <LineIds Name="FB_Cell.StationMgr">

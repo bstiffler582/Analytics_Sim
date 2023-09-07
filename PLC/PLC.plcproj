@@ -16,6 +16,7 @@
     <Implicit_KindOfTask>{6680647e-a5cf-4b23-886a-b5a7c6620749}</Implicit_KindOfTask>
     <Implicit_Jitter_Distribution>{e7b67a30-0b98-4ad5-bbb2-2484f847aa7e}</Implicit_Jitter_Distribution>
     <LibraryReferences>{402046cc-0a7b-494f-beef-b888473f30a6}</LibraryReferences>
+    <Released>false</Released>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="DUTs\E_AutoMan.TcDUT">
