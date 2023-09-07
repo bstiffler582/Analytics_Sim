@@ -12,6 +12,7 @@ VAR
 	bReady					AT %I* : BOOL;
 	bBusy					AT %I* : BOOL;
 	bError					AT %I* : BOOL;
+	bRunning				AT %I* : BOOL;
 	
 	bJogFwdCmd				AT %Q* : BOOL;
 	bMoveAbsCmd				AT %Q* : BOOL;
