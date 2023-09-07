@@ -44,3 +44,6 @@ liveview_*
 .hmiframework/
 .hmipkgs/*-*-*-*/
 tchmipublish.journal.json
+
+# analytics
+Analytics/
