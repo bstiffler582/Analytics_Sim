@@ -9,7 +9,7 @@ TYPE E_CellState :
 	IDLE_WAIT := 1,
 	FEED := 2,
 	INDEX := 3
-);
+) DINT;
 END_TYPE
 ]]></Declaration>
   </DUT>

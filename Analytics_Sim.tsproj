@@ -13,7 +13,7 @@
 		</System>
 		<Plc>
 			<Project GUID="{A7710401-C0B0-4CA5-AF33-91A2C35CCB11}" Name="PLC" PrjFilePath="PLC\PLC.plcproj" TmcFilePath="PLC\PLC.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC\PLC.tmc" TmcHash="{F71C0F0E-C98D-7D57-27AB-F920AD1F07BF}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC\PLC.tmc" TmcHash="{C0C431C8-C708-A32C-92CD-CEDC2DC72702}">
 					<Name>PLC Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1">
@@ -514,6 +514,259 @@
 				</Instance>
 			</Project>
 		</Plc>
+		<Analytics>
+			<Name>ANALYTICS</Name>
+			<ImageId>281</ImageId>
+			<Symbols>
+				<Symbol>PlcTask Inputs.MAIN.fbCell.bStartBtn</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbCell.bStopBtn</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbCell.bPartPresentAtInfeed</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbCell.bPartPresentAtOutfeed</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbCell.fbInfeedActuator.bExtended</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbCell.fbInfeedActuator.bRetracted</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbCell.fbOutfeedActuator.bExtended</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbCell.fbOutfeedActuator.bRetracted</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbCell.fbInfeedConveyor.fActPosition</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbCell.fbInfeedConveyor.fActVelocity</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbCell.fbInfeedConveyor.bReady</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbCell.fbInfeedConveyor.bBusy</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbCell.fbInfeedConveyor.bError</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbCell.fbInfeedConveyor.bRunning</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbCell.fbIndexConveyor.fActPosition</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbCell.fbIndexConveyor.fActVelocity</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbCell.fbIndexConveyor.bReady</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbCell.fbIndexConveyor.bBusy</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbCell.fbIndexConveyor.bError</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbCell.fbIndexConveyor.bRunning</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbCell.fbOutfeedConveyor.fActPosition</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbCell.fbOutfeedConveyor.fActVelocity</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbCell.fbOutfeedConveyor.bReady</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbCell.fbOutfeedConveyor.bBusy</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbCell.fbOutfeedConveyor.bError</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbCell.fbOutfeedConveyor.bRunning</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbCell.fbBarcoder.bPartPresent</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbCell.fbBarcoder.sBarcode</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbCell.fbFiller.bPartPresent</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbCell.fbFiller.fVolumeFilled</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbCell.fbCapper.bPartPresent</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbCell.fbCapper.bCapDone</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbCell.fbCapper.bCapFail</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbCell.fbCheckWeigher.bPartPresent</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbCell.fbCheckWeigher.fScaleReading</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbCell.fFillRate</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbCell.fbInfeedActuator.bExtendCmd</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbCell.fbInfeedActuator.bRetractCmd</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbCell.fbOutfeedActuator.bExtendCmd</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbCell.fbOutfeedActuator.bRetractCmd</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbCell.fbInfeedConveyor.bJogFwdCmd</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbCell.fbInfeedConveyor.bMoveAbsCmd</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbCell.fbInfeedConveyor.fPositionCmd</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbCell.fbInfeedConveyor.fVelocityCmd</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbCell.fbIndexConveyor.bJogFwdCmd</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbCell.fbIndexConveyor.bMoveAbsCmd</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbCell.fbIndexConveyor.fPositionCmd</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbCell.fbIndexConveyor.fVelocityCmd</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbCell.fbOutfeedConveyor.bJogFwdCmd</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbCell.fbOutfeedConveyor.bMoveAbsCmd</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbCell.fbOutfeedConveyor.fPositionCmd</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbCell.fbOutfeedConveyor.fVelocityCmd</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbCell.fbBarcoder.bTriggerRead</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbCell.fbFiller.bFillValve</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbCell.fbCapper.bClamp</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbCell.fbCapper.bCapTrigger</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbCell.fbCheckWeigher.bLift</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbSimCell.fFillRate</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbSimCell.fbInfeedActuator.bExtendCmd</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbSimCell.fbInfeedActuator.bRetractCmd</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbSimCell.fbOutfeedActuator.bExtendCmd</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbSimCell.fbOutfeedActuator.bRetractCmd</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbSimCell.fbInfeedConveyor.fPositionCmd</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbSimCell.fbInfeedConveyor.fVelocityCmd</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbSimCell.fbInfeedConveyor.bJogFwdCmd</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbSimCell.fbInfeedConveyor.bMoveAbsCmd</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbSimCell.fbOutfeedConveyor.fPositionCmd</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbSimCell.fbOutfeedConveyor.fVelocityCmd</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbSimCell.fbOutfeedConveyor.bJogFwdCmd</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbSimCell.fbOutfeedConveyor.bMoveAbsCmd</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbSimCell.fbIndexConveyor.fPositionCmd</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbSimCell.fbIndexConveyor.fVelocityCmd</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbSimCell.fbIndexConveyor.bJogFwdCmd</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbSimCell.fbIndexConveyor.bMoveAbsCmd</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbSimCell.fbSimScanner.bTriggerRead</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbSimCell.fbSimFiller.bFillValve</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbSimCell.fbSimCapper.bClamp</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbSimCell.fbSimCapper.bCapTrigger</Symbol>
+				<Symbol>PlcTask Inputs.MAIN.fbSimCell.fbSimWeigher.bLift</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbSimCell.bPartPresentAtInfeed</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbSimCell.bPartPresentAtOutfeed</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbSimCell.fbInfeedActuator.bExtended</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbSimCell.fbInfeedActuator.bRetracted</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbSimCell.fbOutfeedActuator.bExtended</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbSimCell.fbOutfeedActuator.bRetracted</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbSimCell.fbInfeedConveyor.fActPosition</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbSimCell.fbInfeedConveyor.fActVelocity</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbSimCell.fbInfeedConveyor.bReady</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbSimCell.fbInfeedConveyor.bBusy</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbSimCell.fbInfeedConveyor.bError</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbSimCell.fbInfeedConveyor.bRunning</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbSimCell.fbOutfeedConveyor.fActPosition</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbSimCell.fbOutfeedConveyor.fActVelocity</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbSimCell.fbOutfeedConveyor.bReady</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbSimCell.fbOutfeedConveyor.bBusy</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbSimCell.fbOutfeedConveyor.bError</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbSimCell.fbOutfeedConveyor.bRunning</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbSimCell.fbIndexConveyor.fActPosition</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbSimCell.fbIndexConveyor.fActVelocity</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbSimCell.fbIndexConveyor.bReady</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbSimCell.fbIndexConveyor.bBusy</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbSimCell.fbIndexConveyor.bError</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbSimCell.fbIndexConveyor.bRunning</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbSimCell.fbSimScanner.sBarcode</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbSimCell.fbSimScanner.bPartPresent</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbSimCell.fbSimFiller.fVolumeFilled</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbSimCell.fbSimFiller.bPartPresent</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbSimCell.fbSimCapper.bCapDone</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbSimCell.fbSimCapper.bCapFail</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbSimCell.fbSimCapper.bPartPresent</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbSimCell.fbSimWeigher.fScaleReading</Symbol>
+				<Symbol>PlcTask Outputs.MAIN.fbSimCell.fbSimWeigher.bPartPresent</Symbol>
+				<Symbol>PlcTask Internal.MAIN.fbCell.fFillRate</Symbol>
+				<Symbol>PlcTask Internal.MAIN.fbCell.OutfeedPart.bBarcodeStatus</Symbol>
+				<Symbol>PlcTask Internal.MAIN.fbCell.OutfeedPart</Symbol>
+				<Symbol>PlcTask Internal.MAIN.fbCell.OutfeedPart.sBarcode</Symbol>
+				<Symbol>PlcTask Internal.MAIN.fbCell.OutfeedPart.bFillerStatus</Symbol>
+				<Symbol>PlcTask Internal.MAIN.fbCell.OutfeedPart.bCapperStatus</Symbol>
+				<Symbol>PlcTask Internal.MAIN.fbCell.OutfeedPart.bWeightStatus</Symbol>
+				<Symbol>PlcTask Internal.MAIN.fbCell.OutfeedPart.fActualWeightMg</Symbol>
+				<Symbol>PlcTask Internal.MAIN.fbCell.fbBarcoder.eState</Symbol>
+				<Symbol>PlcTask Internal.MAIN.fbCell.fbFiller.eState</Symbol>
+				<Symbol>PlcTask Internal.MAIN.fbCell.fbCapper.eState</Symbol>
+				<Symbol>PlcTask Internal.MAIN.fbCell.fbCheckWeigher.eState</Symbol>
+			</Symbols>
+			<AddiStreamDescription>
+				<Address></Address>
+				<Longitude></Longitude>
+				<Latitude></Latitude>
+			</AddiStreamDescription>
+			<SystemAlias></SystemAlias>
+			<DataLogger GUID="{B91F0052-7519-EA3B-0408-F4EF6DE277DA}">
+				<Name>Data Logger 1</Name>
+				<Name>Data Logger 1</Name>
+				<ParameterValues>
+					<Value>
+						<Name>Data Format</Name>
+						<EnumText>ANALYTICS_FORMAT_FILE</EnumText>
+					</Value>
+					<Value>
+						<Name>Data Compression</Name>
+						<EnumText>ANALYTICS_COMPRESSION_RL</EnumText>
+					</Value>
+					<Value>
+						<Name>Max. Compression Compare Width</Name>
+						<EnumText>ANALYTICS_COMP_WIDTH_8</EnumText>
+					</Value>
+					<Value>
+						<Name>MQTT Host Name</Name>
+						<String>127.0.0.1</String>
+					</Value>
+					<Value>
+						<Name>MQTT Tcp Port</Name>
+						<Value>1883</Value>
+					</Value>
+					<Value>
+						<Name>MQTT Main Topic</Name>
+						<String>DefaultMainTopic</String>
+					</Value>
+					<Value>
+						<Name>MQTT Client ID</Name>
+						<String></String>
+					</Value>
+					<Value>
+						<Name>MQTT User Name</Name>
+						<String></String>
+					</Value>
+					<Value>
+						<Name>MQTT Password</Name>
+						<String></String>
+					</Value>
+				</ParameterValues>
+				<Stream Caller="#x08502001" Adi="#x08502000" Id="#x02040003" CntAds="#x000000c8" CntFile="#x000003e8" CntRing="#x00000008" SamplingDivider="2">
+					<Name>PLC.PLC Instance.PlcTask</Name>
+					<DisplayName>PlcStream1</DisplayName>
+					<LoggerObject Enabled="true">
+						<AreaName>PlcTask Inputs</AreaName>
+						<SymName>MAIN.fbCell.bPartPresentAtOutfeed</SymName>
+						<HierName>PlcTask Inputs.MAIN.fbCell.bPartPresentAtOutfeed</HierName>
+					</LoggerObject>
+					<LoggerObject Enabled="true">
+						<AreaName>PlcTask Inputs</AreaName>
+						<SymName>MAIN.fbCell.fbOutfeedActuator.bExtended</SymName>
+						<HierName>PlcTask Inputs.MAIN.fbCell.fbOutfeedActuator.bExtended</HierName>
+					</LoggerObject>
+					<LoggerObject Enabled="true">
+						<AreaName>PlcTask Inputs</AreaName>
+						<SymName>MAIN.fbCell.fbInfeedConveyor.bRunning</SymName>
+						<HierName>PlcTask Inputs.MAIN.fbCell.fbInfeedConveyor.bRunning</HierName>
+					</LoggerObject>
+					<LoggerObject Enabled="true">
+						<AreaName>PlcTask Internal</AreaName>
+						<SymName>MAIN.fbCell.fFillRate</SymName>
+						<HierName>PlcTask Internal.MAIN.fbCell.fFillRate</HierName>
+					</LoggerObject>
+					<LoggerObject Enabled="true">
+						<AreaName>PlcTask Internal</AreaName>
+						<SymName>MAIN.fbCell.OutfeedPart.bBarcodeStatus</SymName>
+						<HierName>PlcTask Internal.MAIN.fbCell.OutfeedPart.bBarcodeStatus</HierName>
+					</LoggerObject>
+					<LoggerObject Enabled="true">
+						<AreaName>PlcTask Internal</AreaName>
+						<SymName>MAIN.fbCell.OutfeedPart.bFillerStatus</SymName>
+						<HierName>PlcTask Internal.MAIN.fbCell.OutfeedPart.bFillerStatus</HierName>
+					</LoggerObject>
+					<LoggerObject Enabled="true">
+						<AreaName>PlcTask Internal</AreaName>
+						<SymName>MAIN.fbCell.OutfeedPart.bCapperStatus</SymName>
+						<HierName>PlcTask Internal.MAIN.fbCell.OutfeedPart.bCapperStatus</HierName>
+					</LoggerObject>
+					<LoggerObject Enabled="true">
+						<AreaName>PlcTask Internal</AreaName>
+						<SymName>MAIN.fbCell.OutfeedPart.bWeightStatus</SymName>
+						<HierName>PlcTask Internal.MAIN.fbCell.OutfeedPart.bWeightStatus</HierName>
+					</LoggerObject>
+					<LoggerObject Enabled="true">
+						<AreaName>PlcTask Internal</AreaName>
+						<SymName>MAIN.fbCell.OutfeedPart.fActualWeightMg</SymName>
+						<HierName>PlcTask Internal.MAIN.fbCell.OutfeedPart.fActualWeightMg</HierName>
+					</LoggerObject>
+					<LoggerObject Enabled="true">
+						<AreaName>PlcTask Internal</AreaName>
+						<SymName>MAIN.fbCell.fbBarcoder.eState</SymName>
+						<HierName>PlcTask Internal.MAIN.fbCell.fbBarcoder.eState</HierName>
+					</LoggerObject>
+					<LoggerObject Enabled="true">
+						<AreaName>PlcTask Internal</AreaName>
+						<SymName>MAIN.fbCell.fbFiller.eState</SymName>
+						<HierName>PlcTask Internal.MAIN.fbCell.fbFiller.eState</HierName>
+					</LoggerObject>
+					<LoggerObject Enabled="true">
+						<AreaName>PlcTask Internal</AreaName>
+						<SymName>MAIN.fbCell.fbCapper.eState</SymName>
+						<HierName>PlcTask Internal.MAIN.fbCell.fbCapper.eState</HierName>
+					</LoggerObject>
+					<LoggerObject Enabled="true">
+						<AreaName>PlcTask Internal</AreaName>
+						<SymName>MAIN.fbCell.fbCheckWeigher.eState</SymName>
+						<HierName>PlcTask Internal.MAIN.fbCell.fbCheckWeigher.eState</HierName>
+					</LoggerObject>
+					<FileDir>%TC_BOOTPRJPATH%</FileDir>
+				</Stream>
+				<Stream Caller="#x08502041" Adi="#x08502040" Id="#x02040004" CntAds="#x00000020" CntFile="#x00000010" CntRing="#x00000002" SamplingDivider="1">
+					<Name>SIM.SIM Instance.PlcTask</Name>
+					<DisplayName>PlcStream2</DisplayName>
+					<FileDir>%TC_BOOTPRJPATH%</FileDir>
+				</Stream>
+			</DataLogger>
+		</Analytics>
 		<Io/>
 	</Project>
 	<Mappings>

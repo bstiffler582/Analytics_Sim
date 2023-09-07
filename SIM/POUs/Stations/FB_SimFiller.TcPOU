@@ -36,7 +36,7 @@ CASE iState OF
 		IF bFillValve THEN
 			fVolumeFilled := fVolumeFilled + fFillRate + rand.Num / 10;
 		ELSE
-			fFailRate := ABS(fFillRate - fThresh + 0.01) / 10;
+			fFailRate := ABS(fFillRate - fThresh + 0.005) / 10;
 			fVolumeFilled := SEL(fFillRate <= fThresh, 
 				fFillSetpoint + (rand.Num * ((fFillRate + 1.0) / fThresh)), 
 				fFillSetpoint + (rand.Num * (1.0 + fFailRate))); 

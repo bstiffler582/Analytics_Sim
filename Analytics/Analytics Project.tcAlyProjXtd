@@ -436,7 +436,7 @@
     <TriggerResult>false</TriggerResult>
   </FunctionResultInfo>
   <InputSourceInfo AssemblyName="TwinCAT.Analytics.Workbench">
-    <ChartGuid>ecb31444-7c08-4b6c-8d53-14174d2ed227</ChartGuid>
+    <ChartGuid>b9902211-4b1c-4603-93d4-e9f0658359e3</ChartGuid>
     <Comment />
     <CycleTime>10000000</CycleTime>
     <DisplayColor>Black</DisplayColor>
@@ -472,7 +472,7 @@
     <IncludeInReport>false</IncludeInReport>
     <IncludeSubMemberInReport>true</IncludeSubMemberInReport>
     <Name>OEE</Name>
-    <NetworkChartGuid>efbcc2aa-24aa-492b-9c73-f2dc58a1b6aa</NetworkChartGuid>
+    <NetworkChartGuid>b52405d5-31a7-47a7-a89c-03c584ba05e1</NetworkChartGuid>
     <ParentNetworkEnabled>true</ParentNetworkEnabled>
     <PersistentResults>false</PersistentResults>
     <RptDataKey>0 - OEE</RptDataKey>
@@ -528,6 +528,8 @@
             <guid>6c440dce-c381-41cb-b00a-03a09723cf30</guid>
             <guid>79c6225d-cac4-4e49-98b8-c7128d89f568</guid>
             <guid>cc5ae6d4-729d-4b24-90e7-eba008b20d23</guid>
+            <guid>e46b1a12-dc23-4237-b9fb-4c11cb6f13a5</guid>
+            <guid>c193c6e2-5d79-43c8-ba42-cd967189241d</guid>
           </ArrayOfGuid>
         </Value>
       </DictionaryItem>
@@ -539,6 +541,7 @@
           <ArrayOfGuid>
             <guid>cc1ef0e6-3801-4343-8ef4-3cfa5b8e8cc1</guid>
             <guid>c0ad9c3e-e06f-4cb7-9a11-cfbb3a0fab52</guid>
+            <guid>bb6eeddb-797c-401c-a2bd-b9e4914f3d34</guid>
           </ArrayOfGuid>
         </Value>
       </DictionaryItem>
@@ -550,6 +553,7 @@
           <ArrayOfGuid>
             <guid>e9bc94f7-c845-4bfc-862d-18636a50bd29</guid>
             <guid>7aa105ac-7cc9-47d6-a07c-59cbcf3986f9</guid>
+            <guid>de1289c1-e0d8-4263-8572-fca949552bf4</guid>
           </ArrayOfGuid>
         </Value>
       </DictionaryItem>
@@ -579,16 +583,16 @@
             </Key>
             <Value>
               <Pair>
-                <Key>c84e74a5-1163-46c3-a5ce-357ae26b789a</Key>
-                <Value>MAIN.fbCell.fbOutfeedActuator.bExtendCmd</Value>
-              </Pair>
-              <Pair>
                 <Key>dd720773-8b0c-4bac-adbb-154c424193fc</Key>
                 <Value>MAIN.fbCell.bPartPresentAtOutfeed</Value>
               </Pair>
               <Pair>
                 <Key>acaefbf9-e06a-4e80-bd47-179299aa3297</Key>
                 <Value>MAIN.fbCell.fbInfeedConveyor.bRunning</Value>
+              </Pair>
+              <Pair>
+                <Key>81f394c7-a3fe-4bc6-ba04-b1b58054d1cb</Key>
+                <Value>MAIN.fbCell.fbOutfeedActuator.bExtended</Value>
               </Pair>
             </Value>
           </Pair>
@@ -627,25 +631,6 @@
             <Comment />
             <ConnectedVariablesIds>
               <VariableID>
-                <FunctionID>16843152</FunctionID>
-                <InVariableGUID>00000000-0000-0000-0000-000000000000</InVariableGUID>
-                <InVariableID>2147483648</InVariableID>
-              </VariableID>
-            </ConnectedVariablesIds>
-            <DisplayColor>Black</DisplayColor>
-            <GenerateGVL>false</GenerateGVL>
-            <Guid>c84e74a5-1163-46c3-a5ce-357ae26b789a</Guid>
-            <IsStaticValue>false</IsStaticValue>
-            <Name>VirtualInput_4593</Name>
-            <SortPriority>2</SortPriority>
-            <SourceId>MAIN.fbCell.fbOutfeedActuator.bExtendCmd</SourceId>
-            <StaticValue></StaticValue>
-            <Title>bExtendCmd</Title>
-          </VirtualInput>
-          <VirtualInput AssemblyName="TwinCAT.Analytics.Workbench">
-            <Comment />
-            <ConnectedVariablesIds>
-              <VariableID>
                 <FunctionID>16843184</FunctionID>
                 <InVariableGUID>00000000-0000-0000-0000-000000000000</InVariableGUID>
                 <InVariableID>2147483648</InVariableID>
@@ -679,6 +664,25 @@
             <SourceId>MAIN.fbCell.fbInfeedConveyor.bRunning</SourceId>
             <StaticValue></StaticValue>
             <Title>bRunning</Title>
+          </VirtualInput>
+          <VirtualInput AssemblyName="TwinCAT.Analytics.Workbench">
+            <Comment />
+            <ConnectedVariablesIds>
+              <VariableID>
+                <FunctionID>16843152</FunctionID>
+                <InVariableGUID>00000000-0000-0000-0000-000000000000</InVariableGUID>
+                <InVariableID>2147483648</InVariableID>
+              </VariableID>
+            </ConnectedVariablesIds>
+            <DisplayColor>Black</DisplayColor>
+            <GenerateGVL>false</GenerateGVL>
+            <Guid>81f394c7-a3fe-4bc6-ba04-b1b58054d1cb</Guid>
+            <IsStaticValue>false</IsStaticValue>
+            <Name>VirtualInput_7875</Name>
+            <SortPriority>5</SortPriority>
+            <SourceId>MAIN.fbCell.fbOutfeedActuator.bExtended</SourceId>
+            <StaticValue></StaticValue>
+            <Title>bExtended</Title>
           </VirtualInput>
         </SubMember>
         <Title>Virtual Input Source</Title>

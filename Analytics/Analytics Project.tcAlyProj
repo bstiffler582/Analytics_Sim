@@ -4217,332 +4217,6 @@
           </Value>
         </InterfacePointerValues>
       </Module>
-      <Module GUID="{B08A088B-8421-4422-9208-A4C55670E939}" Group="TcApplicationRuntime">
-        <Name>AppRuntimeExternalSource</Name>
-        <CLSID ClassFactory="TcApplicationRuntimeModules">{B08A088B-8421-4422-9208-A4C55670E939}</CLSID>
-        <Info />
-        <Licenses>
-          <License>
-            <LicenseId>{304D006A-8299-4560-AB79-438534B50288}</LicenseId>
-          </License>
-        </Licenses>
-        <InitSequence>SO</InitSequence>
-        <Contexts>
-          <Context>
-            <Id>1</Id>
-          </Context>
-        </Contexts>
-        <Interfaces>
-          <Interface DisableCodeGeneration="true">
-            <Type GUID="{00000012-0000-0000-E000-000000000064}">ITComObject</Type>
-          </Interface>
-          <Interface>
-            <Type GUID="{03000011-0000-0000-E000-000000000064}">ITcIoCyclic</Type>
-          </Interface>
-          <Interface>
-            <Type GUID="{13342FD7-BC89-464C-BDCB-B518D4A64DBE}">ITcAppRuntimeExternalSourceServer</Type>
-          </Interface>
-        </Interfaces>
-        <Parameters>
-          <Parameter HideParameter="true">
-            <Name>TraceLevelMax</Name>
-            <Comment><![CDATA[Controls the amount of log messages.]]></Comment>
-            <BitSize>32</BitSize>
-            <BaseType GUID="{8007AE3B-86BB-40F2-B385-EF87FCC239A4}">TcTraceLevel</BaseType>
-            <PTCID>#x03002103</PTCID>
-          </Parameter>
-          <Parameter CreateSymbol="true">
-            <Name>DstPid</Name>
-            <BitSize>32</BitSize>
-            <BaseType GUID="{18071995-0000-0000-0000-00000000001C}">PTCID</BaseType>
-            <PTCID>#x00000002</PTCID>
-          </Parameter>
-          <Parameter CreateSymbol="true">
-            <Name>ByteSize</Name>
-            <BitSize>32</BitSize>
-            <BaseType GUID="{18071995-0000-0000-0000-000000000008}">UDINT</BaseType>
-            <PTCID>#x00000003</PTCID>
-          </Parameter>
-          <Parameter CreateSymbol="true">
-            <Name>ContextId</Name>
-            <BitSize>32</BitSize>
-            <BaseType GUID="{18071995-0000-0000-0000-000000000008}">UDINT</BaseType>
-            <PTCID>#x00000004</PTCID>
-          </Parameter>
-          <Parameter CreateSymbol="true">
-            <Name>ExternalAddress</Name>
-            <BitSize>61760</BitSize>
-            <BaseType GUID="{8A2CF9D3-F71B-49EA-96AA-CA3AB12B337A}" Namespace="TcAppRuntimeModules">ExternalSignalAddress</BaseType>
-            <PTCID>#x00000010</PTCID>
-          </Parameter>
-          <Parameter CreateSymbol="true">
-            <Name>InitialBufferSize</Name>
-            <BitSize>32</BitSize>
-            <BaseType GUID="{18071995-0000-0000-0000-000000000008}">UDINT</BaseType>
-            <Unit><![CDATA[Bytes]]></Unit>
-            <Default>
-              <Value>2048</Value>
-            </Default>
-            <PTCID>#x00000020</PTCID>
-            <ContextId>1</ContextId>
-          </Parameter>
-          <Parameter CreateSymbol="true">
-            <Name>MaxBufferSize</Name>
-            <BitSize>16</BitSize>
-            <BaseType GUID="{18071995-0000-0000-0000-000000000006}">INT</BaseType>
-            <Unit><![CDATA[Bytes]]></Unit>
-            <Default>
-              <Value>32767</Value>
-            </Default>
-            <PTCID>#x00000021</PTCID>
-            <ContextId>1</ContextId>
-          </Parameter>
-          <Parameter CreateSymbol="true">
-            <Name>InterpolationMode</Name>
-            <BitSize>16</BitSize>
-            <BaseType GUID="{24DF4C47-A5FC-4534-A4AA-304CE11CAE9A}">TcExternalSourceInterpolationMode</BaseType>
-            <Default>
-              <EnumText>InterpolationMode_Previous</EnumText>
-            </Default>
-            <PTCID>#x00000022</PTCID>
-            <ContextId>1</ContextId>
-          </Parameter>
-          <Parameter CreateSymbol="true">
-            <Name>ContinuationMode</Name>
-            <BitSize>16</BitSize>
-            <BaseType GUID="{98B9A1F3-AFB0-4DDD-856E-5CCA2E73CE75}">TcExternalSourceContinuationMode</BaseType>
-            <Default>
-              <EnumText>ContinuationMode_Callback</EnumText>
-            </Default>
-            <PTCID>#x00000023</PTCID>
-            <ContextId>1</ContextId>
-          </Parameter>
-          <Parameter CreateSymbol="true">
-            <Name>RepeatPeriodically</Name>
-            <BitSize>8</BitSize>
-            <BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
-            <Default>
-              <EnumText>FALSE</EnumText>
-            </Default>
-            <PTCID>#x00000024</PTCID>
-            <ContextId>1</ContextId>
-          </Parameter>
-          <Parameter OnlineParameter="true" CreateSymbol="true">
-            <Name>ActualBufferSize</Name>
-            <BitSize>32</BitSize>
-            <BaseType GUID="{18071995-0000-0000-0000-000000000008}">UDINT</BaseType>
-            <PTCID>#x00000041</PTCID>
-            <ContextId>1</ContextId>
-          </Parameter>
-        </Parameters>
-        <InterfacePointers>
-          <InterfacePointer>
-            <PTCID>#x03002020</PTCID>
-            <Name>IoCyclicCaller</Name>
-            <Type GUID="{0300001F-0000-0000-E000-000000000064}">ITcIoCyclicCaller</Type>
-          </InterfacePointer>
-          <InterfacePointer>
-            <PTCID>#x03002030</PTCID>
-            <Name>ADI</Name>
-            <Type GUID="{03000012-0000-0000-E000-000000000064}">ITcADI</Type>
-          </InterfacePointer>
-        </InterfacePointers>
-        <Deployment>
-          <FileEntry TargetPlatform="TwinCAT UM (x86)">
-            <SourceFile>%SOLUTIONMODULEINSTTPATH%TwinCAT UM (x86)\%CLASSFACTORYNAME%W32.dll</SourceFile>
-            <DestinationFile>%TC_SYSSRVEXEPATH%%CLASSFACTORYNAME%W32.dll</DestinationFile>
-          </FileEntry>
-          <FileEntry TargetPlatform="TwinCAT UM (x64)">
-            <SourceFile>%SOLUTIONMODULEINSTTPATH%TwinCAT UM (x64)\%CLASSFACTORYNAME%W32.dll</SourceFile>
-            <DestinationFile>%TC_SYSSRVEXEPATH%%CLASSFACTORYNAME%W32.dll</DestinationFile>
-          </FileEntry>
-        </Deployment>
-        <Properties>
-          <Property>
-            <Name>AdapterExtensionProgId</Name>
-            <Value>TwinCAT.ExternalSourceAdapter</Value>
-          </Property>
-          <Property>
-            <Name>InputSource.SourceId</Name>
-            <Value>1da6bf05-603b-46dc-a6a6-70865597030b</Value>
-          </Property>
-          <Property>
-            <Name>ExternalInput.VariableInfo</Name>
-            <Value>&lt;Symbol TargetId="0"&gt;
-  &lt;Name&gt;MAIN.fbCell.fbInfeedConveyor.bJogFwdCmd&lt;/Name&gt;
-  &lt;BaseType&gt;BOOL&lt;/BaseType&gt;
-  &lt;BitSize&gt;8&lt;/BitSize&gt;
-  &lt;Comment /&gt;
-  &lt;Properties&gt;
-    &lt;Property&gt;
-      &lt;Name&gt;TcAddressType&lt;/Name&gt;
-      &lt;Value&gt;Output&lt;/Value&gt;
-    &lt;/Property&gt;
-    &lt;Property&gt;
-      &lt;Name&gt;Area&lt;/Name&gt;
-      &lt;Value&gt;Local&lt;/Value&gt;
-    &lt;/Property&gt;
-  &lt;/Properties&gt;
-  &lt;ContextMask&gt;0&lt;/ContextMask&gt;
-  &lt;IndexGroup&gt;16448&lt;/IndexGroup&gt;
-  &lt;IndexOffset&gt;386195&lt;/IndexOffset&gt;
-&lt;/Symbol&gt;</Value>
-          </Property>
-          <Property>
-            <Name>ExternalInput.Title</Name>
-            <Value>MAIN.fbCell.fbInfeedConveyor.bJogFwdCmd</Value>
-          </Property>
-          <Property>
-            <Name>ExternalInput.TypeName</Name>
-            <Value>BOOL</Value>
-          </Property>
-          <Property>
-            <Name>InputSource.SourceInfo</Name>
-            <Value>&lt;TargetInfo TargetId="0"&gt;
-  &lt;AmsAddress&gt;
-    &lt;AmsNetId&gt;10.12.160.7.1.1&lt;/AmsNetId&gt;
-    &lt;Port&gt;851&lt;/Port&gt;
-  &lt;/AmsAddress&gt;
-  &lt;CycleTime Context="0"&gt;100000&lt;/CycleTime&gt;
-  &lt;CurrentContextMask&gt;0&lt;/CurrentContextMask&gt;
-&lt;/TargetInfo&gt;</Value>
-          </Property>
-        </Properties>
-        <InstanceName>Map_ExternalInput_6900-&gt;empty</InstanceName>
-        <OTCID>#x01010200</OTCID>
-        <ParameterValues>
-          <Value>
-            <Name>TraceLevelMax</Name>
-            <EnumText>tlAlways</EnumText>
-          </Value>
-          <Value>
-            <Name>DstPid</Name>
-            <Value>2147483648</Value>
-          </Value>
-          <Value>
-            <Name>ByteSize</Name>
-            <Value>1</Value>
-          </Value>
-          <Value>
-            <Name>ContextId</Name>
-            <Value>0</Value>
-          </Value>
-          <Value>
-            <Name>ExternalAddress.String[0].Name</Name>
-            <String />
-          </Value>
-          <Value>
-            <Name>ExternalAddress.String[0].Value</Name>
-            <String />
-          </Value>
-          <Value>
-            <Name>ExternalAddress.String[1].Name</Name>
-            <String />
-          </Value>
-          <Value>
-            <Name>ExternalAddress.String[1].Value</Name>
-            <String />
-          </Value>
-          <Value>
-            <Name>ExternalAddress.String[2].Name</Name>
-            <String />
-          </Value>
-          <Value>
-            <Name>ExternalAddress.String[2].Value</Name>
-            <String />
-          </Value>
-          <Value>
-            <Name>ExternalAddress.String[3].Name</Name>
-            <String />
-          </Value>
-          <Value>
-            <Name>ExternalAddress.String[3].Value</Name>
-            <String />
-          </Value>
-          <Value>
-            <Name>ExternalAddress.String[4].Name</Name>
-            <String />
-          </Value>
-          <Value>
-            <Name>ExternalAddress.String[4].Value</Name>
-            <String />
-          </Value>
-          <Value>
-            <Name>ExternalAddress.Numeric[0].Name</Name>
-            <String />
-          </Value>
-          <Value>
-            <Name>ExternalAddress.Numeric[0].Value</Name>
-            <Value>0</Value>
-          </Value>
-          <Value>
-            <Name>ExternalAddress.Numeric[1].Name</Name>
-            <String />
-          </Value>
-          <Value>
-            <Name>ExternalAddress.Numeric[1].Value</Name>
-            <Value>0</Value>
-          </Value>
-          <Value>
-            <Name>ExternalAddress.Numeric[2].Name</Name>
-            <String />
-          </Value>
-          <Value>
-            <Name>ExternalAddress.Numeric[2].Value</Name>
-            <Value>0</Value>
-          </Value>
-          <Value>
-            <Name>ExternalAddress.Numeric[3].Name</Name>
-            <String />
-          </Value>
-          <Value>
-            <Name>ExternalAddress.Numeric[3].Value</Name>
-            <Value>0</Value>
-          </Value>
-          <Value>
-            <Name>ExternalAddress.Numeric[4].Name</Name>
-            <String />
-          </Value>
-          <Value>
-            <Name>ExternalAddress.Numeric[4].Value</Name>
-            <Value>0</Value>
-          </Value>
-          <Value>
-            <Name>InitialBufferSize</Name>
-            <Value>2048</Value>
-          </Value>
-          <Value>
-            <Name>MaxBufferSize</Name>
-            <Value>32767</Value>
-          </Value>
-          <Value>
-            <Name>InterpolationMode</Name>
-            <EnumText>InterpolationMode_Previous</EnumText>
-          </Value>
-          <Value>
-            <Name>ContinuationMode</Name>
-            <EnumText>ContinuationMode_Callback</EnumText>
-          </Value>
-          <Value>
-            <Name>RepeatPeriodically</Name>
-            <EnumText>FALSE</EnumText>
-          </Value>
-          <Value>
-            <Name>ActualBufferSize</Name>
-            <Value>0</Value>
-          </Value>
-        </ParameterValues>
-        <InterfacePointerValues>
-          <Value>
-            <Name>IoCyclicCaller</Name>
-            <OTCID>#x00000000</OTCID>
-          </Value>
-          <Value>
-            <Name>ADI</Name>
-            <OTCID>#x010101f0</OTCID>
-          </Value>
-        </InterfacePointerValues>
-      </Module>
       <Module GUID="{02040115-0000-0000-F000-000000000064}" Group="TcAnalyticsKernel Base">
         <Name>CTcAlyTimeClock_1Ch</Name>
         <DisplayName><![CDATA[Time Clock 1Ch]]></DisplayName>
@@ -7728,332 +7402,6 @@
           </Value>
         </InterfacePointerValues>
       </Module>
-      <Module GUID="{B08A088B-8421-4422-9208-A4C55670E939}" Group="TcApplicationRuntime">
-        <Name>AppRuntimeExternalSource</Name>
-        <CLSID ClassFactory="TcApplicationRuntimeModules">{B08A088B-8421-4422-9208-A4C55670E939}</CLSID>
-        <Info />
-        <Licenses>
-          <License>
-            <LicenseId>{304D006A-8299-4560-AB79-438534B50288}</LicenseId>
-          </License>
-        </Licenses>
-        <InitSequence>SO</InitSequence>
-        <Contexts>
-          <Context>
-            <Id>1</Id>
-          </Context>
-        </Contexts>
-        <Interfaces>
-          <Interface DisableCodeGeneration="true">
-            <Type GUID="{00000012-0000-0000-E000-000000000064}">ITComObject</Type>
-          </Interface>
-          <Interface>
-            <Type GUID="{03000011-0000-0000-E000-000000000064}">ITcIoCyclic</Type>
-          </Interface>
-          <Interface>
-            <Type GUID="{13342FD7-BC89-464C-BDCB-B518D4A64DBE}">ITcAppRuntimeExternalSourceServer</Type>
-          </Interface>
-        </Interfaces>
-        <Parameters>
-          <Parameter HideParameter="true">
-            <Name>TraceLevelMax</Name>
-            <Comment><![CDATA[Controls the amount of log messages.]]></Comment>
-            <BitSize>32</BitSize>
-            <BaseType GUID="{8007AE3B-86BB-40F2-B385-EF87FCC239A4}">TcTraceLevel</BaseType>
-            <PTCID>#x03002103</PTCID>
-          </Parameter>
-          <Parameter CreateSymbol="true">
-            <Name>DstPid</Name>
-            <BitSize>32</BitSize>
-            <BaseType GUID="{18071995-0000-0000-0000-00000000001C}">PTCID</BaseType>
-            <PTCID>#x00000002</PTCID>
-          </Parameter>
-          <Parameter CreateSymbol="true">
-            <Name>ByteSize</Name>
-            <BitSize>32</BitSize>
-            <BaseType GUID="{18071995-0000-0000-0000-000000000008}">UDINT</BaseType>
-            <PTCID>#x00000003</PTCID>
-          </Parameter>
-          <Parameter CreateSymbol="true">
-            <Name>ContextId</Name>
-            <BitSize>32</BitSize>
-            <BaseType GUID="{18071995-0000-0000-0000-000000000008}">UDINT</BaseType>
-            <PTCID>#x00000004</PTCID>
-          </Parameter>
-          <Parameter CreateSymbol="true">
-            <Name>ExternalAddress</Name>
-            <BitSize>61760</BitSize>
-            <BaseType GUID="{8A2CF9D3-F71B-49EA-96AA-CA3AB12B337A}" Namespace="TcAppRuntimeModules">ExternalSignalAddress</BaseType>
-            <PTCID>#x00000010</PTCID>
-          </Parameter>
-          <Parameter CreateSymbol="true">
-            <Name>InitialBufferSize</Name>
-            <BitSize>32</BitSize>
-            <BaseType GUID="{18071995-0000-0000-0000-000000000008}">UDINT</BaseType>
-            <Unit><![CDATA[Bytes]]></Unit>
-            <Default>
-              <Value>2048</Value>
-            </Default>
-            <PTCID>#x00000020</PTCID>
-            <ContextId>1</ContextId>
-          </Parameter>
-          <Parameter CreateSymbol="true">
-            <Name>MaxBufferSize</Name>
-            <BitSize>16</BitSize>
-            <BaseType GUID="{18071995-0000-0000-0000-000000000006}">INT</BaseType>
-            <Unit><![CDATA[Bytes]]></Unit>
-            <Default>
-              <Value>32767</Value>
-            </Default>
-            <PTCID>#x00000021</PTCID>
-            <ContextId>1</ContextId>
-          </Parameter>
-          <Parameter CreateSymbol="true">
-            <Name>InterpolationMode</Name>
-            <BitSize>16</BitSize>
-            <BaseType GUID="{24DF4C47-A5FC-4534-A4AA-304CE11CAE9A}">TcExternalSourceInterpolationMode</BaseType>
-            <Default>
-              <EnumText>InterpolationMode_Previous</EnumText>
-            </Default>
-            <PTCID>#x00000022</PTCID>
-            <ContextId>1</ContextId>
-          </Parameter>
-          <Parameter CreateSymbol="true">
-            <Name>ContinuationMode</Name>
-            <BitSize>16</BitSize>
-            <BaseType GUID="{98B9A1F3-AFB0-4DDD-856E-5CCA2E73CE75}">TcExternalSourceContinuationMode</BaseType>
-            <Default>
-              <EnumText>ContinuationMode_Callback</EnumText>
-            </Default>
-            <PTCID>#x00000023</PTCID>
-            <ContextId>1</ContextId>
-          </Parameter>
-          <Parameter CreateSymbol="true">
-            <Name>RepeatPeriodically</Name>
-            <BitSize>8</BitSize>
-            <BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
-            <Default>
-              <EnumText>FALSE</EnumText>
-            </Default>
-            <PTCID>#x00000024</PTCID>
-            <ContextId>1</ContextId>
-          </Parameter>
-          <Parameter OnlineParameter="true" CreateSymbol="true">
-            <Name>ActualBufferSize</Name>
-            <BitSize>32</BitSize>
-            <BaseType GUID="{18071995-0000-0000-0000-000000000008}">UDINT</BaseType>
-            <PTCID>#x00000041</PTCID>
-            <ContextId>1</ContextId>
-          </Parameter>
-        </Parameters>
-        <InterfacePointers>
-          <InterfacePointer>
-            <PTCID>#x03002020</PTCID>
-            <Name>IoCyclicCaller</Name>
-            <Type GUID="{0300001F-0000-0000-E000-000000000064}">ITcIoCyclicCaller</Type>
-          </InterfacePointer>
-          <InterfacePointer>
-            <PTCID>#x03002030</PTCID>
-            <Name>ADI</Name>
-            <Type GUID="{03000012-0000-0000-E000-000000000064}">ITcADI</Type>
-          </InterfacePointer>
-        </InterfacePointers>
-        <Deployment>
-          <FileEntry TargetPlatform="TwinCAT UM (x86)">
-            <SourceFile>%SOLUTIONMODULEINSTTPATH%TwinCAT UM (x86)\%CLASSFACTORYNAME%W32.dll</SourceFile>
-            <DestinationFile>%TC_SYSSRVEXEPATH%%CLASSFACTORYNAME%W32.dll</DestinationFile>
-          </FileEntry>
-          <FileEntry TargetPlatform="TwinCAT UM (x64)">
-            <SourceFile>%SOLUTIONMODULEINSTTPATH%TwinCAT UM (x64)\%CLASSFACTORYNAME%W32.dll</SourceFile>
-            <DestinationFile>%TC_SYSSRVEXEPATH%%CLASSFACTORYNAME%W32.dll</DestinationFile>
-          </FileEntry>
-        </Deployment>
-        <Properties>
-          <Property>
-            <Name>AdapterExtensionProgId</Name>
-            <Value>TwinCAT.ExternalSourceAdapter</Value>
-          </Property>
-          <Property>
-            <Name>InputSource.SourceId</Name>
-            <Value>1da6bf05-603b-46dc-a6a6-70865597030b</Value>
-          </Property>
-          <Property>
-            <Name>ExternalInput.VariableInfo</Name>
-            <Value>&lt;Symbol TargetId="0"&gt;
-  &lt;Name&gt;MAIN.fbCell.fbOutfeedActuator.bExtendCmd&lt;/Name&gt;
-  &lt;BaseType&gt;BOOL&lt;/BaseType&gt;
-  &lt;BitSize&gt;8&lt;/BitSize&gt;
-  &lt;Comment /&gt;
-  &lt;Properties&gt;
-    &lt;Property&gt;
-      &lt;Name&gt;TcAddressType&lt;/Name&gt;
-      &lt;Value&gt;Output&lt;/Value&gt;
-    &lt;/Property&gt;
-    &lt;Property&gt;
-      &lt;Name&gt;Area&lt;/Name&gt;
-      &lt;Value&gt;Local&lt;/Value&gt;
-    &lt;/Property&gt;
-  &lt;/Properties&gt;
-  &lt;ContextMask&gt;0&lt;/ContextMask&gt;
-  &lt;IndexGroup&gt;16448&lt;/IndexGroup&gt;
-  &lt;IndexOffset&gt;386114&lt;/IndexOffset&gt;
-&lt;/Symbol&gt;</Value>
-          </Property>
-          <Property>
-            <Name>ExternalInput.Title</Name>
-            <Value>MAIN.fbCell.fbOutfeedActuator.bExtendCmd</Value>
-          </Property>
-          <Property>
-            <Name>ExternalInput.TypeName</Name>
-            <Value>BOOL</Value>
-          </Property>
-          <Property>
-            <Name>InputSource.SourceInfo</Name>
-            <Value>&lt;TargetInfo TargetId="0"&gt;
-  &lt;AmsAddress&gt;
-    &lt;AmsNetId&gt;10.12.160.7.1.1&lt;/AmsNetId&gt;
-    &lt;Port&gt;851&lt;/Port&gt;
-  &lt;/AmsAddress&gt;
-  &lt;CycleTime Context="0"&gt;100000&lt;/CycleTime&gt;
-  &lt;CurrentContextMask&gt;0&lt;/CurrentContextMask&gt;
-&lt;/TargetInfo&gt;</Value>
-          </Property>
-        </Properties>
-        <InstanceName>Map_ExternalInput_4579-&gt;ModuleInput_4519</InstanceName>
-        <OTCID>#x010102c0</OTCID>
-        <ParameterValues>
-          <Value>
-            <Name>TraceLevelMax</Name>
-            <EnumText>tlAlways</EnumText>
-          </Value>
-          <Value>
-            <Name>DstPid</Name>
-            <Value>2147483648</Value>
-          </Value>
-          <Value>
-            <Name>ByteSize</Name>
-            <Value>1</Value>
-          </Value>
-          <Value>
-            <Name>ContextId</Name>
-            <Value>0</Value>
-          </Value>
-          <Value>
-            <Name>ExternalAddress.String[0].Name</Name>
-            <String />
-          </Value>
-          <Value>
-            <Name>ExternalAddress.String[0].Value</Name>
-            <String />
-          </Value>
-          <Value>
-            <Name>ExternalAddress.String[1].Name</Name>
-            <String />
-          </Value>
-          <Value>
-            <Name>ExternalAddress.String[1].Value</Name>
-            <String />
-          </Value>
-          <Value>
-            <Name>ExternalAddress.String[2].Name</Name>
-            <String />
-          </Value>
-          <Value>
-            <Name>ExternalAddress.String[2].Value</Name>
-            <String />
-          </Value>
-          <Value>
-            <Name>ExternalAddress.String[3].Name</Name>
-            <String />
-          </Value>
-          <Value>
-            <Name>ExternalAddress.String[3].Value</Name>
-            <String />
-          </Value>
-          <Value>
-            <Name>ExternalAddress.String[4].Name</Name>
-            <String />
-          </Value>
-          <Value>
-            <Name>ExternalAddress.String[4].Value</Name>
-            <String />
-          </Value>
-          <Value>
-            <Name>ExternalAddress.Numeric[0].Name</Name>
-            <String />
-          </Value>
-          <Value>
-            <Name>ExternalAddress.Numeric[0].Value</Name>
-            <Value>0</Value>
-          </Value>
-          <Value>
-            <Name>ExternalAddress.Numeric[1].Name</Name>
-            <String />
-          </Value>
-          <Value>
-            <Name>ExternalAddress.Numeric[1].Value</Name>
-            <Value>0</Value>
-          </Value>
-          <Value>
-            <Name>ExternalAddress.Numeric[2].Name</Name>
-            <String />
-          </Value>
-          <Value>
-            <Name>ExternalAddress.Numeric[2].Value</Name>
-            <Value>0</Value>
-          </Value>
-          <Value>
-            <Name>ExternalAddress.Numeric[3].Name</Name>
-            <String />
-          </Value>
-          <Value>
-            <Name>ExternalAddress.Numeric[3].Value</Name>
-            <Value>0</Value>
-          </Value>
-          <Value>
-            <Name>ExternalAddress.Numeric[4].Name</Name>
-            <String />
-          </Value>
-          <Value>
-            <Name>ExternalAddress.Numeric[4].Value</Name>
-            <Value>0</Value>
-          </Value>
-          <Value>
-            <Name>InitialBufferSize</Name>
-            <Value>2048</Value>
-          </Value>
-          <Value>
-            <Name>MaxBufferSize</Name>
-            <Value>32767</Value>
-          </Value>
-          <Value>
-            <Name>InterpolationMode</Name>
-            <EnumText>InterpolationMode_Previous</EnumText>
-          </Value>
-          <Value>
-            <Name>ContinuationMode</Name>
-            <EnumText>ContinuationMode_Callback</EnumText>
-          </Value>
-          <Value>
-            <Name>RepeatPeriodically</Name>
-            <EnumText>FALSE</EnumText>
-          </Value>
-          <Value>
-            <Name>ActualBufferSize</Name>
-            <Value>0</Value>
-          </Value>
-        </ParameterValues>
-        <InterfacePointerValues>
-          <Value>
-            <Name>IoCyclicCaller</Name>
-            <OTCID>#x00000000</OTCID>
-          </Value>
-          <Value>
-            <Name>ADI</Name>
-            <OTCID>#x01010190</OTCID>
-          </Value>
-        </InterfacePointerValues>
-      </Module>
       <Module GUID="{3282ADF5-0D4E-48BF-83DA-8A9B1FFB0BCC}" Group="TcApplicationRuntime">
         <Name>AppRuntimeAsyncMapping</Name>
         <CLSID ClassFactory="TcApplicationRuntimeModules">{3282ADF5-0D4E-48BF-83DA-8A9B1FFB0BCC}</CLSID>
@@ -8524,6 +7872,332 @@
           <Value>
             <Name>ADI</Name>
             <OTCID>#x010101f0</OTCID>
+          </Value>
+        </InterfacePointerValues>
+      </Module>
+      <Module GUID="{B08A088B-8421-4422-9208-A4C55670E939}" Group="TcApplicationRuntime">
+        <Name>AppRuntimeExternalSource</Name>
+        <CLSID ClassFactory="TcApplicationRuntimeModules">{B08A088B-8421-4422-9208-A4C55670E939}</CLSID>
+        <Info />
+        <Licenses>
+          <License>
+            <LicenseId>{304D006A-8299-4560-AB79-438534B50288}</LicenseId>
+          </License>
+        </Licenses>
+        <InitSequence>SO</InitSequence>
+        <Contexts>
+          <Context>
+            <Id>1</Id>
+          </Context>
+        </Contexts>
+        <Interfaces>
+          <Interface DisableCodeGeneration="true">
+            <Type GUID="{00000012-0000-0000-E000-000000000064}">ITComObject</Type>
+          </Interface>
+          <Interface>
+            <Type GUID="{03000011-0000-0000-E000-000000000064}">ITcIoCyclic</Type>
+          </Interface>
+          <Interface>
+            <Type GUID="{13342FD7-BC89-464C-BDCB-B518D4A64DBE}">ITcAppRuntimeExternalSourceServer</Type>
+          </Interface>
+        </Interfaces>
+        <Parameters>
+          <Parameter HideParameter="true">
+            <Name>TraceLevelMax</Name>
+            <Comment><![CDATA[Controls the amount of log messages.]]></Comment>
+            <BitSize>32</BitSize>
+            <BaseType GUID="{8007AE3B-86BB-40F2-B385-EF87FCC239A4}">TcTraceLevel</BaseType>
+            <PTCID>#x03002103</PTCID>
+          </Parameter>
+          <Parameter CreateSymbol="true">
+            <Name>DstPid</Name>
+            <BitSize>32</BitSize>
+            <BaseType GUID="{18071995-0000-0000-0000-00000000001C}">PTCID</BaseType>
+            <PTCID>#x00000002</PTCID>
+          </Parameter>
+          <Parameter CreateSymbol="true">
+            <Name>ByteSize</Name>
+            <BitSize>32</BitSize>
+            <BaseType GUID="{18071995-0000-0000-0000-000000000008}">UDINT</BaseType>
+            <PTCID>#x00000003</PTCID>
+          </Parameter>
+          <Parameter CreateSymbol="true">
+            <Name>ContextId</Name>
+            <BitSize>32</BitSize>
+            <BaseType GUID="{18071995-0000-0000-0000-000000000008}">UDINT</BaseType>
+            <PTCID>#x00000004</PTCID>
+          </Parameter>
+          <Parameter CreateSymbol="true">
+            <Name>ExternalAddress</Name>
+            <BitSize>61760</BitSize>
+            <BaseType GUID="{8A2CF9D3-F71B-49EA-96AA-CA3AB12B337A}" Namespace="TcAppRuntimeModules">ExternalSignalAddress</BaseType>
+            <PTCID>#x00000010</PTCID>
+          </Parameter>
+          <Parameter CreateSymbol="true">
+            <Name>InitialBufferSize</Name>
+            <BitSize>32</BitSize>
+            <BaseType GUID="{18071995-0000-0000-0000-000000000008}">UDINT</BaseType>
+            <Unit><![CDATA[Bytes]]></Unit>
+            <Default>
+              <Value>2048</Value>
+            </Default>
+            <PTCID>#x00000020</PTCID>
+            <ContextId>1</ContextId>
+          </Parameter>
+          <Parameter CreateSymbol="true">
+            <Name>MaxBufferSize</Name>
+            <BitSize>16</BitSize>
+            <BaseType GUID="{18071995-0000-0000-0000-000000000006}">INT</BaseType>
+            <Unit><![CDATA[Bytes]]></Unit>
+            <Default>
+              <Value>32767</Value>
+            </Default>
+            <PTCID>#x00000021</PTCID>
+            <ContextId>1</ContextId>
+          </Parameter>
+          <Parameter CreateSymbol="true">
+            <Name>InterpolationMode</Name>
+            <BitSize>16</BitSize>
+            <BaseType GUID="{24DF4C47-A5FC-4534-A4AA-304CE11CAE9A}">TcExternalSourceInterpolationMode</BaseType>
+            <Default>
+              <EnumText>InterpolationMode_Previous</EnumText>
+            </Default>
+            <PTCID>#x00000022</PTCID>
+            <ContextId>1</ContextId>
+          </Parameter>
+          <Parameter CreateSymbol="true">
+            <Name>ContinuationMode</Name>
+            <BitSize>16</BitSize>
+            <BaseType GUID="{98B9A1F3-AFB0-4DDD-856E-5CCA2E73CE75}">TcExternalSourceContinuationMode</BaseType>
+            <Default>
+              <EnumText>ContinuationMode_Callback</EnumText>
+            </Default>
+            <PTCID>#x00000023</PTCID>
+            <ContextId>1</ContextId>
+          </Parameter>
+          <Parameter CreateSymbol="true">
+            <Name>RepeatPeriodically</Name>
+            <BitSize>8</BitSize>
+            <BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+            <Default>
+              <EnumText>FALSE</EnumText>
+            </Default>
+            <PTCID>#x00000024</PTCID>
+            <ContextId>1</ContextId>
+          </Parameter>
+          <Parameter OnlineParameter="true" CreateSymbol="true">
+            <Name>ActualBufferSize</Name>
+            <BitSize>32</BitSize>
+            <BaseType GUID="{18071995-0000-0000-0000-000000000008}">UDINT</BaseType>
+            <PTCID>#x00000041</PTCID>
+            <ContextId>1</ContextId>
+          </Parameter>
+        </Parameters>
+        <InterfacePointers>
+          <InterfacePointer>
+            <PTCID>#x03002020</PTCID>
+            <Name>IoCyclicCaller</Name>
+            <Type GUID="{0300001F-0000-0000-E000-000000000064}">ITcIoCyclicCaller</Type>
+          </InterfacePointer>
+          <InterfacePointer>
+            <PTCID>#x03002030</PTCID>
+            <Name>ADI</Name>
+            <Type GUID="{03000012-0000-0000-E000-000000000064}">ITcADI</Type>
+          </InterfacePointer>
+        </InterfacePointers>
+        <Deployment>
+          <FileEntry TargetPlatform="TwinCAT UM (x86)">
+            <SourceFile>%SOLUTIONMODULEINSTTPATH%TwinCAT UM (x86)\%CLASSFACTORYNAME%W32.dll</SourceFile>
+            <DestinationFile>%TC_SYSSRVEXEPATH%%CLASSFACTORYNAME%W32.dll</DestinationFile>
+          </FileEntry>
+          <FileEntry TargetPlatform="TwinCAT UM (x64)">
+            <SourceFile>%SOLUTIONMODULEINSTTPATH%TwinCAT UM (x64)\%CLASSFACTORYNAME%W32.dll</SourceFile>
+            <DestinationFile>%TC_SYSSRVEXEPATH%%CLASSFACTORYNAME%W32.dll</DestinationFile>
+          </FileEntry>
+        </Deployment>
+        <Properties>
+          <Property>
+            <Name>AdapterExtensionProgId</Name>
+            <Value>TwinCAT.ExternalSourceAdapter</Value>
+          </Property>
+          <Property>
+            <Name>InputSource.SourceId</Name>
+            <Value>1da6bf05-603b-46dc-a6a6-70865597030b</Value>
+          </Property>
+          <Property>
+            <Name>ExternalInput.VariableInfo</Name>
+            <Value>&lt;Symbol TargetId="0"&gt;
+  &lt;Name&gt;MAIN.fbCell.fbOutfeedActuator.bExtended&lt;/Name&gt;
+  &lt;BaseType&gt;BOOL&lt;/BaseType&gt;
+  &lt;BitSize&gt;8&lt;/BitSize&gt;
+  &lt;Comment /&gt;
+  &lt;Properties&gt;
+    &lt;Property&gt;
+      &lt;Name&gt;TcAddressType&lt;/Name&gt;
+      &lt;Value&gt;Input&lt;/Value&gt;
+    &lt;/Property&gt;
+    &lt;Property&gt;
+      &lt;Name&gt;Area&lt;/Name&gt;
+      &lt;Value&gt;Local&lt;/Value&gt;
+    &lt;/Property&gt;
+  &lt;/Properties&gt;
+  &lt;ContextMask&gt;0&lt;/ContextMask&gt;
+  &lt;IndexGroup&gt;16448&lt;/IndexGroup&gt;
+  &lt;IndexOffset&gt;386112&lt;/IndexOffset&gt;
+&lt;/Symbol&gt;</Value>
+          </Property>
+          <Property>
+            <Name>ExternalInput.Title</Name>
+            <Value>MAIN.fbCell.fbOutfeedActuator.bExtended</Value>
+          </Property>
+          <Property>
+            <Name>ExternalInput.TypeName</Name>
+            <Value>BOOL</Value>
+          </Property>
+          <Property>
+            <Name>InputSource.SourceInfo</Name>
+            <Value>&lt;TargetInfo TargetId="0"&gt;
+  &lt;AmsAddress&gt;
+    &lt;AmsNetId&gt;10.12.160.7.1.1&lt;/AmsNetId&gt;
+    &lt;Port&gt;851&lt;/Port&gt;
+  &lt;/AmsAddress&gt;
+  &lt;CycleTime Context="0"&gt;100000&lt;/CycleTime&gt;
+  &lt;CurrentContextMask&gt;0&lt;/CurrentContextMask&gt;
+&lt;/TargetInfo&gt;</Value>
+          </Property>
+        </Properties>
+        <InstanceName>Map_ExternalInput_7861-&gt;ModuleInput_6721</InstanceName>
+        <OTCID>#x010102f0</OTCID>
+        <ParameterValues>
+          <Value>
+            <Name>TraceLevelMax</Name>
+            <EnumText>tlAlways</EnumText>
+          </Value>
+          <Value>
+            <Name>DstPid</Name>
+            <Value>2147483648</Value>
+          </Value>
+          <Value>
+            <Name>ByteSize</Name>
+            <Value>1</Value>
+          </Value>
+          <Value>
+            <Name>ContextId</Name>
+            <Value>0</Value>
+          </Value>
+          <Value>
+            <Name>ExternalAddress.String[0].Name</Name>
+            <String />
+          </Value>
+          <Value>
+            <Name>ExternalAddress.String[0].Value</Name>
+            <String />
+          </Value>
+          <Value>
+            <Name>ExternalAddress.String[1].Name</Name>
+            <String />
+          </Value>
+          <Value>
+            <Name>ExternalAddress.String[1].Value</Name>
+            <String />
+          </Value>
+          <Value>
+            <Name>ExternalAddress.String[2].Name</Name>
+            <String />
+          </Value>
+          <Value>
+            <Name>ExternalAddress.String[2].Value</Name>
+            <String />
+          </Value>
+          <Value>
+            <Name>ExternalAddress.String[3].Name</Name>
+            <String />
+          </Value>
+          <Value>
+            <Name>ExternalAddress.String[3].Value</Name>
+            <String />
+          </Value>
+          <Value>
+            <Name>ExternalAddress.String[4].Name</Name>
+            <String />
+          </Value>
+          <Value>
+            <Name>ExternalAddress.String[4].Value</Name>
+            <String />
+          </Value>
+          <Value>
+            <Name>ExternalAddress.Numeric[0].Name</Name>
+            <String />
+          </Value>
+          <Value>
+            <Name>ExternalAddress.Numeric[0].Value</Name>
+            <Value>0</Value>
+          </Value>
+          <Value>
+            <Name>ExternalAddress.Numeric[1].Name</Name>
+            <String />
+          </Value>
+          <Value>
+            <Name>ExternalAddress.Numeric[1].Value</Name>
+            <Value>0</Value>
+          </Value>
+          <Value>
+            <Name>ExternalAddress.Numeric[2].Name</Name>
+            <String />
+          </Value>
+          <Value>
+            <Name>ExternalAddress.Numeric[2].Value</Name>
+            <Value>0</Value>
+          </Value>
+          <Value>
+            <Name>ExternalAddress.Numeric[3].Name</Name>
+            <String />
+          </Value>
+          <Value>
+            <Name>ExternalAddress.Numeric[3].Value</Name>
+            <Value>0</Value>
+          </Value>
+          <Value>
+            <Name>ExternalAddress.Numeric[4].Name</Name>
+            <String />
+          </Value>
+          <Value>
+            <Name>ExternalAddress.Numeric[4].Value</Name>
+            <Value>0</Value>
+          </Value>
+          <Value>
+            <Name>InitialBufferSize</Name>
+            <Value>2048</Value>
+          </Value>
+          <Value>
+            <Name>MaxBufferSize</Name>
+            <Value>32767</Value>
+          </Value>
+          <Value>
+            <Name>InterpolationMode</Name>
+            <EnumText>InterpolationMode_Previous</EnumText>
+          </Value>
+          <Value>
+            <Name>ContinuationMode</Name>
+            <EnumText>ContinuationMode_Callback</EnumText>
+          </Value>
+          <Value>
+            <Name>RepeatPeriodically</Name>
+            <EnumText>FALSE</EnumText>
+          </Value>
+          <Value>
+            <Name>ActualBufferSize</Name>
+            <Value>0</Value>
+          </Value>
+        </ParameterValues>
+        <InterfacePointerValues>
+          <Value>
+            <Name>IoCyclicCaller</Name>
+            <OTCID>#x00000000</OTCID>
+          </Value>
+          <Value>
+            <Name>ADI</Name>
+            <OTCID>#x01010190</OTCID>
           </Value>
         </InterfacePointerValues>
       </Module>

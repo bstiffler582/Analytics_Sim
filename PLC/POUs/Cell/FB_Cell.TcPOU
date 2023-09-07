@@ -15,6 +15,8 @@ VAR
 	bStopBtn					AT %I* : BOOL;
 	bPartPresentAtInfeed		AT %I* : BOOL;
 	bPartPresentAtOutfeed		AT %I* : BOOL;
+	
+	{attribute 'TcAnalytics'}
 	fFillRate					AT %Q* : LREAL := 2.5;
 	
 	// devices
@@ -49,6 +51,8 @@ VAR
 	
 	PartStatus					: ARRAY[0..3] OF ST_PartStatus;
 	NewPart						: ST_PartStatus;
+	
+	{attribute 'TcAnalytics'}
 	OutfeedPart					: ST_PartStatus;
 	
 	fIndexPosition				: LREAL;
@@ -160,7 +164,7 @@ IF eAutoMan = E_AutoMan.AUTO THEN
 		END_IF
 		
 		IF bFillRateTest THEN
-			tmrFillRate(IN:=NOT tmrFillRate.Q, PT:=T#15M); 
+			tmrFillRate(IN:=NOT tmrFillRate.Q, PT:=T#30M); 
 			IF tmrFillRate.Q THEN
 				fFillRate := fFillRate + 0.05;
 			END_IF
