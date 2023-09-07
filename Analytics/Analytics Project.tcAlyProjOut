@@ -1,4 +1,4 @@
-﻿<AnalyticsProjectResult StartTime="07/09/2023 15:58:05.363:000" StartTimeValue="133385902853630000" EndTime="07/09/2023 16:13:07.903:000" EndTimeValue="133385911879030000">
+﻿<AnalyticsProjectResult StartTime="07/09/2023 16:31:40.563:000" StartTimeValue="133385923005630000" EndTime="07/09/2023 16:38:21.353:000" EndTimeValue="133385927013530000">
   <Functions>
     <Function Title="RejectCount" Name="CTcAlyEdgeCounter_1Ch">
       <InputLinks>
@@ -14,10 +14,10 @@
         <Parameter Title="Negate Reset">FALSE</Parameter>
       </Parameters>
       <Outputs>
-        <Output Title="New Result">FALSE</Output>
-        <Output Title="Edge">FALSE</Output>
-        <Output Title="Count">5</Output>
-        <Output Title="Last Event">9/7/2023 16:11:52.143</Output>
+        <Output Title="New Result">0</Output>
+        <Output Title="Edge">False</Output>
+        <Output Title="Count">2</Output>
+        <Output Title="Last Event">9/7/2023 16:34:55.233</Output>
       </Outputs>
     </Function>
     <Function Title="PartCount" Name="CTcAlyEdgeCounter_1Ch_Instance1">
@@ -34,15 +34,15 @@
         <Parameter Title="Negate Reset">FALSE</Parameter>
       </Parameters>
       <Outputs>
-        <Output Title="New Result">FALSE</Output>
+        <Output Title="New Result">0</Output>
         <Output Title="Edge">False</Output>
-        <Output Title="Count">86</Output>
-        <Output Title="Last Event">9/7/2023 16:13:02.813</Output>
+        <Output Title="Count">36</Output>
+        <Output Title="Last Event">9/7/2023 16:38:19.373</Output>
       </Outputs>
     </Function>
     <Function Title="RunTime" Name="CTcAlyTimingAnalysis_1Ch">
       <InputLinks>
-        <InputLink InputTitle="Input">MAIN.fbCell.fbInfeedConveyor.bJogFwdCmd @ 10.12.160.7.1.1: 851 [10.00ms]</InputLink>
+        <InputLink InputTitle="Input">MAIN.fbCell.fbInfeedConveyor.bRunning @ 10.12.160.7.1.1: 851 [10.00ms]</InputLink>
       </InputLinks>
       <Parameters>
         <Parameter Title="Persistent Results">FALSE</Parameter>
@@ -54,12 +54,12 @@
         <Parameter Title="Negate Reset">FALSE</Parameter>
       </Parameters>
       <Outputs>
-        <Output Title="New Result">FALSE</Output>
+        <Output Title="New Result">0</Output>
         <Output Title="Is On">True</Output>
-        <Output Title="Current Interval">00:11:13:990</Output>
-        <Output Title="On Total">00:11:13:990</Output>
-        <Output Title="Off Total">00:00:00:000</Output>
-        <Output Title="Count On">1</Output>
+        <Output Title="Current Interval">00:02:09:870</Output>
+        <Output Title="On Total">00:04:41:440</Output>
+        <Output Title="Off Total">00:00:05:550</Output>
+        <Output Title="Count On">2</Output>
       </Outputs>
     </Function>
     <Function Title="ShiftTimes" Name="CTcAlyTimeClock_1Ch">
@@ -74,9 +74,9 @@
         <Parameter Title="Negate Reset">FALSE</Parameter>
       </Parameters>
       <Outputs>
-        <Output Title="New Result">FALSE</Output>
+        <Output Title="New Result">0</Output>
         <Output Title="Is On">True</Output>
-        <Output Title="Next Switch">00:46:52:097</Output>
+        <Output Title="Next Switch">00:21:38:647</Output>
       </Outputs>
     </Function>
     <Function Title="ScheduledTime" Name="CTcAlyTimingAnalysis_1Ch_Instance1">
@@ -93,10 +93,10 @@
         <Parameter Title="Negate Reset">FALSE</Parameter>
       </Parameters>
       <Outputs>
-        <Output Title="New Result">FALSE</Output>
+        <Output Title="New Result">0</Output>
         <Output Title="Is On">True</Output>
-        <Output Title="Current Interval">00:11:13:980</Output>
-        <Output Title="On Total">00:11:13:980</Output>
+        <Output Title="Current Interval">00:04:46:980</Output>
+        <Output Title="On Total">00:04:46:980</Output>
         <Output Title="Off Total">00:00:00:010</Output>
         <Output Title="Count On">1</Output>
       </Outputs>
@@ -116,14 +116,14 @@
         <Parameter Title="Negate Reset">FALSE</Parameter>
       </Parameters>
       <Outputs>
-        <Output Title="New Result">FALSE</Output>
-        <Output Title="OEE [%]">84.128</Output>
+        <Output Title="New Result">0</Output>
+        <Output Title="OEE [%]">82.935</Output>
         <Output Title="OEE Class">2</Output>
-        <Output Title="OEE Event Warning">9/7/2023 16:03:37.463</Output>
-        <Output Title="OEE Event Alarm">9/7/2023 16:03:36.603</Output>
-        <Output Title="Availability [%]">100</Output>
-        <Output Title="Performance [%]">89.32</Output>
-        <Output Title="Quality [%]">94.186</Output>
+        <Output Title="OEE Event Warning">9/7/2023 16:35:26.653</Output>
+        <Output Title="OEE Event Alarm">9/7/2023 16:35:26.383</Output>
+        <Output Title="Availability [%]">98.069</Output>
+        <Output Title="Performance [%]">89.543</Output>
+        <Output Title="Quality [%]">94.444</Output>
       </Outputs>
     </Function>
     <Function Title="CycleTime" Name="CTcAlyTimer_1Ch">
@@ -141,9 +141,9 @@
         <Parameter Title="Negate Reset">FALSE</Parameter>
       </Parameters>
       <Outputs>
-        <Output Title="New Result">FALSE</Output>
+        <Output Title="New Result">0</Output>
         <Output Title="Output">True</Output>
-        <Output Title="Time Elapsed">00:00:05:070</Output>
+        <Output Title="Time Elapsed">00:00:01:960</Output>
       </Outputs>
     </Function>
   </Functions>
@@ -151,9 +151,10 @@
     <InputSource Title="10.12.160.7.1.1: 851 [10.00ms]" Target="&lt;TargetInfo TargetId=&quot;0&quot;&gt;&#xD;&#xA;  &lt;AmsAddress&gt;&#xD;&#xA;    &lt;AmsNetId&gt;10.12.160.7.1.1&lt;/AmsNetId&gt;&#xD;&#xA;    &lt;Port&gt;851&lt;/Port&gt;&#xD;&#xA;  &lt;/AmsAddress&gt;&#xD;&#xA;  &lt;CycleTime Context=&quot;0&quot; Oversampling=&quot;1&quot;&gt;100000&lt;/CycleTime&gt;&#xD;&#xA;  &lt;CurrentContextMask&gt;0&lt;/CurrentContextMask&gt;&#xD;&#xA;&lt;/TargetInfo&gt;">
       <Inputs>
         <Input Title="TimeLine" VariableInfo="&lt;Symbol&gt;&lt;Name&gt;TimeLine&lt;/Name&gt;&lt;BitSize&gt;64&lt;/BitSize&gt;&lt;BaseType&gt;ULINT&lt;/BaseType&gt;&lt;ContextMask&gt;0&lt;/ContextMask&gt;&lt;/Symbol&gt;" />
+        <Input Title="MAIN.fbCell.bPartPresentAtOutfeed" VariableInfo="&lt;Symbol TargetId=&quot;0&quot;&gt;&#xA;  &lt;Name&gt;MAIN.fbCell.bPartPresentAtOutfeed&lt;/Name&gt;&#xA;  &lt;BaseType&gt;BOOL&lt;/BaseType&gt;&#xA;  &lt;BitSize&gt;8&lt;/BitSize&gt;&#xA;  &lt;Comment /&gt;&#xA;  &lt;Properties&gt;&#xA;    &lt;Property&gt;&#xA;      &lt;Name&gt;TcAddressType&lt;/Name&gt;&#xA;      &lt;Value&gt;Input&lt;/Value&gt;&#xA;    &lt;/Property&gt;&#xA;    &lt;Property&gt;&#xA;      &lt;Name&gt;Area&lt;/Name&gt;&#xA;      &lt;Value&gt;Local&lt;/Value&gt;&#xA;    &lt;/Property&gt;&#xA;  &lt;/Properties&gt;&#xA;  &lt;ContextMask&gt;0&lt;/ContextMask&gt;&#xA;  &lt;IndexGroup&gt;16448&lt;/IndexGroup&gt;&#xA;  &lt;IndexOffset&gt;386023&lt;/IndexOffset&gt;&#xA;&lt;/Symbol&gt;" />
         <Input Title="MAIN.fbCell.fbInfeedConveyor.bJogFwdCmd" VariableInfo="&lt;Symbol TargetId=&quot;0&quot;&gt;&#xA;  &lt;Name&gt;MAIN.fbCell.fbInfeedConveyor.bJogFwdCmd&lt;/Name&gt;&#xA;  &lt;BaseType&gt;BOOL&lt;/BaseType&gt;&#xA;  &lt;BitSize&gt;8&lt;/BitSize&gt;&#xA;  &lt;Comment /&gt;&#xA;  &lt;Properties&gt;&#xA;    &lt;Property&gt;&#xA;      &lt;Name&gt;TcAddressType&lt;/Name&gt;&#xA;      &lt;Value&gt;Output&lt;/Value&gt;&#xA;    &lt;/Property&gt;&#xA;    &lt;Property&gt;&#xA;      &lt;Name&gt;Area&lt;/Name&gt;&#xA;      &lt;Value&gt;Local&lt;/Value&gt;&#xA;    &lt;/Property&gt;&#xA;  &lt;/Properties&gt;&#xA;  &lt;ContextMask&gt;0&lt;/ContextMask&gt;&#xA;  &lt;IndexGroup&gt;16448&lt;/IndexGroup&gt;&#xA;  &lt;IndexOffset&gt;386195&lt;/IndexOffset&gt;&#xA;&lt;/Symbol&gt;" />
         <Input Title="MAIN.fbCell.fbOutfeedActuator.bExtendCmd" VariableInfo="&lt;Symbol TargetId=&quot;0&quot;&gt;&#xA;  &lt;Name&gt;MAIN.fbCell.fbOutfeedActuator.bExtendCmd&lt;/Name&gt;&#xA;  &lt;BaseType&gt;BOOL&lt;/BaseType&gt;&#xA;  &lt;BitSize&gt;8&lt;/BitSize&gt;&#xA;  &lt;Comment /&gt;&#xA;  &lt;Properties&gt;&#xA;    &lt;Property&gt;&#xA;      &lt;Name&gt;TcAddressType&lt;/Name&gt;&#xA;      &lt;Value&gt;Output&lt;/Value&gt;&#xA;    &lt;/Property&gt;&#xA;    &lt;Property&gt;&#xA;      &lt;Name&gt;Area&lt;/Name&gt;&#xA;      &lt;Value&gt;Local&lt;/Value&gt;&#xA;    &lt;/Property&gt;&#xA;  &lt;/Properties&gt;&#xA;  &lt;ContextMask&gt;0&lt;/ContextMask&gt;&#xA;  &lt;IndexGroup&gt;16448&lt;/IndexGroup&gt;&#xA;  &lt;IndexOffset&gt;386114&lt;/IndexOffset&gt;&#xA;&lt;/Symbol&gt;" />
-        <Input Title="MAIN.fbCell.bPartPresentAtOutfeed" VariableInfo="&lt;Symbol TargetId=&quot;0&quot;&gt;&#xA;  &lt;Name&gt;MAIN.fbCell.bPartPresentAtOutfeed&lt;/Name&gt;&#xA;  &lt;BaseType&gt;BOOL&lt;/BaseType&gt;&#xA;  &lt;BitSize&gt;8&lt;/BitSize&gt;&#xA;  &lt;Comment /&gt;&#xA;  &lt;Properties&gt;&#xA;    &lt;Property&gt;&#xA;      &lt;Name&gt;TcAddressType&lt;/Name&gt;&#xA;      &lt;Value&gt;Input&lt;/Value&gt;&#xA;    &lt;/Property&gt;&#xA;    &lt;Property&gt;&#xA;      &lt;Name&gt;Area&lt;/Name&gt;&#xA;      &lt;Value&gt;Local&lt;/Value&gt;&#xA;    &lt;/Property&gt;&#xA;  &lt;/Properties&gt;&#xA;  &lt;ContextMask&gt;0&lt;/ContextMask&gt;&#xA;  &lt;IndexGroup&gt;16448&lt;/IndexGroup&gt;&#xA;  &lt;IndexOffset&gt;386023&lt;/IndexOffset&gt;&#xA;&lt;/Symbol&gt;" />
+        <Input Title="MAIN.fbCell.fbInfeedConveyor.bRunning" VariableInfo="&lt;Symbol TargetId=&quot;0&quot;&gt;&#xA;  &lt;Name&gt;MAIN.fbCell.fbInfeedConveyor.bRunning&lt;/Name&gt;&#xA;  &lt;BaseType&gt;BOOL&lt;/BaseType&gt;&#xA;  &lt;BitSize&gt;8&lt;/BitSize&gt;&#xA;  &lt;Comment /&gt;&#xA;  &lt;Properties&gt;&#xA;    &lt;Property&gt;&#xA;      &lt;Name&gt;TcAddressType&lt;/Name&gt;&#xA;      &lt;Value&gt;Input&lt;/Value&gt;&#xA;    &lt;/Property&gt;&#xA;    &lt;Property&gt;&#xA;      &lt;Name&gt;Area&lt;/Name&gt;&#xA;      &lt;Value&gt;Local&lt;/Value&gt;&#xA;    &lt;/Property&gt;&#xA;  &lt;/Properties&gt;&#xA;  &lt;ContextMask&gt;0&lt;/ContextMask&gt;&#xA;  &lt;IndexGroup&gt;16448&lt;/IndexGroup&gt;&#xA;  &lt;IndexOffset&gt;386195&lt;/IndexOffset&gt;&#xA;&lt;/Symbol&gt;" />
       </Inputs>
     </InputSource>
   </InputSources>

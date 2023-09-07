@@ -13,7 +13,7 @@
 		</System>
 		<Plc>
 			<Project GUID="{A7710401-C0B0-4CA5-AF33-91A2C35CCB11}" Name="PLC" PrjFilePath="PLC\PLC.plcproj" TmcFilePath="PLC\PLC.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC\PLC.tmc" TmcHash="{75907C15-0D97-8065-5484-84EAC3830099}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC\PLC.tmc" TmcHash="{F71C0F0E-C98D-7D57-27AB-F920AD1F07BF}">
 					<Name>PLC Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1">
@@ -72,6 +72,10 @@
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
+							<Name>MAIN.fbCell.fbInfeedConveyor.bRunning</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
 							<Name>MAIN.fbCell.fbIndexConveyor.fActPosition</Name>
 							<Type>LREAL</Type>
 						</Var>
@@ -92,6 +96,10 @@
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
+							<Name>MAIN.fbCell.fbIndexConveyor.bRunning</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
 							<Name>MAIN.fbCell.fbOutfeedConveyor.fActPosition</Name>
 							<Type>LREAL</Type>
 						</Var>
@@ -109,6 +117,10 @@
 						</Var>
 						<Var>
 							<Name>MAIN.fbCell.fbOutfeedConveyor.bError</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbCell.fbOutfeedConveyor.bRunning</Name>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
@@ -256,7 +268,7 @@
 				</Instance>
 			</Project>
 			<Project GUID="{3CA6AD6D-9730-4384-B9AB-2C933A562319}" Name="SIM" PrjFilePath="SIM\SIM.plcproj" TmcFilePath="SIM\SIM.tmc" ReloadTmc="true" AmsPort="852" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502040" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="SIM\SIM.tmc" TmcHash="{49F5C022-2B63-0E78-3039-DDBA6A3259E8}">
+				<Instance Id="#x08502040" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="SIM\SIM.tmc" TmcHash="{F9AE33AF-3EA9-6849-C283-D3979C8B1D87}">
 					<Name>SIM Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1">
@@ -397,6 +409,10 @@
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
+							<Name>MAIN.fbSimCell.fbInfeedConveyor.bRunning</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
 							<Name>MAIN.fbSimCell.fbOutfeedConveyor.fActPosition</Name>
 							<Type>LREAL</Type>
 						</Var>
@@ -417,6 +433,10 @@
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
+							<Name>MAIN.fbSimCell.fbOutfeedConveyor.bRunning</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
 							<Name>MAIN.fbSimCell.fbIndexConveyor.fActPosition</Name>
 							<Type>LREAL</Type>
 						</Var>
@@ -434,6 +454,10 @@
 						</Var>
 						<Var>
 							<Name>MAIN.fbSimCell.fbIndexConveyor.bError</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbSimCell.fbIndexConveyor.bRunning</Name>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
@@ -510,6 +534,7 @@
 				<Link VarA="PlcTask Inputs^MAIN.fbCell.fbIndexConveyor.bBusy" VarB="PlcTask Outputs^MAIN.fbSimCell.fbIndexConveyor.bBusy"/>
 				<Link VarA="PlcTask Inputs^MAIN.fbCell.fbIndexConveyor.bError" VarB="PlcTask Outputs^MAIN.fbSimCell.fbIndexConveyor.bError"/>
 				<Link VarA="PlcTask Inputs^MAIN.fbCell.fbIndexConveyor.bReady" VarB="PlcTask Outputs^MAIN.fbSimCell.fbIndexConveyor.bReady"/>
+				<Link VarA="PlcTask Inputs^MAIN.fbCell.fbIndexConveyor.bRunning" VarB="PlcTask Outputs^MAIN.fbSimCell.fbIndexConveyor.bRunning"/>
 				<Link VarA="PlcTask Inputs^MAIN.fbCell.fbIndexConveyor.fActPosition" VarB="PlcTask Outputs^MAIN.fbSimCell.fbIndexConveyor.fActPosition"/>
 				<Link VarA="PlcTask Inputs^MAIN.fbCell.fbIndexConveyor.fActVelocity" VarB="PlcTask Outputs^MAIN.fbSimCell.fbIndexConveyor.fActVelocity"/>
 				<Link VarA="PlcTask Inputs^MAIN.fbCell.fbInfeedActuator.bExtended" VarB="PlcTask Outputs^MAIN.fbSimCell.fbInfeedActuator.bExtended"/>
@@ -517,6 +542,7 @@
 				<Link VarA="PlcTask Inputs^MAIN.fbCell.fbInfeedConveyor.bBusy" VarB="PlcTask Outputs^MAIN.fbSimCell.fbInfeedConveyor.bBusy"/>
 				<Link VarA="PlcTask Inputs^MAIN.fbCell.fbInfeedConveyor.bError" VarB="PlcTask Outputs^MAIN.fbSimCell.fbInfeedConveyor.bError"/>
 				<Link VarA="PlcTask Inputs^MAIN.fbCell.fbInfeedConveyor.bReady" VarB="PlcTask Outputs^MAIN.fbSimCell.fbInfeedConveyor.bReady"/>
+				<Link VarA="PlcTask Inputs^MAIN.fbCell.fbInfeedConveyor.bRunning" VarB="PlcTask Outputs^MAIN.fbSimCell.fbInfeedConveyor.bRunning"/>
 				<Link VarA="PlcTask Inputs^MAIN.fbCell.fbInfeedConveyor.fActPosition" VarB="PlcTask Outputs^MAIN.fbSimCell.fbInfeedConveyor.fActPosition"/>
 				<Link VarA="PlcTask Inputs^MAIN.fbCell.fbInfeedConveyor.fActVelocity" VarB="PlcTask Outputs^MAIN.fbSimCell.fbInfeedConveyor.fActVelocity"/>
 				<Link VarA="PlcTask Inputs^MAIN.fbCell.fbOutfeedActuator.bExtended" VarB="PlcTask Outputs^MAIN.fbSimCell.fbOutfeedActuator.bExtended"/>
@@ -524,6 +550,7 @@
 				<Link VarA="PlcTask Inputs^MAIN.fbCell.fbOutfeedConveyor.bBusy" VarB="PlcTask Outputs^MAIN.fbSimCell.fbOutfeedConveyor.bBusy"/>
 				<Link VarA="PlcTask Inputs^MAIN.fbCell.fbOutfeedConveyor.bError" VarB="PlcTask Outputs^MAIN.fbSimCell.fbOutfeedConveyor.bError"/>
 				<Link VarA="PlcTask Inputs^MAIN.fbCell.fbOutfeedConveyor.bReady" VarB="PlcTask Outputs^MAIN.fbSimCell.fbOutfeedConveyor.bReady"/>
+				<Link VarA="PlcTask Inputs^MAIN.fbCell.fbOutfeedConveyor.bRunning" VarB="PlcTask Outputs^MAIN.fbSimCell.fbOutfeedConveyor.bRunning"/>
 				<Link VarA="PlcTask Inputs^MAIN.fbCell.fbOutfeedConveyor.fActPosition" VarB="PlcTask Outputs^MAIN.fbSimCell.fbOutfeedConveyor.fActPosition"/>
 				<Link VarA="PlcTask Inputs^MAIN.fbCell.fbOutfeedConveyor.fActVelocity" VarB="PlcTask Outputs^MAIN.fbSimCell.fbOutfeedConveyor.fActVelocity"/>
 				<Link VarA="PlcTask Outputs^MAIN.fbCell.fFillRate" VarB="PlcTask Inputs^MAIN.fbSimCell.fFillRate"/>

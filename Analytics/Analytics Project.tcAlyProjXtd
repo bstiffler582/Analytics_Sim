@@ -8,7 +8,7 @@
     <GenerateGVL>false</GenerateGVL>
     <GlobalVariableType>InOutVariables</GlobalVariableType>
     <Guid>b1a099a5-c620-480d-9653-48e3cb61cd0b</Guid>
-    <ModuleIdentification>00000000-0000-0000-0000-000000000000</ModuleIdentification>
+    <ModuleIdentification>64649c40-0000-0000-0000-000000000000</ModuleIdentification>
     <Name>HMICtrlInfo_4528</Name>
     <ReferencedModule>CTcAlyEdgeCounter_1Ch</ReferencedModule>
     <SelectedMapping>
@@ -27,7 +27,7 @@
     <GenerateGVL>false</GenerateGVL>
     <GlobalVariableType>InOutVariables</GlobalVariableType>
     <Guid>2b3e1c95-0903-40c2-92c2-8d34091d9d8d</Guid>
-    <ModuleIdentification>00000000-0000-0000-0000-000000000000</ModuleIdentification>
+    <ModuleIdentification>6464a8c0-0000-0000-0000-000000000000</ModuleIdentification>
     <Name>HMICtrlInfo_4631</Name>
     <ReferencedModule>CTcAlyEdgeCounter_1Ch_Instance1</ReferencedModule>
     <SelectedMapping>
@@ -46,7 +46,7 @@
     <GenerateGVL>false</GenerateGVL>
     <GlobalVariableType>InOutVariables</GlobalVariableType>
     <Guid>9d8fe50b-6b5e-44ed-8008-ab7ff9539fc0</Guid>
-    <ModuleIdentification>00000000-0000-0000-0000-000000000000</ModuleIdentification>
+    <ModuleIdentification>6464c1c0-0000-0000-0000-000000000000</ModuleIdentification>
     <Name>HMICtrlInfo_4957</Name>
     <ReferencedModule>CTcAlyTimingAnalysis_1Ch</ReferencedModule>
     <SelectedMapping>
@@ -65,7 +65,7 @@
     <GenerateGVL>false</GenerateGVL>
     <GlobalVariableType>InOutVariables</GlobalVariableType>
     <Guid>ccd13f53-dceb-46c7-9a0e-7df16cf9a00a</Guid>
-    <ModuleIdentification>00000000-0000-0000-0000-000000000000</ModuleIdentification>
+    <ModuleIdentification>6464d480-0000-0000-0000-000000000000</ModuleIdentification>
     <Name>HMICtrlInfo_5418</Name>
     <ReferencedModule>CTcAlyTimeClock_1Ch</ReferencedModule>
     <SelectedMapping>
@@ -84,7 +84,7 @@
     <GenerateGVL>false</GenerateGVL>
     <GlobalVariableType>InOutVariables</GlobalVariableType>
     <Guid>b6268cfa-2b07-4974-9b0d-bdb93c001d22</Guid>
-    <ModuleIdentification>00000000-0000-0000-0000-000000000000</ModuleIdentification>
+    <ModuleIdentification>6464dac0-0000-0000-0000-000000000000</ModuleIdentification>
     <Name>HMICtrlInfo_5489</Name>
     <ReferencedModule>CTcAlyTimingAnalysis_1Ch_Instance1</ReferencedModule>
     <SelectedMapping>
@@ -103,7 +103,7 @@
     <GenerateGVL>false</GenerateGVL>
     <GlobalVariableType>InOutVariables</GlobalVariableType>
     <Guid>f1c02ae6-b10f-4253-b0c7-df8b6711b313</Guid>
-    <ModuleIdentification>00000000-0000-0000-0000-000000000000</ModuleIdentification>
+    <ModuleIdentification>6464e740-0000-0000-0000-000000000000</ModuleIdentification>
     <Name>HMICtrlInfo_5616</Name>
     <ReferencedModule>CTcAlyOverallEquipmentEffectiveness</ReferencedModule>
     <SelectedMapping>
@@ -122,7 +122,7 @@
     <GenerateGVL>false</GenerateGVL>
     <GlobalVariableType>InOutVariables</GlobalVariableType>
     <Guid>770f3e2a-224d-4394-84f8-5ea38a2293dc</Guid>
-    <ModuleIdentification>00000000-0000-0000-0000-000000000000</ModuleIdentification>
+    <ModuleIdentification>64650680-0000-0000-0000-000000000000</ModuleIdentification>
     <Name>HMICtrlInfo_6087</Name>
     <ReferencedModule>CTcAlyTimer_1Ch</ReferencedModule>
     <SelectedMapping>
@@ -436,7 +436,7 @@
     <TriggerResult>false</TriggerResult>
   </FunctionResultInfo>
   <InputSourceInfo AssemblyName="TwinCAT.Analytics.Workbench">
-    <ChartGuid>379d4e9b-1e7e-4c11-9387-da8a90509612</ChartGuid>
+    <ChartGuid>ecb31444-7c08-4b6c-8d53-14174d2ed227</ChartGuid>
     <Comment />
     <CycleTime>10000000</CycleTime>
     <DisplayColor>Black</DisplayColor>
@@ -472,7 +472,7 @@
     <IncludeInReport>false</IncludeInReport>
     <IncludeSubMemberInReport>true</IncludeSubMemberInReport>
     <Name>OEE</Name>
-    <NetworkChartGuid>cc027835-0434-454a-8c9c-5727e6e55f74</NetworkChartGuid>
+    <NetworkChartGuid>efbcc2aa-24aa-492b-9c73-f2dc58a1b6aa</NetworkChartGuid>
     <ParentNetworkEnabled>true</ParentNetworkEnabled>
     <PersistentResults>false</PersistentResults>
     <RptDataKey>0 - OEE</RptDataKey>
@@ -526,6 +526,8 @@
           <ArrayOfGuid>
             <guid>09ffb3cb-ebc2-43e5-a70c-3f5565ed9f30</guid>
             <guid>6c440dce-c381-41cb-b00a-03a09723cf30</guid>
+            <guid>79c6225d-cac4-4e49-98b8-c7128d89f568</guid>
+            <guid>cc5ae6d4-729d-4b24-90e7-eba008b20d23</guid>
           </ArrayOfGuid>
         </Value>
       </DictionaryItem>
@@ -536,6 +538,7 @@
         <Value>
           <ArrayOfGuid>
             <guid>cc1ef0e6-3801-4343-8ef4-3cfa5b8e8cc1</guid>
+            <guid>c0ad9c3e-e06f-4cb7-9a11-cfbb3a0fab52</guid>
           </ArrayOfGuid>
         </Value>
       </DictionaryItem>
@@ -546,6 +549,7 @@
         <Value>
           <ArrayOfGuid>
             <guid>e9bc94f7-c845-4bfc-862d-18636a50bd29</guid>
+            <guid>7aa105ac-7cc9-47d6-a07c-59cbcf3986f9</guid>
           </ArrayOfGuid>
         </Value>
       </DictionaryItem>
@@ -575,16 +579,16 @@
             </Key>
             <Value>
               <Pair>
-                <Key>c276fe1b-ffb8-4713-b62f-5351bba3c4e5</Key>
-                <Value>MAIN.fbCell.fbInfeedConveyor.bJogFwdCmd</Value>
-              </Pair>
-              <Pair>
                 <Key>c84e74a5-1163-46c3-a5ce-357ae26b789a</Key>
                 <Value>MAIN.fbCell.fbOutfeedActuator.bExtendCmd</Value>
               </Pair>
               <Pair>
                 <Key>dd720773-8b0c-4bac-adbb-154c424193fc</Key>
                 <Value>MAIN.fbCell.bPartPresentAtOutfeed</Value>
+              </Pair>
+              <Pair>
+                <Key>acaefbf9-e06a-4e80-bd47-179299aa3297</Key>
+                <Value>MAIN.fbCell.fbInfeedConveyor.bRunning</Value>
               </Pair>
             </Value>
           </Pair>
@@ -623,25 +627,6 @@
             <Comment />
             <ConnectedVariablesIds>
               <VariableID>
-                <FunctionID>16843248</FunctionID>
-                <InVariableGUID>00000000-0000-0000-0000-000000000000</InVariableGUID>
-                <InVariableID>2147483648</InVariableID>
-              </VariableID>
-            </ConnectedVariablesIds>
-            <DisplayColor>Black</DisplayColor>
-            <GenerateGVL>false</GenerateGVL>
-            <Guid>c276fe1b-ffb8-4713-b62f-5351bba3c4e5</Guid>
-            <IsStaticValue>false</IsStaticValue>
-            <Name>VirtualInput_1068</Name>
-            <SortPriority>1</SortPriority>
-            <SourceId>MAIN.fbCell.fbInfeedConveyor.bJogFwdCmd</SourceId>
-            <StaticValue></StaticValue>
-            <Title>bJogFwdCmd</Title>
-          </VirtualInput>
-          <VirtualInput AssemblyName="TwinCAT.Analytics.Workbench">
-            <Comment />
-            <ConnectedVariablesIds>
-              <VariableID>
                 <FunctionID>16843152</FunctionID>
                 <InVariableGUID>00000000-0000-0000-0000-000000000000</InVariableGUID>
                 <InVariableID>2147483648</InVariableID>
@@ -675,6 +660,25 @@
             <SourceId>MAIN.fbCell.bPartPresentAtOutfeed</SourceId>
             <StaticValue></StaticValue>
             <Title>bPartPresentAtOutfeed</Title>
+          </VirtualInput>
+          <VirtualInput AssemblyName="TwinCAT.Analytics.Workbench">
+            <Comment />
+            <ConnectedVariablesIds>
+              <VariableID>
+                <FunctionID>16843248</FunctionID>
+                <InVariableGUID>00000000-0000-0000-0000-000000000000</InVariableGUID>
+                <InVariableID>2147483648</InVariableID>
+              </VariableID>
+            </ConnectedVariablesIds>
+            <DisplayColor>Black</DisplayColor>
+            <GenerateGVL>false</GenerateGVL>
+            <Guid>acaefbf9-e06a-4e80-bd47-179299aa3297</Guid>
+            <IsStaticValue>false</IsStaticValue>
+            <Name>VirtualInput_7249</Name>
+            <SortPriority>4</SortPriority>
+            <SourceId>MAIN.fbCell.fbInfeedConveyor.bRunning</SourceId>
+            <StaticValue></StaticValue>
+            <Title>bRunning</Title>
           </VirtualInput>
         </SubMember>
         <Title>Virtual Input Source</Title>
