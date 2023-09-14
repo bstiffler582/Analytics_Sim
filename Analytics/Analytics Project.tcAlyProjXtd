@@ -355,7 +355,7 @@
     <SelectedScopeConfiguration>00000000-0000-0000-0000-000000000000</SelectedScopeConfiguration>
     <SelfEnabled>true</SelfEnabled>
     <ShowOptionalInputs>false</ShowOptionalInputs>
-    <SortPriority>576</SortPriority>
+    <SortPriority>61</SortPriority>
     <Title>FunctionAppearance_6088</Title>
   </FunctionAppearance>
   <FunctionResultInfo AssemblyName="TwinCAT.Analytics.Workbench">
@@ -436,7 +436,7 @@
     <TriggerResult>false</TriggerResult>
   </FunctionResultInfo>
   <InputSourceInfo AssemblyName="TwinCAT.Analytics.Workbench">
-    <ChartGuid>92bd410e-ff2f-471e-ab03-f830faa2f8d6</ChartGuid>
+    <ChartGuid>8e91654a-80dd-4d35-bc73-544d831a75be</ChartGuid>
     <Comment />
     <CycleTime>10000000</CycleTime>
     <DisplayColor>Black</DisplayColor>
@@ -472,7 +472,7 @@
     <IncludeInReport>false</IncludeInReport>
     <IncludeSubMemberInReport>true</IncludeSubMemberInReport>
     <Name>OEE</Name>
-    <NetworkChartGuid>77d341f8-dee3-4cf4-a6c9-e427c6c9f696</NetworkChartGuid>
+    <NetworkChartGuid>669841d4-a7ef-4043-be7d-14348081a863</NetworkChartGuid>
     <ParentNetworkEnabled>true</ParentNetworkEnabled>
     <PersistentResults>false</PersistentResults>
     <RptDataKey>0 - OEE</RptDataKey>
@@ -495,7 +495,7 @@
         <Guid>a81c28b3-b122-4ba6-9eef-4caac56c3df3</Guid>
         <ModuleIdentification>a55796f8-f810-4c96-a34c-9acfd193b342</ModuleIdentification>
         <Name>HMICtrlInfo_3968</Name>
-        <ReferencedModule />
+        <ReferencedModule>OEE</ReferencedModule>
         <SelectedMapping>
           <CtrlAlgMapGuid>00000000-0000-0000-0000-000000000000</CtrlAlgMapGuid>
           <AlgorithmGuid>00000000-0000-0000-0000-000000000000</AlgorithmGuid>
@@ -544,6 +544,8 @@
             <guid>bfb1628c-5466-4c65-af25-e9932bd7461f</guid>
             <guid>59d48111-e1ad-4bd8-9f97-6de2e36df632</guid>
             <guid>de808dcb-9018-4c63-9113-32c44bd75e04</guid>
+            <guid>e0878595-30c0-40a8-a3da-7e9af3c97d8f</guid>
+            <guid>615bd940-a67a-4c89-88bf-bae7a9d5a551</guid>
           </ArrayOfGuid>
         </Value>
       </DictionaryItem>
@@ -563,6 +565,7 @@
             <guid>b9badced-b0ad-424f-8e99-1175cea04d23</guid>
             <guid>b267e46d-b9d0-4d17-bddb-cf2ccd3f94ff</guid>
             <guid>e040642b-fc61-4372-9313-66d63e362c23</guid>
+            <guid>b823e7dd-b690-447a-baa6-3f5a47712422</guid>
           </ArrayOfGuid>
         </Value>
       </DictionaryItem>
@@ -582,6 +585,7 @@
             <guid>0e791b44-fcfb-4f73-8c73-72e66807d558</guid>
             <guid>5e257f8f-5f7d-4478-8d47-f2fef08bab2a</guid>
             <guid>f90ccbc5-b182-4000-9229-873610bbfb32</guid>
+            <guid>25cad74a-6135-46c5-bc96-ef9af39e9c2c</guid>
           </ArrayOfGuid>
         </Value>
       </DictionaryItem>
