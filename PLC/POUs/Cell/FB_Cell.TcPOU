@@ -164,7 +164,7 @@ IF eAutoMan = E_AutoMan.AUTO THEN
 		END_IF
 		
 		IF bFillRateTest THEN
-			tmrFillRate(IN:=NOT tmrFillRate.Q, PT:=T#30M); 
+			tmrFillRate(IN:=NOT tmrFillRate.Q, PT:=T#20M); 
 			IF tmrFillRate.Q THEN
 				fFillRate := fFillRate + 0.05;
 			END_IF

@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<TcSmProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.47">
+<TcSmProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.50">
 	<Project ProjectGUID="{20BF98A4-8B61-461B-A3F3-98EE69E38A6D}" Target64Bit="true" ShowHideConfigurations="#x106">
 		<System>
 			<Settings MaxCpus="12" NonWinCpus="1">
@@ -649,7 +649,7 @@
 				<Latitude></Latitude>
 			</AddiStreamDescription>
 			<SystemAlias></SystemAlias>
-			<DataLogger GUID="{B91F0052-7519-EA3B-0408-F4EF6DE277DA}">
+			<DataLogger GUID="{B9D1E586-85CF-9F10-437C-CB8B0AF7E5DA}">
 				<Name>Data Logger 1</Name>
 				<Name>Data Logger 1</Name>
 				<ParameterValues>
@@ -690,7 +690,7 @@
 						<String></String>
 					</Value>
 				</ParameterValues>
-				<Stream Caller="#x08502001" Adi="#x08502000" Id="#x02040003" CntAds="#x000000c8" CntFile="#x000003e8" CntRing="#x00000008" SamplingDivider="2">
+				<Stream Caller="#x08502001" Adi="#x08502000" Id="#x02040003" CntAds="#x000000c8" CntFile="#x000000aa" CntRing="#x00000016" SamplingDivider="4">
 					<Name>PLC.PLC Instance.PlcTask</Name>
 					<DisplayName>PlcStream1</DisplayName>
 					<LoggerObject Enabled="true">
@@ -760,7 +760,7 @@
 					</LoggerObject>
 					<FileDir>%TC_BOOTPRJPATH%</FileDir>
 				</Stream>
-				<Stream Caller="#x08502041" Adi="#x08502040" Id="#x02040004" CntAds="#x00000020" CntFile="#x00000010" CntRing="#x00000002" SamplingDivider="1">
+				<Stream Caller="#x08502041" Adi="#x08502040" Id="#x02040004" CntAds="#x00000020" CntFile="#x00000010" CntRing="#x00000002" DisabledManually="true" SamplingDivider="1">
 					<Name>SIM.SIM Instance.PlcTask</Name>
 					<DisplayName>PlcStream2</DisplayName>
 					<FileDir>%TC_BOOTPRJPATH%</FileDir>

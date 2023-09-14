@@ -2723,6 +2723,26 @@
             },
             "USEMAPPING": true
         },
+        "PLC1.MAIN.fbCell.fFillRate": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::fbCell::fFillRate",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/LREAL"
+                    },
+                    {
+                        "attributes": {
+                            "TcAddressType": "Output"
+                        },
+                        "propertyOrder": 7
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
         "PLC1.MAIN.fbCell.fbBarcoder.bPartPresent": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -3862,6 +3882,7 @@
                 "PLC1.MAIN.fbCell.bStartReq": 3,
                 "PLC1.MAIN.fbCell.bStopBtn": 3,
                 "PLC1.MAIN.fbCell.bStopReq": 3,
+                "PLC1.MAIN.fbCell.fFillRate": 3,
                 "PLC1.MAIN.fbCell.fbBarcoder.bPartPresent": 3,
                 "PLC1.MAIN.fbCell.fbBarcoder.sBarcodeRead": 3,
                 "PLC1.MAIN.fbCell.fbCapper.bPartPresent": 3,

@@ -436,7 +436,7 @@
     <TriggerResult>false</TriggerResult>
   </FunctionResultInfo>
   <InputSourceInfo AssemblyName="TwinCAT.Analytics.Workbench">
-    <ChartGuid>b9902211-4b1c-4603-93d4-e9f0658359e3</ChartGuid>
+    <ChartGuid>92bd410e-ff2f-471e-ab03-f830faa2f8d6</ChartGuid>
     <Comment />
     <CycleTime>10000000</CycleTime>
     <DisplayColor>Black</DisplayColor>
@@ -472,7 +472,7 @@
     <IncludeInReport>false</IncludeInReport>
     <IncludeSubMemberInReport>true</IncludeSubMemberInReport>
     <Name>OEE</Name>
-    <NetworkChartGuid>b52405d5-31a7-47a7-a89c-03c584ba05e1</NetworkChartGuid>
+    <NetworkChartGuid>77d341f8-dee3-4cf4-a6c9-e427c6c9f696</NetworkChartGuid>
     <ParentNetworkEnabled>true</ParentNetworkEnabled>
     <PersistentResults>false</PersistentResults>
     <RptDataKey>0 - OEE</RptDataKey>
@@ -530,6 +530,20 @@
             <guid>cc5ae6d4-729d-4b24-90e7-eba008b20d23</guid>
             <guid>e46b1a12-dc23-4237-b9fb-4c11cb6f13a5</guid>
             <guid>c193c6e2-5d79-43c8-ba42-cd967189241d</guid>
+            <guid>ef74b6a2-32e2-4e5d-896f-faafeddcf588</guid>
+            <guid>eabd3959-f910-430f-9575-370ad87c5e5a</guid>
+            <guid>eee5972b-9e51-4d95-af6a-8485e5adc357</guid>
+            <guid>f19f43e1-a646-44bf-b3e9-049198db84e9</guid>
+            <guid>50c8cede-cd53-4823-82b2-cf372d954c7c</guid>
+            <guid>f68fbcd4-3679-49dd-89ca-839f56d7dce9</guid>
+            <guid>14e96fad-66f0-4ce3-8dad-8129d4ab22eb</guid>
+            <guid>c0dce6d5-4d2a-4c21-aaa0-b973547fab1b</guid>
+            <guid>aa9f36f6-43f0-4689-b63e-40d675177750</guid>
+            <guid>8951c403-d228-43a6-8b6d-fa5298a01be5</guid>
+            <guid>0c481941-4ca6-4476-a36d-c05b9938c820</guid>
+            <guid>bfb1628c-5466-4c65-af25-e9932bd7461f</guid>
+            <guid>59d48111-e1ad-4bd8-9f97-6de2e36df632</guid>
+            <guid>de808dcb-9018-4c63-9113-32c44bd75e04</guid>
           </ArrayOfGuid>
         </Value>
       </DictionaryItem>
@@ -542,6 +556,13 @@
             <guid>cc1ef0e6-3801-4343-8ef4-3cfa5b8e8cc1</guid>
             <guid>c0ad9c3e-e06f-4cb7-9a11-cfbb3a0fab52</guid>
             <guid>bb6eeddb-797c-401c-a2bd-b9e4914f3d34</guid>
+            <guid>f2ffb8aa-a8e7-4d47-aabe-3cec0b16e793</guid>
+            <guid>513082a1-1d91-4ba3-a4cf-b53afc0b3888</guid>
+            <guid>67608ad9-6cee-48b4-8eab-56306ba9f05f</guid>
+            <guid>881bf464-943c-4f6c-93a9-c7b25b7be537</guid>
+            <guid>b9badced-b0ad-424f-8e99-1175cea04d23</guid>
+            <guid>b267e46d-b9d0-4d17-bddb-cf2ccd3f94ff</guid>
+            <guid>e040642b-fc61-4372-9313-66d63e362c23</guid>
           </ArrayOfGuid>
         </Value>
       </DictionaryItem>
@@ -554,6 +575,13 @@
             <guid>e9bc94f7-c845-4bfc-862d-18636a50bd29</guid>
             <guid>7aa105ac-7cc9-47d6-a07c-59cbcf3986f9</guid>
             <guid>de1289c1-e0d8-4263-8572-fca949552bf4</guid>
+            <guid>06a1826c-7a91-423a-a099-40732968b2dc</guid>
+            <guid>7fd97de7-c8e6-455e-889b-98d9009d3fee</guid>
+            <guid>74c8eb7e-7848-4f83-8341-4ec6975d8214</guid>
+            <guid>16a6ed2d-862c-490c-b0ad-402d74abe8ce</guid>
+            <guid>0e791b44-fcfb-4f73-8c73-72e66807d558</guid>
+            <guid>5e257f8f-5f7d-4478-8d47-f2fef08bab2a</guid>
+            <guid>f90ccbc5-b182-4000-9229-873610bbfb32</guid>
           </ArrayOfGuid>
         </Value>
       </DictionaryItem>
@@ -601,7 +629,7 @@
         <DisplayColor>Black</DisplayColor>
         <Guid>1c0e1ff9-43fe-490c-91eb-33c11225064d</Guid>
         <Name>VirtualInputSource_1062</Name>
-        <SortPriority>100</SortPriority>
+        <SortPriority>384</SortPriority>
         <SourceGuid>1da6bf05-603b-46dc-a6a6-70865597030b</SourceGuid>
         <SubMember>
           <FunctionAppearance AssemblyName="TwinCAT.Analytics.Workbench">

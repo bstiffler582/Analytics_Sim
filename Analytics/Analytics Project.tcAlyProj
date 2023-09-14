@@ -4661,7 +4661,7 @@
           </Value>
           <Value>
             <Name>TimeOff</Name>
-            <Value>75600000000000</Value>
+            <Value>72000000000000</Value>
           </Value>
           <Value>
             <Name>DayOfWeekMask</Name>
