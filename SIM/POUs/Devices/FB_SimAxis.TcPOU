@@ -30,8 +30,8 @@ CASE State OF
 	0:
 		bReady := TRUE;
 		bBusy := FALSE;
-		bError := FALSE;
 		bRunning := FALSE;
+		bError := FALSE;
 		
 		IF bJogFwdCmd THEN
 			State := 10;
@@ -90,8 +90,9 @@ END_CASE]]></ST>
       <LineId Id="151" Count="1" />
       <LineId Id="76" Count="1" />
       <LineId Id="81" Count="0" />
-      <LineId Id="87" Count="1" />
+      <LineId Id="87" Count="0" />
       <LineId Id="174" Count="0" />
+      <LineId Id="88" Count="0" />
       <LineId Id="129" Count="0" />
       <LineId Id="89" Count="2" />
       <LineId Id="130" Count="0" />

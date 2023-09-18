@@ -46,4 +46,6 @@ liveview_*
 tchmipublish.journal.json
 
 # analytics
-Analytics/
+Thumbs/
+VSSettings/
+*.dll

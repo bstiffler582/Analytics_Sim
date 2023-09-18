@@ -12,6 +12,7 @@ VAR
 	bFaulted				: BOOL;
 	bBusy					: BOOL;
 	
+	{attribute 'TcAnalytics'}
 	eState					: E_StationState;
 	pPartStatus				: POINTER TO ST_PartStatus;
 	tmrPartPresentDelay		: TON;
