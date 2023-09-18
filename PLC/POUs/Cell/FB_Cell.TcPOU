@@ -203,6 +203,7 @@ IF bInit THEN
 		Stations[i].PartStatus := ADR(PartStatus[i]);
 	END_FOR
 	bInit := FALSE;
+	bStartReq := TRUE;
 END_IF
 
 bAllStationsReady := TRUE;
@@ -312,7 +313,9 @@ END_FOR]]></ST>
       <LineId Id="24" Count="1" />
       <LineId Id="59" Count="1" />
       <LineId Id="63" Count="2" />
-      <LineId Id="61" Count="1" />
+      <LineId Id="61" Count="0" />
+      <LineId Id="69" Count="0" />
+      <LineId Id="62" Count="0" />
       <LineId Id="52" Count="0" />
       <LineId Id="23" Count="0" />
       <LineId Id="54" Count="1" />
