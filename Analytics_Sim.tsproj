@@ -649,7 +649,7 @@
 				<Latitude></Latitude>
 			</AddiStreamDescription>
 			<SystemAlias></SystemAlias>
-			<DataLogger GUID="{B91F0052-7519-EA3B-0408-F4EF6DE277DA}">
+			<DataLogger GUID="{B9D1E586-85CF-9F10-437C-CB8B0AF7E5DA}">
 				<Name>Data Logger 1</Name>
 				<Name>Data Logger 1</Name>
 				<ParameterValues>
@@ -690,7 +690,7 @@
 						<String></String>
 					</Value>
 				</ParameterValues>
-				<Stream Caller="#x08502001" Adi="#x08502000" Id="#x02040003" CntAds="#x000000c8" CntFile="#x000000aa" CntRing="#x00000016" SamplingDivider="4">
+				<Stream Caller="#x08502001" Adi="#x08502000" Id="#x02040003" CntAds="#x000000c8" CntFile="#x000000aa" CntRing="#x00000016" DisabledManually="true" SamplingDivider="4">
 					<Name>PLC.PLC Instance.PlcTask</Name>
 					<DisplayName>PlcStream1</DisplayName>
 					<LoggerObject Enabled="true">
@@ -771,7 +771,6 @@
 	</Project>
 	<Mappings>
 		<MappingInfo Identifier="{00000000-2001-0850-0020-500840205008}" Id="#x02030010"/>
-		<MappingInfo Identifier="{08502001-2041-0850-0020-500840205008}" Id="#x02030020" Watchdog="04000000040000000400000004000000"/>
 		<OwnerA Name="TIPC^PLC^PLC Instance">
 			<OwnerB Name="TIPC^SIM^SIM Instance">
 				<Link VarA="PlcTask Inputs^MAIN.fbCell.bPartPresentAtInfeed" VarB="PlcTask Outputs^MAIN.fbSimCell.bPartPresentAtInfeed"/>
